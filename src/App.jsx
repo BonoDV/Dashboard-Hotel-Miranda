@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard';
 
 import Rooms from './pages/Rooms/Rooms';
 import Bookings from './pages/Bookings/Bookings';
-import Guest from './pages/users/Users';
+import Users from './pages/users/Users';
 import Reviews from './pages/contact/Contact';
 
 function App() {
@@ -17,6 +17,38 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/booking"
+          element={
+            <ProtectedRoute>
+              <Bookings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/room"
+          element={
+            <ProtectedRoute>
+              <Rooms />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute>
+              <Users />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Reviews />
             </ProtectedRoute>
           }
         />

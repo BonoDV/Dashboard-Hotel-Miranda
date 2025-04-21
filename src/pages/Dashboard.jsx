@@ -1,9 +1,12 @@
+import SideBar from "../components/SideBar";
 
 
 function Dashboard() {
     return (
         <>
-            <h1>Dashboard</h1>
+            <div className="sidebar-container">
+                <SideBar />
+            </div>
         </>
     );
 }

@@ -2,6 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router';
 import LoginForm from './pages/login/Login';
 import Dashboard from './pages/Dashboard';
 
+import Rooms from './pages/Rooms/Rooms';
+import Bookings from './pages/Bookings/Bookings';
+import Guest from './pages/users/Users';
+import Reviews from './pages/contact/Contact';
+
 function App() {
   return (
     <Router>

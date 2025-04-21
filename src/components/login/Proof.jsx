@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router';
 import usersData from '../login/users.json';
-import Proof from './Proof';
 
-const Login = () => {
+const Proof = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-    const navigate = useNavigate(); // Hook para navegación
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,7 +13,6 @@ const Login = () => {
         if (usersData.user.userName === username && usersData.user.password === password) {
             console.log('Succesful login');
             localStorage.setItem('logged', true);
-            navigate('/dashboard');
         } else {
             console.log('Wrong username or password')
         }
@@ -28,7 +23,7 @@ const Login = () => {
             <FormTitle>Login</FormTitle>
             <StyledForm onSubmit={handleSubmit}>
                 <FormGroup>
-                    <Label htmlFor="username">User:</Label>
+                    <Label htmlFor="username">User2:</Label>
                     <Input
                         type="text"
                         id="username"
@@ -39,7 +34,7 @@ const Login = () => {
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="password">Password:</Label>
+                    <Label htmlFor="password">Password2:</Label>
                     <Input
                         type="password"
                         id="password"
@@ -121,4 +116,4 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default Login;
+export default Proof;

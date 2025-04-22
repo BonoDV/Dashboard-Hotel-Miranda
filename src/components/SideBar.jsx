@@ -10,10 +10,17 @@ import { IoPersonOutline } from "react-icons/io5";
 import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 
-
+/* import { useTranslation } from 'react-i18next'; */
 
 
 function SideBar() {
+
+    /*     const { t, i18n } = useTranslation(); */
+
+    /*     const changeLanguage = (lng) => {
+            i18n.changeLanguage(lng);
+        }; */
+
     return (
         <div style={{ marginLeft: '3rem', boxShadow: '13px 3px 40px #00000005' }}>
             <HeaderContainer>
@@ -36,7 +43,7 @@ function SideBar() {
             <nav>
                 <StyledList>
                     <li><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
-                    <li><StyledLink to="/room"><RiKey2Line /> Room <IoIosArrowDown /></StyledLink></li>
+                    <li><StyledLink to="/room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
                     <li><StyledLink to="/booking"><LuCalendarCheck /> Bookings</StyledLink></li>
                     <li><StyledLink to="/user"><IoPersonOutline /> Guest</StyledLink></li>
                     <li><StyledLink to="/contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>

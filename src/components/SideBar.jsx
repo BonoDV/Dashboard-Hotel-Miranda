@@ -42,11 +42,11 @@ function SideBar() {
 
       <StyledNav>
         <StyledList>
-          <li><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
-          <li><StyledLink to="/room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
-          <li><StyledLink to="/booking"><LuCalendarCheck /> Bookings</StyledLink></li>
-          <li><StyledLink to="/user"><IoPersonOutline /> Guest</StyledLink></li>
-          <li><StyledLink to="/contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="/room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="/booking"><LuCalendarCheck /> Bookings</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="/user"><IoPersonOutline /> Guest</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="/contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
         </StyledList>
       </StyledNav>
 
@@ -135,7 +135,7 @@ const UserSquare = styled.div`
   background: #FFFFFF;
   border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 15%;
+  margin-top: 30%;
   border: 1px solid red;
   position: relative; /* Necesario para posicionar el div interno de forma absoluta */
   display: flex;

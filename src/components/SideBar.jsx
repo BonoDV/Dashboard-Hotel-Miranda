@@ -10,12 +10,12 @@ import { IoPersonOutline } from "react-icons/io5";
 import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 
-/* import { useTranslation } from 'react-i18next'; */
+import { useTranslation } from 'react-i18next';
 
 
 function SideBar() {
 
-  /*     const { t, i18n } = useTranslation(); */
+  const { t } = useTranslation();
 
   /*     const changeLanguage = (lng) => {
           i18n.changeLanguage(lng);
@@ -49,11 +49,11 @@ function SideBar() {
 
       <StyledNav>
         <StyledList>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="booking"><LuCalendarCheck /> Bookings</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="user"><IoPersonOutline /> Guest</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="/dashboard"><LuLayoutDashboard /> {t('dashboard')}</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="room"><RiKey2Line /> {t('room')}</StyledLink> <IoIosArrowDown /></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="booking"><LuCalendarCheck /> {t('bookings')}</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="user"><IoPersonOutline /> {t('guest')}</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="contact"><IoExtensionPuzzleOutline /> {t('concierge')}</StyledLink></li>
         </StyledList>
       </StyledNav>
 
@@ -61,7 +61,7 @@ function SideBar() {
         <div></div>
         <h2>William Johanson</h2>
         <p>williamjohn@mail.com</p>
-        <ContactButton>Contact Us</ContactButton>
+        <ContactButton>{t("contact_button")}</ContactButton>
       </UserSquare>
       <CopyrightDiv>
         <h2>Travl Hotel Admin Dashboard</h2>

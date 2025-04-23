@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { IconContext } from "react-icons";
@@ -8,7 +8,34 @@ import { FaHeart as HeartIcon, FaBell as BellIcon } from "react-icons/fa";
 import { MdEmail as EmailIcon } from "react-icons/md";
 import { LuMessageSquare as MessageIcon } from "react-icons/lu";
 
+import { useTranslation } from 'react-i18next';
+
 const Header = () => {
+    const { i18n } = useTranslation();
+    const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+
+    useEffect(() => {
+        // Sincronizar con cambios externos del idioma
+        const handleLanguageChange = (lng) => {
+            setSelectedLanguage(lng);
+        };
+
+        i18n.on('languageChanged', handleLanguageChange);
+        return () => {
+            i18n.off('languageChanged', handleLanguageChange);
+        };
+    }, [i18n]);
+
+    const changeLanguage = (event) => {
+        const lng = event.target.value.toLowerCase();
+        i18n.changeLanguage(lng)
+            .then(() => {
+                setSelectedLanguage(lng); // Actualizar estado local
+                localStorage.setItem('i18nextLng', lng);
+            })
+            .catch(err => console.error('Error changing language:', err));
+    };
+
     return (
         <HeaderStyled>
             <LeftSection>
@@ -35,7 +62,10 @@ const Header = () => {
                 </IconContext.Provider>
                 <UserSquareDivStyled />
                 <div style={{ background: '#EBEBEB 0% 0% no-repeat padding-box' }}></div>
-                <TextSelectStyled>
+                <TextSelectStyled
+                    onChange={changeLanguage}
+                    value={selectedLanguage}
+                >
                     <option>EN</option>
                     <option>ES</option>
                     <option>VA</option>

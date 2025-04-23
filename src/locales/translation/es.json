@@ -1,3 +1,8 @@
 {
+    "dashboard": "Panel",
+    "room": "Habitaciones",
+    "bookings": "Reservas",
+    "guest": "Huéspedes",
+    "concierge": "Trabajadores",
     "contact_button": "Contáctanos"
 }

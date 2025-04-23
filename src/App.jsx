@@ -6,33 +6,38 @@ import Bookings from './pages/Bookings/Bookings';
 import Users from './pages/users/Users';
 import Reviews from './pages/contact/Contact';
 
+import i18n from './locales/translation/i18n';
+import { I18nextProvider } from 'react-i18next';
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
+    <I18nextProvider i18n={i18n}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
 
-        {/* Ruta protegida principal que contiene las rutas anidadas */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        >
-          {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
-          <Route index element={<Dashboard />} /> {/* Página por defecto al entrar a /dashboard */}
-          <Route path="booking" element={<Bookings />} />
-          <Route path="room" element={<Rooms />} />
-          <Route path="user" element={<Users />} />
-          <Route path="contact" element={<Reviews />} />
-        </Route>
+          {/* Ruta protegida principal que contiene las rutas anidadas */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          >
+            {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
+            <Route index element={<Dashboard />} /> {/* Página por defecto al entrar a /dashboard */}
+            <Route path="booking" element={<Bookings />} />
+            <Route path="room" element={<Rooms />} />
+            <Route path="user" element={<Users />} />
+            <Route path="contact" element={<Reviews />} />
+          </Route>
 
-        {/* Redirección para rutas no encontradas */}
-        <Route path="*" element={<Navigate to="/sdfdsfdsf" replace />} />
-      </Routes>
-    </Router>
+          {/* Redirección para rutas no encontradas */}
+          <Route path="*" element={<Navigate to="/sdfdsfdsf" replace />} />
+        </Routes>
+      </Router>
+      </I18nextProvider>
   );
 }
 

@@ -15,55 +15,55 @@ import { IoIosArrowDown } from "react-icons/io";
 
 function SideBar() {
 
-    /*     const { t, i18n } = useTranslation(); */
+  /*     const { t, i18n } = useTranslation(); */
 
-    /*     const changeLanguage = (lng) => {
-            i18n.changeLanguage(lng);
-        }; */
+  /*     const changeLanguage = (lng) => {
+          i18n.changeLanguage(lng);
+      }; */
 
-    return (
-        <div style={{ marginLeft: '3rem', boxShadow: '13px 3px 40px #00000005' }}>
-            <HeaderContainer>
-                <IconContainer>
-                    <IconContext.Provider value={{ color: "#135846", size: "3rem" }}>
-                        <FaHotel />
-                    </IconContext.Provider>
-                    <SmallIcon>
-                        <IconContext.Provider value={{ color: "#E23428", size: "1rem" }}>
-                            <TbStarsFilled />
-                        </IconContext.Provider>
-                    </SmallIcon>
-                </IconContainer>
-                <TextContainer>
-                    <MainText>travl</MainText>
-                    <SubText>Hotel Admin Dashboard</SubText>
-                </TextContainer>
-            </HeaderContainer>
+  return (
+    <div style={{ marginLeft: '1rem', boxShadow: '13px 3px 40px #00000005', width: '100%' }}>
+      <HeaderContainer>
+        <IconContainer>
+          <IconContext.Provider value={{ color: "#135846", size: "3rem" }}>
+            <FaHotel />
+          </IconContext.Provider>
+          <SmallIcon>
+            <IconContext.Provider value={{ color: "#E23428", size: "1rem" }}>
+              <TbStarsFilled />
+            </IconContext.Provider>
+          </SmallIcon>
+        </IconContainer>
+        <TextContainer>
+          <MainText>travl</MainText>
+          <SubText>Hotel Admin Dashboard</SubText>
+        </TextContainer>
+      </HeaderContainer>
 
-            <nav>
-                <StyledList>
-                    <li><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
-                    <li><StyledLink to="/room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
-                    <li><StyledLink to="/booking"><LuCalendarCheck /> Bookings</StyledLink></li>
-                    <li><StyledLink to="/user"><IoPersonOutline /> Guest</StyledLink></li>
-                    <li><StyledLink to="/contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
-                </StyledList>
-            </nav>
+      <StyledNav>
+        <StyledList>
+          <li><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
+          <li><StyledLink to="/room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
+          <li><StyledLink to="/booking"><LuCalendarCheck /> Bookings</StyledLink></li>
+          <li><StyledLink to="/user"><IoPersonOutline /> Guest</StyledLink></li>
+          <li><StyledLink to="/contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
+        </StyledList>
+      </StyledNav>
 
-            <UserSquare>
-                <div>
-                </div>
-                <h2>William Johanson</h2>
-                <p>williamjohn@mail.com</p>
-                <ContactButton>Contact Us</ContactButton>
-            </UserSquare>
-            <CopyrightDiv>
-                <h2>Travl Hotel Admin Dashboard</h2>
-                <p>© 2020 All Rights Reserved</p>
-            </CopyrightDiv>
+      <UserSquare>
+        <div>
+        </div>
+        <h2>William Johanson</h2>
+        <p>williamjohn@mail.com</p>
+        <ContactButton>Contact Us</ContactButton>
+      </UserSquare>
+      <CopyrightDiv>
+        <h2>Travl Hotel Admin Dashboard</h2>
+        <p>© 2020 All Rights Reserved</p>
+      </CopyrightDiv>
 
-        </div >
-    );
+    </div >
+  );
 }
 
 // Contenedor principal para íconos y textos
@@ -104,6 +104,13 @@ const SubText = styled.span`
   color: #6E6E6E;
 `;
 
+const StyledNav = styled.nav`
+  width: 12.5rem;
+  text-align: left;
+  font: normal normal 600 18px/27px Poppins;
+  letter-spacing: 0px;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit; // Hereda el color del padre (generalmente negro)
@@ -120,6 +127,7 @@ const StyledLink = styled(Link)`
 const StyledList = styled.ul`
   list-style: none;  /* Elimina los bullets */
   margin: 0;         /* Opcional: elimina el margen por defecto */
+  width: 100%;
 `;
 
 const UserSquare = styled.div`
@@ -128,7 +136,7 @@ const UserSquare = styled.div`
   background: #FFFFFF;
   border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 5%;
+  margin-top: 15%;
   border: 1px solid red;
   position: relative; /* Necesario para posicionar el div interno de forma absoluta */
   display: flex;
@@ -194,20 +202,20 @@ const CopyrightDiv = styled.div`
     margin-top: 3.8rem;
     
     h2{
-        width: 80%;
+        width: 100%;
         height: 1.5625rem;
 
         text-align: left;
-        font: normal normal 600 16px/25px Poppins;
+        font: normal normal 600 14px/25px Poppins;
         letter-spacing: 0px;
         color: #212121;
     }
 
     p{
         text-align: left;
-font: normal normal 300 14px/21px Poppins;
-letter-spacing: 0px;
-color: #799283;
+        font: normal normal 300 14px/21px Poppins;
+        letter-spacing: 0px;
+        color: #799283;
     }
 `;
 

@@ -42,10 +42,11 @@ const Header = () => {
 const HeaderStyled = styled.header`
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-left: 30rem;
-    padding: 3rem;
+    align-items: flex-start;
+    padding: 1rem;
     position: relative; /* Para el posicionamiento del UserSquareDivStyled */
+    border-right: 1px solid black;
+    height: 3.125rem;
 `;
 
 const LeftSection = styled.div`

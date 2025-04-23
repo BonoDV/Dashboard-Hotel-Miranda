@@ -1,0 +1,22 @@
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+}
+
+.dashboard-container > Header {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.dashboard-container > SideBar {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.main-content {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 20px;
+}

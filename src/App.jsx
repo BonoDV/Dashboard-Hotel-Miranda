@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router';
 import LoginForm from './pages/login/Login';
 import Dashboard from './pages/Dashboard';
-
 import Rooms from './pages/Rooms/Rooms';
 import Bookings from './pages/Bookings/Bookings';
 import Users from './pages/users/Users';
@@ -12,6 +11,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LoginForm />} />
+
+        {/* Ruta protegida principal que contiene las rutas anidadas */}
         <Route
           path="/dashboard"
           element={
@@ -19,40 +20,17 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           }
-        />
-        <Route
-          path="/booking"
-          element={
-            <ProtectedRoute>
-              <Bookings />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/room"
-          element={
-            <ProtectedRoute>
-              <Rooms />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/user"
-          element={
-            <ProtectedRoute>
-              <Users />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <ProtectedRoute>
-              <Reviews />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/fdgd" />} />
+        >
+          {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
+          <Route index element={<Dashboard />} /> {/* Página por defecto al entrar a /dashboard */}
+          <Route path="booking" element={<Bookings />} />
+          <Route path="room" element={<Rooms />} />
+          <Route path="user" element={<Users />} />
+          <Route path="contact" element={<Reviews />} />
+        </Route>
+
+        {/* Redirección para rutas no encontradas */}
+        <Route path="*" element={<Navigate to="/sdfdsfdsf" replace />} />
       </Routes>
     </Router>
   );

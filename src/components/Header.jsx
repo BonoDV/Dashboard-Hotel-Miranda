@@ -48,12 +48,14 @@ const Header = () => {
 const HeaderStyled = styled.header`
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 1rem;
-    position: relative; /* Para el posicionamiento del UserSquareDivStyled */
     border-bottom: 1px solid black;
-    height: 3.125rem;
-    margin-left: 1rem;
+    height: 80px; // Altura fija para el header
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
 `;
 
 const LeftSection = styled.div`

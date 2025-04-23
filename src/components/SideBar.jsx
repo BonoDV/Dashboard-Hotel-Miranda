@@ -22,7 +22,14 @@ function SideBar() {
       }; */
 
   return (
-    <div style={{ marginLeft: '1rem', boxShadow: '13px 3px 40px #00000005', width: '100%', borderRight: '1px solid black', height: '90vh' }}>
+    <div style={{
+      marginLeft: '1rem',
+      boxShadow: '13px 3px 40px #00000005',
+      borderRight: '1px solid black',
+      height: '100vh', // Cambiado de 90vh a 100vh
+      position: 'sticky',
+      top: 0
+    }}>
       <HeaderContainer>
         <IconContainer>
           <IconContext.Provider value={{ color: "#135846", size: "3rem" }}>
@@ -43,10 +50,10 @@ function SideBar() {
       <StyledNav>
         <StyledList>
           <li style={{ marginBottom: '1rem' }}><StyledLink to="/dashboard"><LuLayoutDashboard /> Dashboard</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="/room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="/booking"><LuCalendarCheck /> Bookings</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="/user"><IoPersonOutline /> Guest</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="/contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="room"><RiKey2Line /> Room</StyledLink> <IoIosArrowDown /></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="booking"><LuCalendarCheck /> Bookings</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="user"><IoPersonOutline /> Guest</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="contact"><IoExtensionPuzzleOutline /> Concierge</StyledLink></li>
         </StyledList>
       </StyledNav>
 

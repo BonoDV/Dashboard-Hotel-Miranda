@@ -22,7 +22,7 @@ function SideBar() {
       }; */
 
   return (
-    <div style={{ marginLeft: '1rem', boxShadow: '13px 3px 40px #00000005', width: '100%' }}>
+    <div style={{ marginLeft: '1rem', boxShadow: '13px 3px 40px #00000005', width: '100%', borderRight: '1px solid black', height: '90vh' }}>
       <HeaderContainer>
         <IconContainer>
           <IconContext.Provider value={{ color: "#135846", size: "3rem" }}>
@@ -51,8 +51,6 @@ function SideBar() {
       </StyledNav>
 
       <UserSquare>
-        <div>
-        </div>
         <h2>William Johanson</h2>
         <p>williamjohn@mail.com</p>
         <ContactButton>Contact Us</ContactButton>

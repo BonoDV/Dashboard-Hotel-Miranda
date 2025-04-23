@@ -51,6 +51,7 @@ function SideBar() {
       </StyledNav>
 
       <UserSquare>
+        <div></div>
         <h2>William Johanson</h2>
         <p>williamjohn@mail.com</p>
         <ContactButton>Contact Us</ContactButton>

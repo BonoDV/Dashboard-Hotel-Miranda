@@ -1,12 +1,11 @@
 import SideBar from "../components/SideBar";
-
+import Header from "../components/Header";
 
 function Dashboard() {
     return (
         <>
-            <div className="sidebar-container">
-                <SideBar />
-            </div>
+            <Header />
+            <SideBar />
         </>
     );
 }

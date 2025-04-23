@@ -57,7 +57,7 @@ function SideBar() {
       </UserSquare>
       <CopyrightDiv>
         <h2>Travl Hotel Admin Dashboard</h2>
-        <p>© 2020 All Rights Reserved</p>
+        <p>© 2025 All Rights Reserved</p>
       </CopyrightDiv>
 
     </div >

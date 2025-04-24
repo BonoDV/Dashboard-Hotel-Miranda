@@ -1,0 +1,218 @@
+[
+    {
+        "roomNumber": 101,
+        "roomType": "Single Bed",
+        "photos": [
+            "https://source.unsplash.com/800x600/?luxury,single,bedroom",
+            "https://source.unsplash.com/800x600/?boutique,hotel,room",
+            "https://source.unsplash.com/800x600/?premium,interior"
+        ],
+        "description": "Elegant single room for solo travelers, featuring Egyptian cotton sheets, designer lighting, and a curated minibar.",
+        "offer": "YES",
+        "price": 180,
+        "discount": 10,
+        "cancellation": "Full refund available up to 48 hours before check-in.",
+        "amenities": [
+            "TV",
+            "Wi-Fi",
+            "Work Desk",
+            "Minibar",
+            "24h Room Service"
+        ]
+    },
+    {
+        "roomNumber": 102,
+        "roomType": "Double Bed",
+        "photos": [
+            "https://source.unsplash.com/800x600/?luxury,double,bed",
+            "https://source.unsplash.com/800x600/?modern,hotel,interior",
+            "https://source.unsplash.com/800x600/?romantic,room",
+            "https://source.unsplash.com/800x600/?comfort,hotel"
+        ],
+        "description": "Spacious double room with marble floors, velvet armchairs, and an in-room espresso machine. Ideal for couples.",
+        "offer": "NO",
+        "price": 300,
+        "discount": 0,
+        "cancellation": "Partial refund (50%) if cancelled up to 72 hours before check-in.",
+        "amenities": [
+            "TV",
+            "Wi-Fi",
+            "Bathtub",
+            "Minibar",
+            "Espresso Machine"
+        ]
+    },
+    {
+        "roomNumber": 103,
+        "roomType": "Suite",
+        "photos": [
+            "https://source.unsplash.com/800x600/?luxury,suite",
+            "https://source.unsplash.com/800x600/?oceanview,room",
+            "https://source.unsplash.com/800x600/?hotel,livingroom"
+        ],
+        "description": "Presidential suite with panoramic sea views, private jacuzzi, and personal butler service.",
+        "offer": "YES",
+        "price": 900,
+        "discount": 20,
+        "cancellation": "Full refund within 48 hours of booking. 25% charge up to 24h before check-in.",
+        "amenities": [
+            "TV",
+            "Bathtub",
+            "Sea View",
+            "Wi-Fi",
+            "Private Jacuzzi",
+            "Butler Service"
+        ]
+    },
+    {
+        "roomNumber": 104,
+        "roomType": "Double Superior",
+        "photos": [
+            "https://source.unsplash.com/800x600/?superior,hotel,room",
+            "https://source.unsplash.com/800x600/?luxury,bedroom",
+            "https://source.unsplash.com/800x600/?modern,design"
+        ],
+        "description": "Refined double superior room with balcony, rainfall shower, and a pillow menu.",
+        "offer": "NO",
+        "price": 380,
+        "discount": 0,
+        "cancellation": "No cancellations after 72 hours prior to arrival.",
+        "amenities": [
+            "TV",
+            "Wi-Fi",
+            "Rainfall Shower",
+            "Balcony",
+            "Minibar",
+            "Pillow Menu"
+        ]
+    },
+    {
+        "roomNumber": 105,
+        "roomType": "Single Bed",
+        "photos": [
+            "https://source.unsplash.com/800x600/?elegant,single,room",
+            "https://source.unsplash.com/800x600/?minimal,luxury,room",
+            "https://source.unsplash.com/800x600/?premium,comfort"
+        ],
+        "description": "Luxurious single suite tailored for executives. Includes soundproofing and ergonomic workspace.",
+        "offer": "YES",
+        "price": 195,
+        "discount": 5,
+        "cancellation": "Full refund with notice 48 hours in advance.",
+        "amenities": [
+            "Wi-Fi",
+            "Work Desk",
+            "Smart TV",
+            "Soundproofing",
+            "Nespresso Machine"
+        ]
+    },
+    {
+        "roomNumber": 106,
+        "roomType": "Double Bed",
+        "photos": [
+            "https://source.unsplash.com/800x600/?premium,double,bed",
+            "https://source.unsplash.com/800x600/?luxury,interior",
+            "https://source.unsplash.com/800x600/?suite,design"
+        ],
+        "description": "Deluxe double room featuring floor-to-ceiling windows and in-suite aromatherapy system.",
+        "offer": "NO",
+        "price": 340,
+        "discount": 0,
+        "cancellation": "Full refund available up to 5 days before check-in.",
+        "amenities": [
+            "TV",
+            "Wi-Fi",
+            "Balcony",
+            "Aromatherapy System",
+            "Luxury Linens"
+        ]
+    },
+    {
+        "roomNumber": 107,
+        "roomType": "Double Superior",
+        "photos": [
+            "https://source.unsplash.com/800x600/?superior,cityview,hotel",
+            "https://source.unsplash.com/800x600/?panoramic,room",
+            "https://source.unsplash.com/800x600/?interior,luxury"
+        ],
+        "description": "Corner room with sweeping city views, a minibar with sommelier-curated wines, and heated floors.",
+        "offer": "YES",
+        "price": 420,
+        "discount": 15,
+        "cancellation": "Cancellation allowed with 30% fee up to 48h before arrival.",
+        "amenities": [
+            "TV",
+            "Wi-Fi",
+            "Heated Floors",
+            "City View",
+            "Curated Minibar"
+        ]
+    },
+    {
+        "roomNumber": 108,
+        "roomType": "Suite",
+        "photos": [
+            "https://source.unsplash.com/800x600/?modern,suite",
+            "https://source.unsplash.com/800x600/?exclusive,room",
+            "https://source.unsplash.com/800x600/?vip,lounge"
+        ],
+        "description": "Signature suite with private terrace, grand piano, and access to a personal chef.",
+        "offer": "NO",
+        "price": 1200,
+        "discount": 0,
+        "cancellation": "Non-refundable after booking confirmation.",
+        "amenities": [
+            "TV",
+            "Sea View",
+            "Wi-Fi",
+            "Terrace",
+            "Grand Piano",
+            "Private Chef"
+        ]
+    },
+    {
+        "roomNumber": 109,
+        "roomType": "Single Bed",
+        "photos": [
+            "https://source.unsplash.com/800x600/?cozy,luxury,room",
+            "https://source.unsplash.com/800x600/?boutique,single",
+            "https://source.unsplash.com/800x600/?comfort,interior"
+        ],
+        "description": "Exclusive single room offering privacy and premium touches like silk robes and blackout curtains.",
+        "offer": "YES",
+        "price": 210,
+        "discount": 8,
+        "cancellation": "Refundable up to 72 hours before check-in.",
+        "amenities": [
+            "Wi-Fi",
+            "Smart TV",
+            "Blackout Curtains",
+            "Silk Robes",
+            "Work Desk"
+        ]
+    },
+    {
+        "roomNumber": 110,
+        "roomType": "Double Bed",
+        "photos": [
+            "https://source.unsplash.com/800x600/?luxury,hotelroom",
+            "https://source.unsplash.com/800x600/?clean,elegant,bedroom",
+            "https://source.unsplash.com/800x600/?modern,furniture",
+            "https://source.unsplash.com/800x600/?night,hotel"
+        ],
+        "description": "Refined and cozy double bed setup with mood lighting, marble bathroom, and art by local creators.",
+        "offer": "NO",
+        "price": 350,
+        "discount": 0,
+        "cancellation": "Full refund up to 72 hours prior to arrival.",
+        "amenities": [
+            "TV",
+            "Wi-Fi",
+            "Minibar",
+            "Mood Lighting",
+            "Marble Bathroom",
+            "Art Collection"
+        ]
+    }
+]

@@ -1,0 +1,202 @@
+[
+    {
+        "id": "000123456",
+        "name": "Cahyadi Purnomo",
+        "image": "https://randomuser.me/api/portraits/women/1.jpg",
+        "orderDate": "Oct 30th 2020 09:21 AM",
+        "checkIn": {
+            "date": "Nov 2nd, 2020",
+            "hour": "9:46 PM"
+        },
+        "checkOut": {
+            "date": "Nov 4th, 2020",
+            "hour": "6:12 PM"
+        },
+        "specialRequest": {
+            "status": true,
+            "text": "View Notes"
+        },
+        "roomType": "Deluxe A - 02",
+        "status": "Refund"
+    },
+    {
+        "id": "000123457",
+        "name": "Luis Martínez",
+        "image": "https://randomuser.me/api/portraits/men/2.jpg",
+        "orderDate": "Sep 15th 2020 03:45 PM",
+        "checkIn": {
+            "date": "Sep 18th, 2020",
+            "hour": "2:30 PM"
+        },
+        "checkOut": {
+            "date": "Sep 20th, 2020",
+            "hour": "11:00 AM"
+        },
+        "specialRequest": {
+            "status": false,
+            "text": ""
+        },
+        "roomType": "Suite B - 07",
+        "status": "Check In"
+    },
+    {
+        "id": "000123458",
+        "name": "Sophia Lee",
+        "image": "https://randomuser.me/api/portraits/women/3.jpg",
+        "orderDate": "Oct 5th 2020 10:00 AM",
+        "checkIn": {
+            "date": "Oct 10th, 2020",
+            "hour": "1:15 PM"
+        },
+        "checkOut": {
+            "date": "Oct 12th, 2020",
+            "hour": "9:45 AM"
+        },
+        "specialRequest": {
+            "status": true,
+            "text": "Late check-out requested"
+        },
+        "roomType": "Standard C - 03",
+        "status": "In Progress"
+    },
+    {
+        "id": "000123459",
+        "name": "Carlos Gómez",
+        "image": "https://randomuser.me/api/portraits/men/4.jpg",
+        "orderDate": "Nov 1st 2020 06:22 PM",
+        "checkIn": {
+            "date": "Nov 3rd, 2020",
+            "hour": "5:00 PM"
+        },
+        "checkOut": {
+            "date": "Nov 5th, 2020",
+            "hour": "10:00 AM"
+        },
+        "specialRequest": {
+            "status": false,
+            "text": ""
+        },
+        "roomType": "Deluxe A - 01",
+        "status": "Booked"
+    },
+    {
+        "id": "000123460",
+        "name": "Emma Johansson",
+        "image": "https://randomuser.me/api/portraits/women/5.jpg",
+        "orderDate": "Aug 25th 2020 01:15 PM",
+        "checkIn": {
+            "date": "Aug 28th, 2020",
+            "hour": "12:30 PM"
+        },
+        "checkOut": {
+            "date": "Aug 30th, 2020",
+            "hour": "1:00 PM"
+        },
+        "specialRequest": {
+            "status": true,
+            "text": "Allergic to peanuts"
+        },
+        "roomType": "Premium Suite - 05",
+        "status": "Check Out"
+    },
+    {
+        "id": "000123461",
+        "name": "Noah Kim",
+        "image": "https://randomuser.me/api/portraits/men/6.jpg",
+        "orderDate": "Jul 19th 2020 04:00 PM",
+        "checkIn": {
+            "date": "Jul 21st, 2020",
+            "hour": "4:00 PM"
+        },
+        "checkOut": {
+            "date": "Jul 23rd, 2020",
+            "hour": "12:00 PM"
+        },
+        "specialRequest": {
+            "status": false,
+            "text": ""
+        },
+        "roomType": "Standard C - 06",
+        "status": "Cancelled"
+    },
+    {
+        "id": "000123462",
+        "name": "Isabella Rossi",
+        "image": "https://randomuser.me/api/portraits/women/7.jpg",
+        "orderDate": "Jun 10th 2020 09:55 AM",
+        "checkIn": {
+            "date": "Jun 13th, 2020",
+            "hour": "3:30 PM"
+        },
+        "checkOut": {
+            "date": "Jun 16th, 2020",
+            "hour": "11:00 AM"
+        },
+        "specialRequest": {
+            "status": true,
+            "text": "Vegetarian meals only"
+        },
+        "roomType": "Suite B - 02",
+        "status": "Booked"
+    },
+    {
+        "id": "000123463",
+        "name": "Ethan Brown",
+        "image": "https://randomuser.me/api/portraits/men/8.jpg",
+        "orderDate": "May 30th 2020 11:40 AM",
+        "checkIn": {
+            "date": "Jun 1st, 2020",
+            "hour": "2:00 PM"
+        },
+        "checkOut": {
+            "date": "Jun 3rd, 2020",
+            "hour": "10:30 AM"
+        },
+        "specialRequest": {
+            "status": false,
+            "text": ""
+        },
+        "roomType": "Deluxe A - 04",
+        "status": "Refund"
+    },
+    {
+        "id": "000123464",
+        "name": "Ava Nguyen",
+        "image": "https://randomuser.me/api/portraits/women/9.jpg",
+        "orderDate": "Mar 12th 2020 08:20 PM",
+        "checkIn": {
+            "date": "Mar 15th, 2020",
+            "hour": "5:45 PM"
+        },
+        "checkOut": {
+            "date": "Mar 18th, 2020",
+            "hour": "11:30 AM"
+        },
+        "specialRequest": {
+            "status": true,
+            "text": "Early check-in"
+        },
+        "roomType": "Standard C - 08",
+        "status": "Check In"
+    },
+    {
+        "id": "000123465",
+        "name": "Oliver Dupont",
+        "image": "https://randomuser.me/api/portraits/men/10.jpg",
+        "orderDate": "Feb 10th 2020 07:05 AM",
+        "checkIn": {
+            "date": "Feb 13th, 2020",
+            "hour": "6:00 PM"
+        },
+        "checkOut": {
+            "date": "Feb 16th, 2020",
+            "hour": "12:15 PM"
+        },
+        "specialRequest": {
+            "status": false,
+            "text": ""
+        },
+        "roomType": "Premium Suite - 01",
+        "status": "In Progress"
+    }
+]

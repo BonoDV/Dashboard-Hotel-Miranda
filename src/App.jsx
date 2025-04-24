@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Rooms from './pages/Rooms/Rooms';
 import Bookings from './pages/Bookings/Bookings';
 import Users from './pages/users/Users';
-import Reviews from './pages/contact/Contact';
+import Concierge from './pages/concierge/Concierge';
 
 import i18n from './locales/translation/i18n';
 import { I18nextProvider } from 'react-i18next';
@@ -30,14 +30,14 @@ function App() {
             <Route path="booking" element={<Bookings />} />
             <Route path="room" element={<Rooms />} />
             <Route path="user" element={<Users />} />
-            <Route path="contact" element={<Reviews />} />
+            <Route path="contact" element={<Concierge />} />
           </Route>
 
           {/* Redirección para rutas no encontradas */}
           <Route path="*" element={<Navigate to="/sdfdsfdsf" replace />} />
         </Routes>
       </Router>
-      </I18nextProvider>
+    </I18nextProvider>
   );
 }
 

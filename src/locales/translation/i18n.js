@@ -21,7 +21,7 @@ i18n
         supportedLngs: ['en', 'es', 'va'], // Idiomas soportados
         detection: {
             order: ['localStorage', 'navigator'], // Orden de detección
-            caches: ['localStorage'], // Solo usar localStorage para cachear
+            caches: [], // Solo usar localStorage para cachear
             lookupLocalStorage: 'i18nextLng', // Clave específica
         },
         interpolation: {

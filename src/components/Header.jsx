@@ -66,9 +66,9 @@ const Header = () => {
                     onChange={changeLanguage}
                     value={selectedLanguage}
                 >
-                    <option>EN</option>
-                    <option>ES</option>
-                    <option>VA</option>
+                    <option value='en'>EN</option>
+                    <option value='es'>ES</option>
+                    <option value='va'>VA</option>
                 </TextSelectStyled>
             </RightSection>
         </HeaderStyled>

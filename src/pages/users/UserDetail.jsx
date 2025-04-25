@@ -1,7 +1,9 @@
 import { useParams } from 'react-router';
 import GuestsList from '../users/guests.json';
 import RoomList from '../rooms/rooms.json';
+
 import CallButton from './../../components/buttons/CallButon.jsx';
+import SendMessageButton from './../../components/buttons/SendMessageButton.jsx';
 
 const UserDetail = () => {
   const { id } = useParams();
@@ -17,6 +19,7 @@ const UserDetail = () => {
       <p><strong>ID:</strong> {user.id}</p>
       <p><strong>Nombre:</strong> {user.name}</p>
       <CallButton phone={user.phone} />
+      <SendMessageButton email={user.email} />
       <p><strong>Teléfono:</strong> {user.phone}</p>
       <p><strong>Send Message:</strong> {user.email}</p>
       <p><strong>Check In:</strong> {`${user.checkIn.date} ${user.checkIn.hour}`}</p>

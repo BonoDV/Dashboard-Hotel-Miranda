@@ -32,6 +32,9 @@ const Table = ({ cols, data }) => {
 const TableStyled = styled.table`
     background-color: #ffffff;
     border-radius: 20px;
+    width: 90%;
+    height: 62.5rem;
+    text-align: left;
 `;
 
 

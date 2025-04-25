@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const CallButton = (params) => {
     return (
-        <a href={`tel:${params.phone}`} style={{ textDecoration: 'none' }}>
+        <a href={`tel:${params.phone}`}>
         <ButtonStyled>
             <IconContext.Provider value={{ size: "20px", color: "#135846" }}>
                 <FaPhoneAlt />

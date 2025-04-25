@@ -1,10 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 // Cols -> objects array representing each column.
 // Data -> objects array representing each row. Example: rooms, bookings, etc.
 
-const Table = ({ cols, data }) => {
+const Table = ({ cols, data, basePath }) => {
+    const navigate = useNavigate();
+
+    const handleView = (id) => {
+        navigate(`/dashboard/${basePath}/${id}`);
+    };
+
     return (
         <div>
             <TableStyled>
@@ -13,6 +20,7 @@ const Table = ({ cols, data }) => {
                         {cols.map((col, index) => (
                             <th key={index}>{col}</th>
                         ))}
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,6 +29,11 @@ const Table = ({ cols, data }) => {
                             {cols.map((col, colIndex) => (
                                 <td key={colIndex}>{row[col]}</td>
                             ))}
+                            <td>
+                                <button onClick={() => handleView(row.id)}>
+                                    Ver Detalles
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -28,6 +41,7 @@ const Table = ({ cols, data }) => {
         </div>
     );
 };
+
 
 const TableStyled = styled.table`
     background-color: #ffffff;

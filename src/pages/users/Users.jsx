@@ -3,9 +3,11 @@ import GuestsList from '../users/guests.json';
 
 function Users() {
   const cols = ["Guest", "Order Date", "Check In", "Check Out", "Special Request", "Room Type", "Status"];
+  
 
   // Mapeamos los datos de GuestsList para obtener solo los valores que necesitamos para las columnas
   const data = GuestsList.map((res) => ({
+    id: res.id,
     Guest: res.name,
     "Order Date": res.orderDate,
     "Check In": `${res.checkIn.date} at ${res.checkIn.hour}`,
@@ -19,7 +21,7 @@ function Users() {
     <div style={{ padding: "20px" }}>
 
       {/* Componente de la tabla */}
-      <Table cols={cols} data={data} />
+      <Table cols={cols} data={data} basePath={"user"} />
     </div>
   );
 }

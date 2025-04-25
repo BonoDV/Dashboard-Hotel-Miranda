@@ -1,7 +1,7 @@
 [
     {
         "roomNumber": 101,
-        "roomType": "Single Bed",
+        "roomType": "Single Bed - Elegant",
         "photos": [
             "https://source.unsplash.com/800x600/?luxury,single,bedroom",
             "https://source.unsplash.com/800x600/?boutique,hotel,room",
@@ -22,7 +22,7 @@
     },
     {
         "roomNumber": 102,
-        "roomType": "Double Bed",
+        "roomType": "Double Bed - Luxe",
         "photos": [
             "https://source.unsplash.com/800x600/?luxury,double,bed",
             "https://source.unsplash.com/800x600/?modern,hotel,interior",
@@ -44,7 +44,7 @@
     },
     {
         "roomNumber": 103,
-        "roomType": "Suite",
+        "roomType": "Suite - Presidential",
         "photos": [
             "https://source.unsplash.com/800x600/?luxury,suite",
             "https://source.unsplash.com/800x600/?oceanview,room",
@@ -66,7 +66,7 @@
     },
     {
         "roomNumber": 104,
-        "roomType": "Double Superior",
+        "roomType": "Double Superior - Signature",
         "photos": [
             "https://source.unsplash.com/800x600/?superior,hotel,room",
             "https://source.unsplash.com/800x600/?luxury,bedroom",
@@ -88,7 +88,7 @@
     },
     {
         "roomNumber": 105,
-        "roomType": "Single Bed",
+        "roomType": "Single Bed - Executive",
         "photos": [
             "https://source.unsplash.com/800x600/?elegant,single,room",
             "https://source.unsplash.com/800x600/?minimal,luxury,room",
@@ -109,7 +109,7 @@
     },
     {
         "roomNumber": 106,
-        "roomType": "Double Bed",
+        "roomType": "Double Bed - Deluxe",
         "photos": [
             "https://source.unsplash.com/800x600/?premium,double,bed",
             "https://source.unsplash.com/800x600/?luxury,interior",
@@ -130,7 +130,7 @@
     },
     {
         "roomNumber": 107,
-        "roomType": "Double Superior",
+        "roomType": "Double Superior - Cityview",
         "photos": [
             "https://source.unsplash.com/800x600/?superior,cityview,hotel",
             "https://source.unsplash.com/800x600/?panoramic,room",
@@ -151,7 +151,7 @@
     },
     {
         "roomNumber": 108,
-        "roomType": "Suite",
+        "roomType": "Suite - Signature",
         "photos": [
             "https://source.unsplash.com/800x600/?modern,suite",
             "https://source.unsplash.com/800x600/?exclusive,room",
@@ -173,7 +173,7 @@
     },
     {
         "roomNumber": 109,
-        "roomType": "Single Bed",
+        "roomType": "Single Bed - Luxury",
         "photos": [
             "https://source.unsplash.com/800x600/?cozy,luxury,room",
             "https://source.unsplash.com/800x600/?boutique,single",
@@ -194,7 +194,7 @@
     },
     {
         "roomNumber": 110,
-        "roomType": "Double Bed",
+        "roomType": "Double Bed - Refined",
         "photos": [
             "https://source.unsplash.com/800x600/?luxury,hotelroom",
             "https://source.unsplash.com/800x600/?clean,elegant,bedroom",
@@ -216,3 +216,5 @@
         ]
     }
 ]
+
+  

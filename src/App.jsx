@@ -2,8 +2,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router';
 import LoginForm from './pages/login/Login';
 import Dashboard from './pages/Dashboard';
 import Rooms from './pages/Rooms/Rooms';
+import RoomDetail from './pages/Rooms/RoomDetail';
 import Bookings from './pages/Bookings/Bookings';
 import Users from './pages/users/Users';
+import UserDetail from './pages/users/UserDetail';
 import Concierge from './pages/concierge/Concierge';
 
 import i18n from './locales/translation/i18n';
@@ -29,7 +31,9 @@ function App() {
             <Route index element={<Dashboard />} /> {/* Página por defecto al entrar a /dashboard */}
             <Route path="booking" element={<Bookings />} />
             <Route path="room" element={<Rooms />} />
+            <Route path="room/:id" element={<RoomDetail />} />
             <Route path="user" element={<Users />} />
+            <Route path="user/:id" element={<UserDetail />} />
             <Route path="contact" element={<Concierge />} />
           </Route>
 

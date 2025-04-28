@@ -7,7 +7,7 @@ const amenitiesMap = {
   "Work Desk": "💼",
   "Minibar": "🍸",
   "24h Room Service": "🛎️",
-  "Bathub": "🛁",
+  "Bathtub": "🛁",
   "Espresso Machine": "☕",
   "Sea View": "🌊",
   "Private Jacuzzi": "♨️",

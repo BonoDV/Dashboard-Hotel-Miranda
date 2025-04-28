@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// JSON de amenities con su emoji
 const amenitiesMap = {
   "TV": "📺",
   "Wi-Fi": "📶",

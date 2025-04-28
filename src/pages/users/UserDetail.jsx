@@ -4,6 +4,7 @@ import RoomList from '../rooms/rooms.json';
 
 import CallButton from './../../components/buttons/CallButon.jsx';
 import SendMessageButton from './../../components/buttons/SendMessageButton.jsx';
+import FacilitiesButton from './../../components/buttons/FacilitiesButton.jsx';
 
 const UserDetail = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const UserDetail = () => {
       <p><strong>Room Info:</strong> {`${user.roomType} -- ${room.roomNumber}`}</p>
       <p><strong>{user.specialRequest.status ? user.specialRequest.text : "No Special Request"}</strong></p>
       <p><strong>Facilities</strong></p>
-      <p><strong>{room.amenities}</strong></p>
+      <FacilitiesButton facilities={room.amenities} />
     </div>
   );
 };

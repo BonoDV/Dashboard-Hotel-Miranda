@@ -8,6 +8,7 @@
         "email": "cwillatts0@cdbaby.com",
         "phone_number": "442-858-6094",
         "start_date": "2025-10-02",
+        "schedule" : "Monday, Friday",
         "function_description": "Handles guest requests and coordinates with departments to ensure prompt and courteous service.",
         "status": true,
         "password": "$2a$04$28kx2sVkRcL1HA5kQ2wKg.qa9kgw4qhsY9NJh28ZNiC7gWF30N1M6"
@@ -21,6 +22,7 @@
         "email": "cgarcia@example.com",
         "phone_number": "123-456-7890",
         "start_date": "2023-05-15",
+        "schedule" : "Tuesday, Friday",
         "function_description": "Welcomes guests, performs check-in and check-out, and provides hotel information.",
         "status": true,
         "password": "$2a$04$abcd1234Efgh5678Ijkl9012Mnop3456Qrstu789Vwxyz012Abcd3456"
@@ -34,6 +36,7 @@
         "email": "lmartinez@example.com",
         "phone_number": "234-567-8901",
         "start_date": "2022-11-10",
+        "schedule" : "Wednesday, Sunday",
         "function_description": "Cleans and maintains guest rooms and common areas to ensure a pleasant stay.",
         "status": true,
         "password": "$2a$04$efgh5678Ijkl9012Mnop3456Qrstu789Vwxyz012Abcd3456Efgh6789"
@@ -47,6 +50,7 @@
         "email": "jlopez@example.com",
         "phone_number": "345-678-9012",
         "start_date": "2021-08-20",
+        "schedule" : "Saturday, Sunday",
         "function_description": "Assists guests with services like bookings, directions, and special requests.",
         "status": true,
         "password": "$2a$04$ijkl9012Mnop3456Qrstu789Vwxyz012Abcd3456Efgh6789Ijkl9012"
@@ -60,6 +64,7 @@
         "email": "mfernandez@example.com",
         "phone_number": "456-789-0123",
         "start_date": "2020-03-01",
+        "schedule" : "Wednesday, Saturday",
         "function_description": "Plans, organizes, and oversees events and conferences held at the hotel.",
         "status": true,
         "password": "$2a$04$mnop3456Qrstu789Vwxyz012Abcd3456Efgh6789Ijkl9012Mnop3456"
@@ -73,6 +78,7 @@
         "email": "psanchez@example.com",
         "phone_number": "567-890-1234",
         "start_date": "2019-07-12",
+        "schedule" : "Thursday, Friday",
         "function_description": "Leads kitchen operations and designs the menu to deliver exceptional dining experiences.",
         "status": true,
         "password": "$2a$04$qrstuv789Wxyz012Abcd3456Efgh6789Ijkl9012Mnop3456Qrstu789"
@@ -86,6 +92,7 @@
         "email": "aruiz@example.com",
         "phone_number": "678-901-2345",
         "start_date": "2018-09-25",
+        "schedule" : "Friday, Saturday",
         "function_description": "Oversees spa services and wellness programs, ensuring a relaxing experience for guests.",
         "status": true,
         "password": "$2a$04$uvwxy012Abcd3456Efgh6789Ijkl9012Mnop3456Qrstu789Wxyz012"
@@ -99,6 +106,7 @@
         "email": "dhernandez@example.com",
         "phone_number": "789-012-3456",
         "start_date": "2017-01-30",
+        "schedule" : "Saturday, Sunday",
         "function_description": "Performs regular and emergency maintenance to keep the hotel facilities running smoothly.",
         "status": true,
         "password": "$2a$04$xyz012Abcd3456Efgh6789Ijkl9012Mnop3456Qrstu789Wxyz012Ab"
@@ -112,6 +120,7 @@
         "email": "lmiller@example.com",
         "phone_number": "890-123-4567",
         "start_date": "2024-02-01",
+        "schedule" : "Monday, Thursday",
         "function_description": "Supports the front desk team in managing guest check-ins and handling inquiries.",
         "status": true,
         "password": "$2a$04$abc9012Efgh3456Ijkl7890Mnop1234Qrstu567Wxyz890Abcd1234"

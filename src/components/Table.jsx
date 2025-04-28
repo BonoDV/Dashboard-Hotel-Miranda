@@ -44,7 +44,7 @@ const Table = ({ cols, data, basePath }) => {
 
 
 const TableStyled = styled.table`
-    background-color: #ffffff;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
     border-radius: 20px;
     width: 90%;
     height: 62.5rem;

@@ -20,6 +20,7 @@ width: 60px;
 height: 60px;
 border: 1px solid #E8F2EF;
 border-radius: 12px;
+cursor: pointer;
 `;
 
 export default CallButton;

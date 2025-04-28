@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const SendMessageButton = (params) => {
     return (
-        <a href={`mailto:${params.email}`}>
+        <a href={`mailto:${params.email}`} style={{ marginLeft: '20px' }}>
             <ButtonStyled>
                 <IconContext.Provider value={{ size: "24px", color: "#ffffff" }}>
                     <AiFillMessage style={{ marginRight: "10px", marginTop: "5px" }} />
@@ -17,12 +17,12 @@ const SendMessageButton = (params) => {
 };
 
 const ButtonStyled = styled.button`
-    width: 200px;
+    width: 220px;
     height: 60px;
     border-radius: 12px;
     border: none;
     background-color: #135846;
-    margin-left: 20px;
+    cursor: pointer;
 `;
 
 export default SendMessageButton;

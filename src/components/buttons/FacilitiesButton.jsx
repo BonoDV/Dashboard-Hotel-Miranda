@@ -61,7 +61,6 @@ const ButtonStyled = styled.button`
   border-radius: 8px;
   border: none;
   background-color: #e8f2ef;
-  cursor: pointer;
   gap: 10px;
   p {
     color: #135846;

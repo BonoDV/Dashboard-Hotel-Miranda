@@ -80,7 +80,7 @@ const Header = () => {
                 <IconContext.Provider value={{ size: "2rem" }}>
                     <MessageIcon />
                 </IconContext.Provider>
-                <Image/>
+                <Image src="https://randomuser.me/api/portraits/men/12.jpg"/>
                 <div style={{ background: '#EBEBEB 0% 0% no-repeat padding-box' }}></div>
                 <TextSelectStyled
                     onChange={changeLanguage}

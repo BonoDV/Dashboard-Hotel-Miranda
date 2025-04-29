@@ -58,7 +58,7 @@ function SideBar() {
       </StyledNav>
 
       <UserSquare>
-        <div></div>
+          <Image src="https://randomuser.me/api/portraits/men/12.jpg" alt="avatar" />
         <h2>William Johanson</h2>
         <p>williamjohn@mail.com</p>
         <ContactButton>{t("contact_button")}</ContactButton>

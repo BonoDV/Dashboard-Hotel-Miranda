@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-
+import Image from './Image.jsx';
 // Cols -> objects array representing each column.
 // Data -> objects array representing each row. Example: rooms, bookings, etc.
 
@@ -24,19 +24,20 @@ const Table = ({ cols, data, basePath }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((row, rowIndex) => (
-                        <tr key={rowIndex}>
-                            {cols.map((col, colIndex) => (
-                                <td key={colIndex}>{row[col]}</td>
-                            ))}
-                            <td>
-                                <button onClick={() => handleView(row.id)}>
-                                    Ver Detalles
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
+    {data.map((row, rowIndex) => (
+        <tr key={rowIndex}>
+            <td><Image src={row.image}/></td> {/* Imagen como primer elemento de la fila */}
+            {cols.map((col, colIndex) => (
+                <td key={colIndex}>{row[col]}</td>
+            ))}
+            <td>
+                <button onClick={() => handleView(row.id)}>
+                    Ver Detalles
+                </button>
+            </td>
+        </tr>
+    ))}
+</tbody>
             </TableStyled>
         </div>
     );

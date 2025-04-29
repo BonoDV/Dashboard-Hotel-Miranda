@@ -13,6 +13,7 @@ function Concierge() {
         <span>{res.start_date}</span>
       </div>
     ),
+    image: res.photo,
     "Job Desk": res.function_description,
     Schedule: res.schedule,
     Contact: res.phone_number,

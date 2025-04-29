@@ -61,9 +61,9 @@ const Header = () => {
                     <ArrowLeftIcon />
                 </IconContext.Provider>
                 <LeftSection hasBreadcrumb={shouldShowBreadcrumb()}>
-  <DashboardTitleStyled>{pathCapitalize}</DashboardTitleStyled>
-  {shouldShowBreadcrumb() && <Breadcrumb />}
-</LeftSection>
+                <DashboardTitleStyled>{pathCapitalize}</DashboardTitleStyled>
+                {shouldShowBreadcrumb() && <Breadcrumb />}
+                </LeftSection>
             <RightSection>
                 <IconContext.Provider value={{ size: "2rem" }}>
                     <SearchIcon />

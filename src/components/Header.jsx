@@ -10,9 +10,28 @@ import { LuMessageSquare as MessageIcon } from "react-icons/lu";
 
 import { useTranslation } from 'react-i18next';
 
+import { useLocation } from 'react-router';
+import Breadcrumb from './Breadcrumb.jsx';
+
 const Header = () => {
     const { i18n } = useTranslation();
     const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+
+    const location = useLocation();
+    const originalPath = location.pathname;
+    const path = location.pathname.split('/').filter(Boolean).pop(); // Obtener la última parte de la ruta
+    let pathCapitalize = path.charAt(0).toUpperCase() + path.slice(1); // Capitalizar la primera letra
+
+    if (pathCapitalize === 'Guest' || pathCapitalize === 'Concierge' || pathCapitalize === 'Room') {
+        pathCapitalize = `${pathCapitalize} List`; // Cambiar a Dashboard si es Guest o Concierge
+    }
+
+    const shouldShowBreadcrumb = () => {
+        return (
+          (originalPath.includes('/guest/') && originalPath.split('/').filter(Boolean).length > 1) ||
+          (originalPath.includes('/concierge/') && originalPath.split('/').filter(Boolean).length > 1)
+        );
+      };
 
     useEffect(() => {
         // Sincronizar con cambios externos del idioma
@@ -38,12 +57,13 @@ const Header = () => {
 
     return (
         <HeaderStyled>
-            <LeftSection>
                 <IconContext.Provider value={{ size: "2rem" }}>
                     <ArrowLeftIcon />
                 </IconContext.Provider>
-                <DashboardTitleStyled>Dashboard</DashboardTitleStyled>
-            </LeftSection>
+                <LeftSection hasBreadcrumb={shouldShowBreadcrumb()}>
+  <DashboardTitleStyled>{pathCapitalize}</DashboardTitleStyled>
+  {shouldShowBreadcrumb() && <Breadcrumb />}
+</LeftSection>
             <RightSection>
                 <IconContext.Provider value={{ size: "2rem" }}>
                     <SearchIcon />
@@ -90,8 +110,10 @@ const HeaderStyled = styled.header`
 
 const LeftSection = styled.div`
     display: flex;
-    align-items: center;
-    gap: 2rem;
+    flex-direction: column;
+    margin-right: 40%;
+    margin-right: ${({ hasBreadcrumb }) => (hasBreadcrumb ? '40%' : '50%')};
+    margin-top: ${({ hasBreadcrumb }) => (hasBreadcrumb ? '1rem' : '0')};
 `;
 
 const RightSection = styled.div`

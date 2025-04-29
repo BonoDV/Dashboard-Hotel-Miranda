@@ -32,9 +32,9 @@ function App() {
             <Route path="booking" element={<Bookings />} />
             <Route path="room" element={<Rooms />} />
             <Route path="room/:id" element={<RoomDetail />} />
-            <Route path="user" element={<Users />} />
-            <Route path="user/:id" element={<UserDetail />} />
-            <Route path="contact" element={<Concierge />} />
+            <Route path="guest" element={<Users />} />
+            <Route path="guest/:id" element={<UserDetail />} />
+            <Route path="concierge" element={<Concierge />} />
           </Route>
 
           {/* Redirección para rutas no encontradas */}

@@ -52,8 +52,8 @@ function SideBar() {
           <li style={{ marginBottom: '1rem' }}><StyledLink to="/dashboard"><LuLayoutDashboard /> {t('dashboard')}</StyledLink></li>
           <li style={{ marginBottom: '1rem' }}><StyledLink to="room"><RiKey2Line /> {t('room')}</StyledLink> <IoIosArrowDown /></li>
           <li style={{ marginBottom: '1rem' }}><StyledLink to="booking"><LuCalendarCheck /> {t('bookings')}</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="user"><IoPersonOutline /> {t('guest')}</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="contact"><IoExtensionPuzzleOutline /> {t('concierge')}</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="guest"><IoPersonOutline /> {t('guest')}</StyledLink></li>
+          <li style={{ marginBottom: '1rem' }}><StyledLink to="concierge"><IoExtensionPuzzleOutline /> {t('concierge')}</StyledLink></li>
         </StyledList>
       </StyledNav>
 

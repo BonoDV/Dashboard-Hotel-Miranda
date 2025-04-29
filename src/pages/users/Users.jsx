@@ -21,7 +21,7 @@ function Users() {
     <div style={{ padding: "20px" }}>
 
       {/* Componente de la tabla */}
-      <Table cols={cols} data={data} basePath={"user"} />
+      <Table cols={cols} data={data} basePath={"guest"} />
     </div>
   );
 }

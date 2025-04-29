@@ -1,19 +1,22 @@
 import ConciergeList from '../concierge/concierge.json';
 import Table from './../../components/Table.jsx';
-
+import Image from './../../components/Image.jsx';
 function Concierge() {
   const cols = ["Name", "Job Desk", "Schedule", "Contact", "Status"];
 
   // Mapeamos los datos de ConciergeList
   const data = ConciergeList.map((res) => ({
     Name: (
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <span>{res.first_name} {res.last_name}</span>
-        <span>#{res.id}</span>
-        <span>{res.start_date}</span>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <Image src={res.photo} alt="Concierge" style={{ width: "50px", height: "50px", borderRadius: "50%" }} />
+        <div style={{ display: "flex", flexDirection: "column", marginLeft: "10px" }}>
+          <span>{res.first_name} {res.last_name}</span>
+          <span>#{res.id}</span>
+          <span>{res.start_date}</span>
+        </div>
       </div>
     ),
-    image: res.photo,
+    
     "Job Desk": res.function_description,
     Schedule: res.schedule,
     Contact: res.phone_number,

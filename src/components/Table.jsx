@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import styled from 'styled-components';
-import Image from './Image.jsx';
 // Cols -> objects array representing each column.
 // Data -> objects array representing each row. Example: rooms, bookings, etc.
 
@@ -26,7 +25,6 @@ const Table = ({ cols, data, basePath }) => {
                 <tbody>
     {data.map((row, rowIndex) => (
         <tr key={rowIndex}>
-            <td><Image src={row.image}/></td> {/* Imagen como primer elemento de la fila */}
             {cols.map((col, colIndex) => (
                 <td key={colIndex}>{row[col]}</td>
             ))}
@@ -50,6 +48,17 @@ const TableStyled = styled.table`
     width: 90%;
     height: 62.5rem;
     text-align: left;
+    border-collapse: collapse;
+    box-shadow: 13px 3px 40px var(--shadows);
+    th:first-child,
+    td:first-child {
+        width: 20%; /* Ajusta este valor según lo que necesites */
+    }
+
+    th, td {
+        padding: 0.5rem 1rem;
+        vertical-align: top;
+    }
 `;
 
 

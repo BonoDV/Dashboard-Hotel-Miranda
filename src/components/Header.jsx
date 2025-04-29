@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useLocation } from 'react-router';
 import Breadcrumb from './Breadcrumb.jsx';
-
+import Image from './Image.jsx';
 const Header = () => {
     const { i18n } = useTranslation();
     const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
@@ -80,7 +80,7 @@ const Header = () => {
                 <IconContext.Provider value={{ size: "2rem" }}>
                     <MessageIcon />
                 </IconContext.Provider>
-                <UserSquareDivStyled />
+                <Image/>
                 <div style={{ background: '#EBEBEB 0% 0% no-repeat padding-box' }}></div>
                 <TextSelectStyled
                     onChange={changeLanguage}
@@ -131,15 +131,6 @@ const DashboardTitleStyled = styled.h2`
     color: #262626;
     opacity: 1;
     margin: 0; /* Elimina el margen por defecto del h2 */
-`;
-
-const UserSquareDivStyled = styled.div`
-    border: 1px solid #EBEBEB;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #C5C5C5;
-    width: 4rem;
-    height: 4rem;
 `;
 
 const TextSelectStyled = styled.select`

@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router';
-import usersData from '../login/users.json';
+import React, { useState, useContext } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router";
 
+import { AuthContext } from "../../context/AuthContext";
+import UserList from "./users.json";
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const { loginUser } = useContext(AuthContext);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate(); // Hook para navegación
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Datos enviados:', { username, password });
-
-    if (usersData.user.userName === username && usersData.user.password === password) {
-      console.log('Succesful login');
-      localStorage.setItem('logged', true);
-      navigate('/dashboard');
+    const success = loginUser(username, password);
+    if (success) {
+      navigate("/dashboard");
     } else {
-      console.log('Wrong username or password')
+      alert("Incorrect username or password");
     }
   };
-
   return (
     <FormContainer>
       <FormTitle>Login</FormTitle>

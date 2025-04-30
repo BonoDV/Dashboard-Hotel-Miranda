@@ -1,54 +1,63 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router';
-import LoginForm from './pages/login/Login';
-import Dashboard from './pages/Dashboard';
-import Rooms from './pages/Rooms/Rooms';
-import RoomDetail from './pages/Rooms/RoomDetail';
-import Bookings from './pages/Bookings/Bookings';
-import Users from './pages/users/Users';
-import UserDetail from './pages/users/UserDetail';
-import Concierge from './pages/concierge/Concierge';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
+import { useContext } from "react";
 
-import i18n from './locales/translation/i18n';
-import { I18nextProvider } from 'react-i18next';
+import LoginForm from "./pages/login/Login";
+import Dashboard from "./pages/Dashboard";
+import Rooms from "./pages/Rooms/Rooms";
+import RoomDetail from "./pages/rooms/RoomDetail";
+import Bookings from "./pages/Bookings/Bookings";
+import Users from "./pages/users/Users";
+import UserDetail from "./pages/users/UserDetail";
+import Concierge from "./pages/concierge/Concierge";
+
+import i18n from "./locales/translation/i18n";
+import { I18nextProvider } from "react-i18next";
+
+import { AuthProvider } from "./context/AuthContext";
+
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   return (
-    <I18nextProvider i18n={i18n}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LoginForm />} />
+    <AuthProvider>
+      <I18nextProvider i18n={i18n}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LoginForm />} />
 
-          {/* Ruta protegida principal que contiene las rutas anidadas */}
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          >
-            {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
-            <Route index element={<Dashboard />} /> {/* Página por defecto al entrar a /dashboard */}
-            <Route path="booking" element={<Bookings />} />
-            <Route path="room" element={<Rooms />} />
-            <Route path="room/:id" element={<RoomDetail />} />
-            <Route path="guest" element={<Users />} />
-            <Route path="guest/:id" element={<UserDetail />} />
-            <Route path="concierge" element={<Concierge />} />
-          </Route>
+            {/* Ruta protegida principal que contiene las rutas anidadas */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            >
+              {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
+              <Route index element={<Dashboard />} />{" "}
+              {/* Página por defecto al entrar a /dashboard */}
+              <Route path="booking" element={<Bookings />} />
+              <Route path="room" element={<Rooms />} />
+              <Route path="room/:id" element={<RoomDetail />} />
+              <Route path="guest" element={<Users />} />
+              <Route path="guest/:id" element={<UserDetail />} />
+              <Route path="concierge" element={<Concierge />} />
+            </Route>
 
-          {/* Redirección para rutas no encontradas */}
-          <Route path="*" element={<Navigate to="/sdfdsfdsf" replace />} />
-        </Routes>
-      </Router>
-    </I18nextProvider>
+            {/* Redirección para rutas no encontradas */}
+            <Route path="*" element={<Navigate to="/sdfdsfdsf" replace />} />
+          </Routes>
+        </Router>
+      </I18nextProvider>
+    </AuthProvider>
   );
 }
 
 // Componente para proteger rutas
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = localStorage.getItem('logged') === 'true';
-  return isAuthenticated ? children : <Navigate to="/" replace />;
+  const { state } = useContext(AuthContext);
+  return state.isAuthenticated ? children : <Navigate to="/" replace />;
 };
 
 export default App;

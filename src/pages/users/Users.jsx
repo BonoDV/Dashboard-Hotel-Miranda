@@ -16,6 +16,7 @@ function Users() {
         </div>
       </div>
     ),
+    id: res.id,
     "Order Date": res.orderDate,
     "Check In": `${res.checkIn.date} at ${res.checkIn.hour}`,
     "Check Out": `${res.checkOut.date} at ${res.checkOut.hour}`,

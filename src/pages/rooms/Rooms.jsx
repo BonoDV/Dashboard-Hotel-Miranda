@@ -1,42 +1,34 @@
 import RoomsList from '../rooms/rooms.json'
-
+import Table from './../../components/Table.jsx';
+import Image from './../../components/Image.jsx';
 function Rooms() {
-    return (
+    const cols = ["Room Name", "Bed Type", "Room Floor", "Facilities", "Rate", "Status"];
+    
+      // Mapeamos los datos de ConciergeList
+      const data = RoomsList.map((res) => ({
+        "Room Name": (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Image src={res.photos[0]} alt="Room Photo" style={{ width: "50px", height: "50px", borderRadius: "50%" }} />
+            <div style={{ display: "flex", flexDirection: "column", marginLeft: "10px" }}>
+              <span>#{res.roomNumber}</span>
+              <span>{res.roomType}</span>
+            </div>
+          </div>
+        ),
+        
+        "Bed Type": res.bedType,
+        "Room Floor": res.roomFloor,
+        "Facilities": res.amenities.join(", "),
+        "Rate": "$" + res.price + " /night", 
+        "Status": res.status ? "Avalaible" : "Booked",
+      }));
+    
+      return (
         <div style={{ padding: "20px" }}>
-            <h1>Hotel Rooms</h1>
-            {RoomsList.map((room) => (
-                <div
-                    key={room.roomNumber}
-                    style={{
-                        border: "1px solid #ccc",
-                        marginBottom: "1rem",
-                        padding: "1rem",
-                        borderRadius: "8px"
-                    }}
-                >
-                    <div style={{ display: "flex", gap: "1rem", overflowX: "auto" }}>
-                        {room.photos.map((photo, index) => (
-                            <img
-                                key={index}
-                                src={photo}
-                                alt={`Room ${room.roomNumber} photo ${index + 1}`}
-                                width={120}
-                                height={80}
-                                style={{ borderRadius: "8px", objectFit: "cover" }}
-                            />
-                        ))}
-                    </div>
-                    <h2 style={{ marginTop: "1rem" }}>Room {room.roomNumber} - {room.roomType}</h2>
-                    <p><strong>Description:</strong> {room.description}</p>
-                    <p><strong>Amenities:</strong> {room.amenities.join(", ")}</p>
-                    <p><strong>Offer:</strong> {room.offer}</p>
-                    <p><strong>Price:</strong> ${room.price} per night</p>
-                    <p><strong>Discount:</strong> {room.discount}%</p>
-                    <p><strong>Cancellation Policy:</strong> {room.cancellation}</p>
-                </div>
-            ))}
+          {/* Componente de la tabla */}
+          <Table cols={cols} data={data} basePath={"concierge"} />
         </div>
-    );
+      );
 }
 
 

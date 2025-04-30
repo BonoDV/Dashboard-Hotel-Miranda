@@ -2,10 +2,12 @@
     {
         "roomNumber": 101,
         "roomType": "Single Bed - Elegant",
+        "bedType": "Single Bed",
+        "roomFloor": "Floor A-1",
         "photos": [
-            "https://source.unsplash.com/800x600/?luxury,single,bedroom",
-            "https://source.unsplash.com/800x600/?boutique,hotel,room",
-            "https://source.unsplash.com/800x600/?premium,interior"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Elegant single room for solo travelers, featuring Egyptian cotton sheets, designer lighting, and a curated minibar.",
         "offer": "YES",
@@ -23,11 +25,13 @@
     {
         "roomNumber": 102,
         "roomType": "Double Bed - Luxe",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-2",
         "photos": [
-            "https://source.unsplash.com/800x600/?luxury,double,bed",
-            "https://source.unsplash.com/800x600/?modern,hotel,interior",
-            "https://source.unsplash.com/800x600/?romantic,room",
-            "https://source.unsplash.com/800x600/?comfort,hotel"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Spacious double room with marble floors, velvet armchairs, and an in-room espresso machine. Ideal for couples.",
         "offer": "NO",
@@ -45,10 +49,13 @@
     {
         "roomNumber": 103,
         "roomType": "Suite - Presidential",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-3",
         "photos": [
-            "https://source.unsplash.com/800x600/?luxury,suite",
-            "https://source.unsplash.com/800x600/?oceanview,room",
-            "https://source.unsplash.com/800x600/?hotel,livingroom"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Presidential suite with panoramic sea views, private jacuzzi, and personal butler service.",
         "offer": "YES",
@@ -67,10 +74,13 @@
     {
         "roomNumber": 104,
         "roomType": "Double Superior - Signature",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-4",
         "photos": [
-            "https://source.unsplash.com/800x600/?superior,hotel,room",
-            "https://source.unsplash.com/800x600/?luxury,bedroom",
-            "https://source.unsplash.com/800x600/?modern,design"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Refined double superior room with balcony, rainfall shower, and a pillow menu.",
         "offer": "NO",
@@ -89,10 +99,13 @@
     {
         "roomNumber": 105,
         "roomType": "Single Bed - Executive",
+        "bedType": "Single Bed",
+        "roomFloor": "Floor A-5",
         "photos": [
-            "https://source.unsplash.com/800x600/?elegant,single,room",
-            "https://source.unsplash.com/800x600/?minimal,luxury,room",
-            "https://source.unsplash.com/800x600/?premium,comfort"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Luxurious single suite tailored for executives. Includes soundproofing and ergonomic workspace.",
         "offer": "YES",
@@ -110,10 +123,13 @@
     {
         "roomNumber": 106,
         "roomType": "Double Bed - Deluxe",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-6",
         "photos": [
-            "https://source.unsplash.com/800x600/?premium,double,bed",
-            "https://source.unsplash.com/800x600/?luxury,interior",
-            "https://source.unsplash.com/800x600/?suite,design"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Deluxe double room featuring floor-to-ceiling windows and in-suite aromatherapy system.",
         "offer": "NO",
@@ -131,10 +147,13 @@
     {
         "roomNumber": 107,
         "roomType": "Double Superior - Cityview",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-7",
         "photos": [
-            "https://source.unsplash.com/800x600/?superior,cityview,hotel",
-            "https://source.unsplash.com/800x600/?panoramic,room",
-            "https://source.unsplash.com/800x600/?interior,luxury"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Corner room with sweeping city views, a minibar with sommelier-curated wines, and heated floors.",
         "offer": "YES",
@@ -152,10 +171,13 @@
     {
         "roomNumber": 108,
         "roomType": "Suite - Signature",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-8",
         "photos": [
-            "https://source.unsplash.com/800x600/?modern,suite",
-            "https://source.unsplash.com/800x600/?exclusive,room",
-            "https://source.unsplash.com/800x600/?vip,lounge"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Signature suite with private terrace, grand piano, and access to a personal chef.",
         "offer": "NO",
@@ -174,10 +196,13 @@
     {
         "roomNumber": 109,
         "roomType": "Single Bed - Luxury",
+        "bedType": "Single Bed",
+        "roomFloor": "Floor A-9",
         "photos": [
-            "https://source.unsplash.com/800x600/?cozy,luxury,room",
-            "https://source.unsplash.com/800x600/?boutique,single",
-            "https://source.unsplash.com/800x600/?comfort,interior"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Exclusive single room offering privacy and premium touches like silk robes and blackout curtains.",
         "offer": "YES",
@@ -195,11 +220,13 @@
     {
         "roomNumber": 110,
         "roomType": "Double Bed - Refined",
+        "bedType": "Double Bed",
+        "roomFloor": "Floor A-10",
         "photos": [
-            "https://source.unsplash.com/800x600/?luxury,hotelroom",
-            "https://source.unsplash.com/800x600/?clean,elegant,bedroom",
-            "https://source.unsplash.com/800x600/?modern,furniture",
-            "https://source.unsplash.com/800x600/?night,hotel"
+            "https://images.unsplash.com/photo-1564078516393-cf04bd966897?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1718942899965-4fc10607d805?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "https://images.unsplash.com/photo-1607712617949-8c993d290809?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ],
         "description": "Refined and cozy double bed setup with mood lighting, marble bathroom, and art by local creators.",
         "offer": "NO",

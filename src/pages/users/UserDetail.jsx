@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import GuestsList from "../users/guests.json";
+import GuestsList from "./../../../public/data/guests.json";
 import RoomList from "../rooms/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";

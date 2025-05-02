@@ -1,11 +1,12 @@
 import { useParams } from "react-router";
 import GuestsList from "./../../../public/data/guests.json";
-import RoomList from "../rooms/rooms.json";
+import RoomList from "./../../../public/data/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";
 import SendMessageButton from "./../../components/buttons/SendMessageButton.jsx";
 import FacilitiesButton from "./../../components/buttons/FacilitiesButton.jsx";
 import Image from "./../../components/Image.jsx";
+
 const RoomDetail = () => {
   const { id } = useParams();
   const user = GuestsList.find((u) => u.id === id);

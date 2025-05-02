@@ -1,7 +1,19 @@
-import RoomsList from "../rooms/rooms.json";
+import { useEffect } from "react";
+
 import Table from "./../../components/Table.jsx";
 import Image from "./../../components/Image.jsx";
+
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRooms } from "./../../redux/features/rooms/roomsSlice.js";
+
 function Rooms() {
+  const dispatch = useDispatch();
+  const { rooms, loading, error } = useSelector((state) => state.room);
+
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, [dispatch]);
+
   const cols = [
     "Room Name",
     "Bed Type",
@@ -12,7 +24,7 @@ function Rooms() {
   ];
 
   // Mapeamos los datos de ConciergeList
-  const data = RoomsList.map((res) => ({
+  const data = rooms.map((res) => ({
     "Room Name": (
       <div style={{ display: "flex", alignItems: "center" }}>
         <Image
@@ -39,6 +51,9 @@ function Rooms() {
     Rate: "$" + res.price + " /night",
     Status: res.status ? "Avalaible" : "Booked",
   }));
+
+  if (loading) return <div>Loading guests...</div>;
+  if (error) return <div>Error loading guests: {error}</div>;
 
   return (
     <div style={{ padding: "20px" }}>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGuestById } from "./../../redux/features/guests/guestsSlice.js"; // Ajusta la ruta según tu estructura
-import RoomList from "../rooms/rooms.json";
+import RoomList from "./../../../public/data/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";
 import SendMessageButton from "./../../components/buttons/SendMessageButton.jsx";

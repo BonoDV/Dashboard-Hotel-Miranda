@@ -8,22 +8,31 @@ export const fetchRooms = createAsyncThunk("rooms/fetchRooms", async () => {
   return data;
 });
 
-export const fetchRoomById = createAsyncThunk("rooms/fetchRoomById", async (id) => {
-  const response = await fetch("/data/rooms.json");
-  const data = await response.json();
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return data.find((r) => r.id === id);
-});
+export const fetchRoomById = createAsyncThunk(
+  "rooms/fetchRoomById",
+  async (id) => {
+    const response = await fetch("/data/rooms.json");
+    const data = await response.json();
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return data.find((r) => r.roomNumber.toString() === id);
+  }
+);
 
-export const createRoom = createAsyncThunk("rooms/createRoom", async (newRoom) => {
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return newRoom;
-});
+export const createRoom = createAsyncThunk(
+  "rooms/createRoom",
+  async (newRoom) => {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return newRoom;
+  }
+);
 
-export const updateRoom = createAsyncThunk("rooms/updateRoom", async (updatedRoom) => {
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return updatedRoom;
-});
+export const updateRoom = createAsyncThunk(
+  "rooms/updateRoom",
+  async (updatedRoom) => {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return updatedRoom;
+  }
+);
 
 export const deleteRoom = createAsyncThunk("rooms/deleteRoom", async (id) => {
   await new Promise((resolve) => setTimeout(resolve, 200));
@@ -59,10 +68,11 @@ const roomsSlice = createSlice({
       .addCase(fetchRoomById.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.selectedRoom = null;
       })
       .addCase(fetchRoomById.fulfilled, (state, action) => {
         state.loading = false;
-        state.room = action.payload;
+        state.selectedRoom = action.payload;
       })
       .addCase(fetchRoomById.rejected, (state, action) => {
         state.loading = false;

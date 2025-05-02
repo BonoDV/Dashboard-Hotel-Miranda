@@ -19,6 +19,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AuthContext } from "./context/AuthContext";
 import store from "./redux/store/store.js";
 import AddUser from "./pages/users/AddUser.jsx";
+import RoomForm from "./pages/rooms/RoomForm.jsx";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
                 <Route path="booking" element={<Bookings />} />
                 <Route path="room" element={<Rooms />} />
                 <Route path="room/:id" element={<RoomDetail />} />
+                <Route path="room/edit/:id" element={<RoomForm />} />
                 <Route path="guest" element={<Users />} />
                 <Route path="guest/new" element={<AddUser />} />
                 <Route path="guest/:id" element={<UserDetail />} />

@@ -11,6 +11,10 @@ const Table = ({ cols, data, basePath }) => {
     navigate(`/dashboard/${basePath}/${id}`);
   };
 
+  const handleEditView = (id) => {
+    navigate(`/dashboard/${basePath}/edit/${id}`);
+  };
+
   return (
     <div>
       <TableStyled>
@@ -30,6 +34,7 @@ const Table = ({ cols, data, basePath }) => {
               ))}
               <td>
                 <button onClick={() => handleView(row.id)}>Ver Detalles</button>
+                <button onClick={() => handleEditView(row.id)}>Editar</button>
               </td>
             </tr>
           ))}

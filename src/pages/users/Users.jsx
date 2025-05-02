@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGuests } from "./../../redux/features/guests/guestsSlice.js";
+import { useNavigate } from "react-router";
 import Table from "../../components/Table";
 import Image from "../../components/Image.jsx";
 
 function Users() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Seleccionamos los datos desde el store
   const { guests, loading, error } = useSelector((state) => state.guest);
@@ -23,6 +25,10 @@ function Users() {
     "Room Type",
     "Status",
   ];
+
+  const handleAdd = () => {
+    navigate(`/dashboard/guest/new`);
+  };
 
   const data = guests.map((res) => ({
     Guest: (
@@ -56,6 +62,7 @@ function Users() {
 
   return (
     <div style={{ padding: "20px" }}>
+      <button onClick={() => handleAdd()}>+</button>
       <Table cols={cols} data={data} basePath={"guest"} />
     </div>
   );

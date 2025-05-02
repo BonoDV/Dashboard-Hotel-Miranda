@@ -1,18 +1,31 @@
+import { useEffect } from "react";
 import { useParams } from "react-router";
-import GuestsList from "./../../../public/data/guests.json";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGuestById } from "./../../redux/features/guests/guestsSlice.js"; // Ajusta la ruta según tu estructura
 import RoomList from "../rooms/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";
 import SendMessageButton from "./../../components/buttons/SendMessageButton.jsx";
 import FacilitiesButton from "./../../components/buttons/FacilitiesButton.jsx";
 import Image from "./../../components/Image.jsx";
+
 const UserDetail = () => {
   const { id } = useParams();
-  const user = GuestsList.find((u) => u.id === id);
-  const room = RoomList.find((r) => r.roomType === user.roomType);
-  if (!user) {
-    return <p>Usuario no encontrado.</p>;
-  }
+  const dispatch = useDispatch();
+
+  const { guest: user, loading, error } = useSelector((state) => state.guest);
+
+  const room = user ? RoomList.find((r) => r.roomType === user.roomType) : null;
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchGuestById(id));
+    }
+  }, [dispatch, id]);
+
+  if (loading) return <p>Cargando datos del usuario...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!user) return <p>Usuario no encontrado.</p>;
 
   return (
     <div
@@ -25,22 +38,14 @@ const UserDetail = () => {
     >
       {/* Encabezado: Imagen + Info básica */}
       <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-        {/* Imagen del usuario */}
         <Image
           src={user.image}
           alt="Guest"
           style={{ width: "156px", height: "156px", borderRadius: "12px" }}
         />
-
-        {/* Info a la derecha de la imagen */}
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {/* Nombre e ID */}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <p style={{ fontSize: "20px", fontWeight: "600" }}>{user.name}</p>
-            <p style={{ color: "#888" }}>ID #{user.id}</p>
-          </div>
-
-          {/* Botones */}
+          <p style={{ fontSize: "20px", fontWeight: "600" }}>{user.name}</p>
+          <p style={{ color: "#888" }}>ID #{user.id}</p>
           <div style={{ display: "flex", gap: "12px" }}>
             <CallButton phone={user.phone} />
             <SendMessageButton email={user.email} />
@@ -78,7 +83,6 @@ const UserDetail = () => {
 
       {/* Resto de la información */}
       <div style={{ marginTop: "24px" }}>
-        {/* Room Info / Price */}
         <div
           style={{
             display: "flex",
@@ -97,10 +101,11 @@ const UserDetail = () => {
           <div>
             <p style={{ color: "#888", marginBottom: "4px" }}>Price</p>
             <p>
-              <strong>${room.price}/night</strong>
+              <strong>${room?.price}/night</strong>
             </p>
           </div>
         </div>
+
         {/* Notes */}
         <p>
           <strong>
@@ -114,7 +119,7 @@ const UserDetail = () => {
           <strong>Facilities</strong>
         </p>
         <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
-          <FacilitiesButton facilities={room.amenities} />
+          <FacilitiesButton facilities={room?.amenities || []} />
         </div>
       </div>
     </div>

@@ -21,6 +21,7 @@ import store from "./redux/store/store.js";
 import AddUser from "./pages/users/AddUser.jsx";
 import RoomForm from "./pages/rooms/RoomForm.jsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.jsx";
+import Contact from "./pages/contact/Contact.jsx";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
                 <Route path="booking" element={<Users />} />
                 <Route path="booking/new" element={<AddUser />} />
                 <Route path="booking/:id" element={<UserDetail />} />
+                <Route path="contact" element={<Contact />} />
                 <Route path="users" element={<Concierge />} />
               </Route>
 

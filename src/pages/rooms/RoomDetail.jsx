@@ -11,8 +11,8 @@ const RoomDetail = () => {
   const { id } = useParams();
   const user = GuestsList.find((u) => u.id === id);
   const room = RoomList.find((r) => r.roomType === user.roomType);
-  if (!user) {
-    return <p>Usuario no encontrado.</p>;
+  if (!room) {
+    return <p>Habitación no encontrada.</p>;
   }
 
   return (

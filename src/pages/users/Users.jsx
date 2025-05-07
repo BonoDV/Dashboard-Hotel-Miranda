@@ -27,7 +27,7 @@ function Users() {
   ];
 
   const handleAdd = () => {
-    navigate(`/dashboard/guest/new`);
+    navigate(`/dashboard/booking/new`);
   };
 
   const data = guests.map((res) => ({

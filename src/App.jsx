@@ -20,6 +20,7 @@ import { AuthContext } from "./context/AuthContext";
 import store from "./redux/store/store.js";
 import AddUser from "./pages/users/AddUser.jsx";
 import RoomForm from "./pages/rooms/RoomForm.jsx";
+import DashboardPage from "./pages/dashboard/DashboardPage.jsx";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
                 }
               >
                 {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
-                <Route index element={<Dashboard />} />{" "}
+                <Route index element={<DashboardPage />} />{" "}
                 {/* Página por defecto al entrar a /dashboard */}
                 <Route path="room" element={<Rooms />} />
                 <Route path="room/:id" element={<RoomDetail />} />

@@ -28,8 +28,7 @@ const Header = () => {
 
     const shouldShowBreadcrumb = () => {
         return (
-          (originalPath.includes('/guest/') && originalPath.split('/').filter(Boolean).length > 1) ||
-          (originalPath.includes('/concierge/') && originalPath.split('/').filter(Boolean).length > 1)
+          (originalPath.includes('/booking/') && originalPath.split('/').filter(Boolean).length > 1)
         );
       };
 

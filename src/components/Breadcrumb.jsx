@@ -1,14 +1,12 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router';
-import styled from 'styled-components';
+import React from "react";
+import { useLocation, Link } from "react-router";
+import styled from "styled-components";
 
 const Breadcrumb = () => {
   const location = useLocation();
-  const pathnames = location.pathname.split('/').filter(Boolean); // Elimina vacíos
+  const pathnames = location.pathname.split("/").filter(Boolean); // Elimina vacíos
 
   const formatName = (name) => {
-    if (name.toLowerCase() === 'guest') return 'Guest List';
-    if (name.toLowerCase() === 'concierge') return 'Concierge List';
     return name.charAt(0).toUpperCase() + name.slice(1);
   };
 
@@ -16,13 +14,13 @@ const Breadcrumb = () => {
     <BreadcrumbContainer>
       <LinkStyled to="/dashboard">Dashboard</LinkStyled> /
       {pathnames.map((value, index) => {
-        const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+        const to = `/${pathnames.slice(0, index + 1).join("/")}`;
 
         return (
           <span key={to}>
-            {' '}
+            {" "}
             <LinkStyled to={to}>{formatName(value)}</LinkStyled>
-            {index < pathnames.length - 1 && ' /'}
+            {index < pathnames.length - 1 && " /"}
           </span>
         );
       })}

@@ -2,7 +2,8 @@
     "dashboard": "Panell",
     "room": "Habitacions",
     "bookings": "Reserves",
-    "guest": "Hostes",
+    "users": "Usuaris",
     "concierge": "Empleats",
-    "contact_button": "Contacta'ns"
-}
+    "contact": "Contacte",
+    "employee_edit_button": "Editar"
+  }

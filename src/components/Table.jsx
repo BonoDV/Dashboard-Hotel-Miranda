@@ -8,6 +8,7 @@ const Table = ({ cols, data, basePath }) => {
   const navigate = useNavigate();
 
   const handleView = (id) => {
+    console.log(`/dashboard/${basePath}/${id}`);
     navigate(`/dashboard/${basePath}/${id}`);
   };
 

@@ -1,5 +1,7 @@
-import { Link } from 'react-router';
-import styled from 'styled-components';
+import { MdOutlineReviews } from "react-icons/md";
+import { IoMdContacts } from "react-icons/io";
+import { Link } from "react-router";
+import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { FaHotel } from "react-icons/fa";
 import { TbStarsFilled } from "react-icons/tb";
@@ -10,11 +12,10 @@ import { IoPersonOutline } from "react-icons/io5";
 import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import Image from './Image.jsx';
+import Image from "./Image.jsx";
 function SideBar() {
-
   const { t } = useTranslation();
 
   /*     const changeLanguage = (lng) => {
@@ -22,14 +23,16 @@ function SideBar() {
       }; */
 
   return (
-    <div style={{
-      marginLeft: '1rem',
-      boxShadow: '13px 3px 40px #00000005',
-      borderRight: '1px solid black',
-      height: '100vh', // Cambiado de 90vh a 100vh
-      position: 'sticky',
-      top: 0
-    }}>
+    <div
+      style={{
+        marginLeft: "1rem",
+        boxShadow: "13px 3px 40px #00000005",
+        borderRight: "1px solid black",
+        height: "100vh", // Cambiado de 90vh a 100vh
+        position: "sticky",
+        top: 0,
+      }}
+    >
       <HeaderContainer>
         <IconContainer>
           <IconContext.Provider value={{ color: "#135846", size: "3rem" }}>
@@ -49,26 +52,49 @@ function SideBar() {
 
       <StyledNav>
         <StyledList>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="/dashboard"><LuLayoutDashboard /> {t('dashboard')}</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="room"><RiKey2Line /> {t('room')}</StyledLink> <IoIosArrowDown /></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="booking"><LuCalendarCheck /> {t('bookings')}</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="guest"><IoPersonOutline /> {t('guest')}</StyledLink></li>
-          <li style={{ marginBottom: '1rem' }}><StyledLink to="concierge"><IoExtensionPuzzleOutline /> {t('concierge')}</StyledLink></li>
+          <li style={{ marginBottom: "1rem" }}>
+            <StyledLink to="/dashboard">
+              <LuLayoutDashboard /> {t("dashboard")}
+            </StyledLink>
+          </li>
+          <li style={{ marginBottom: "1rem" }}>
+            <StyledLink to="booking">
+              <LuCalendarCheck /> {t("bookings")}
+            </StyledLink>{" "}
+          </li>
+          <li style={{ marginBottom: "1rem" }}>
+            <StyledLink to="room">
+              <RiKey2Line /> {t("room")}
+            </StyledLink>
+            <IoIosArrowDown />
+          </li>
+          <li style={{ marginBottom: "1rem" }}>
+            <StyledLink to="contact">
+              <MdOutlineReviews /> {t("contact")}
+            </StyledLink>
+          </li>
+          <li style={{ marginBottom: "1rem" }}>
+            <StyledLink to="users">
+              <IoPersonOutline /> {t("users")}
+            </StyledLink>
+          </li>
         </StyledList>
       </StyledNav>
 
       <UserSquare>
-          <Image src="https://randomuser.me/api/portraits/men/12.jpg" alt="avatar" />
+        <Image
+          src="https://randomuser.me/api/portraits/men/12.jpg"
+          alt="avatar"
+        />
         <h2>William Johanson</h2>
         <p>williamjohn@mail.com</p>
-        <ContactButton>{t("contact_button")}</ContactButton>
+        <ContactButton>{t("employee_edit_button")}</ContactButton>
       </UserSquare>
       <CopyrightDiv>
         <h2>Travl Hotel Admin Dashboard</h2>
         <p>© 2025 All Rights Reserved</p>
       </CopyrightDiv>
-
-    </div >
+    </div>
   );
 }
 
@@ -107,7 +133,7 @@ const MainText = styled.span`
 
 const SubText = styled.span`
   font-size: 0.8rem;
-  color: #6E6E6E;
+  color: #6e6e6e;
 `;
 
 const StyledNav = styled.nav`
@@ -131,15 +157,15 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledList = styled.ul`
-  list-style: none;  /* Elimina los bullets */
-  margin: 0;         /* Opcional: elimina el margen por defecto */
+  list-style: none; /* Elimina los bullets */
+  margin: 0; /* Opcional: elimina el margen por defecto */
   width: 100%;
 `;
 
 const UserSquare = styled.div`
   width: 14.56rem;
   height: 13.81rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   margin-top: 30%;
@@ -152,10 +178,10 @@ const UserSquare = styled.div`
 
   /* Estilos para el div interno (ahora posicionado encima) */
   div {
-    border: 1px solid #EBEBEB;
+    border: 1px solid #ebebeb;
     border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #C5C5C5;
+    font-family: "Poppins", sans-serif;
+    background-color: #c5c5c5;
     width: 4rem;
     height: 4rem;
     position: absolute;
@@ -164,7 +190,8 @@ const UserSquare = styled.div`
     transform: translateX(-50%); /* Centrado horizontal */
   }
 
-  h2, p {
+  h2,
+  p {
     width: 100%;
     text-align: center;
     font-style: normal;
@@ -177,52 +204,52 @@ const UserSquare = styled.div`
   }
 
   p {
-  font-style: normal;
+    font-style: normal;
     font-variant: normal;
     font-size: 12px;
     font-weight: 300;
     line-height: 18px;
     font-family: Poppins;
-    color: #B2B2B2; /* Color secundario para el email */
+    color: #b2b2b2; /* Color secundario para el email */
   }
 `;
 
 const ContactButton = styled.button`
-    width: 10rem;
-    height: 3rem;
-    background-color: #EBF1EF;
-    border-radius: 8px;
-    border: none;
+  width: 10rem;
+  height: 3rem;
+  background-color: #ebf1ef;
+  border-radius: 8px;
+  border: none;
 
-    color: #135846;
-    text-align: center;
-    font-variant: normal;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 21px;
-    letter-spacing: 0px;
-    font-family: Poppins;
+  color: #135846;
+  text-align: center;
+  font-variant: normal;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  letter-spacing: 0px;
+  font-family: Poppins;
 `;
 
 const CopyrightDiv = styled.div`
-    margin-top: 3.8rem;
-    
-    h2{
-        width: 100%;
-        height: 1.5625rem;
+  margin-top: 3.8rem;
 
-        text-align: left;
-        font: normal normal 600 14px/25px Poppins;
-        letter-spacing: 0px;
-        color: #212121;
-    }
+  h2 {
+    width: 100%;
+    height: 1.5625rem;
 
-    p{
-        text-align: left;
-        font: normal normal 300 14px/21px Poppins;
-        letter-spacing: 0px;
-        color: #799283;
-    }
+    text-align: left;
+    font: normal normal 600 14px/25px Poppins;
+    letter-spacing: 0px;
+    color: #212121;
+  }
+
+  p {
+    text-align: left;
+    font: normal normal 300 14px/21px Poppins;
+    letter-spacing: 0px;
+    color: #799283;
+  }
 `;
 
 export default SideBar;

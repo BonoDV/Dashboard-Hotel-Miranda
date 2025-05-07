@@ -1,8 +1,9 @@
 {
-    "dashboard": "Dashboard",
-    "room": "Rooms",
-    "bookings": "Bookings",
-    "guest": "Guest",
-    "concierge": "Concierge",
-    "contact_button": "Contact us"
+  "dashboard": "Dashboard",
+  "room": "Rooms",
+  "bookings": "Bookings",
+  "users": "Users",
+  "concierge": "Concierge",
+  "contact": "Contact",
+  "employee_edit_button": "Edit"
 }

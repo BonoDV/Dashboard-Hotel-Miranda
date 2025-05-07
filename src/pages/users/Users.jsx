@@ -63,7 +63,7 @@ function Users() {
   return (
     <div style={{ padding: "20px" }}>
       <button onClick={() => handleAdd()}>+</button>
-      <Table cols={cols} data={data} basePath={"guest"} />
+      <Table cols={cols} data={data} basePath={"booking"} />
     </div>
   );
 }

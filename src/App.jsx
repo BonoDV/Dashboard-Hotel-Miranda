@@ -42,14 +42,13 @@ function App() {
                 {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
                 <Route index element={<Dashboard />} />{" "}
                 {/* Página por defecto al entrar a /dashboard */}
-                <Route path="booking" element={<Bookings />} />
                 <Route path="room" element={<Rooms />} />
                 <Route path="room/:id" element={<RoomDetail />} />
                 <Route path="room/edit/:id" element={<RoomForm />} />
-                <Route path="guest" element={<Users />} />
-                <Route path="guest/new" element={<AddUser />} />
-                <Route path="guest/:id" element={<UserDetail />} />
-                <Route path="concierge" element={<Concierge />} />
+                <Route path="booking" element={<Users />} />
+                <Route path="booking/new" element={<AddUser />} />
+                <Route path="booking/:id" element={<UserDetail />} />
+                <Route path="users" element={<Concierge />} />
               </Route>
 
               {/* Redirección para rutas no encontradas */}

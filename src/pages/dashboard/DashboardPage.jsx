@@ -1,5 +1,4 @@
-import { BsBoxArrowInRight } from "react-icons/bs";
-import { BsBoxArrowInLeft } from "react-icons/bs";
+import { BsBoxArrowInRight, BsBoxArrowInLeft } from "react-icons/bs";
 import { BiCalendarCheck } from "react-icons/bi";
 import { IoBedOutline } from "react-icons/io5";
 import React from "react";
@@ -7,133 +6,174 @@ import styled from "styled-components";
 import KPI from "./../../components/KPI.jsx";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+
 const DashboardPage = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "40px",
-        justifyContent: "space-between",
-        alignItems: "flex-start", // Alinea arriba
-        flexWrap: "wrap",
-      }}
-    >
+    <Container>
       {/* KPI group */}
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          flexWrap: "wrap",
-          minWidth: "70%",
-        }}
-      >
+      <KPIGroup>
         <KPI value={8461} label="New Booking" icon={<IoBedOutline />} />
         <KPI value={8461} label="Scheduled Room" icon={<BiCalendarCheck />} />
         <KPI value={8461} label="Check In" icon={<BsBoxArrowInLeft />} />
         <KPI value={8461} label="Check Out" icon={<BsBoxArrowInRight />} />
-      </div>
+      </KPIGroup>
 
       {/* Calendar */}
-      <div>
-        <StyledCalendar
-          tileClassName={({ date, view }) => {
-            if (view === "month") {
-              const day = date.getDate();
-              if ([8, 9].includes(day)) return "dot";
-              if (day === 20) return "special-day";
-            }
-          }}
-        />
-      </div>
-    </div>
+      <StyledCalendar />
+
+      {/* Recent bookings - estático */}
+      <RecentBookings>
+        <ItemContainer>
+          <ImagePlaceholder />
+          <BookingInfo>
+            <RoomName>Queen Bed A–12324</RoomName>
+            <GuestInfo>
+              <GuestAvatar />
+              <GuestDetails>
+                <GuestName>James Sukardi</GuestName>
+                <TimeAgo>8-5 ... 10-5</TimeAgo>
+              </GuestDetails>
+            </GuestInfo>
+          </BookingInfo>
+          <DateBadge style={{ backgroundColor: "#004d40" }}>3</DateBadge>
+        </ItemContainer>
+
+        <ItemContainer>
+          <ImagePlaceholder />
+          <BookingInfo>
+            <RoomName>Deluxe Room B–1324</RoomName>
+            <GuestInfo>
+              <GuestAvatar />
+              <GuestDetails>
+                <GuestName>Angela Moss</GuestName>
+                <TimeAgo>8-5 ... 10-5</TimeAgo>
+              </GuestDetails>
+            </GuestInfo>
+          </BookingInfo>
+          <DateBadge style={{ backgroundColor: "#e53935" }}>
+            16, 17, 18
+          </DateBadge>
+        </ItemContainer>
+
+        <ItemContainer>
+          <ImagePlaceholder />
+          <BookingInfo>
+            <RoomName>King Big C–2445</RoomName>
+            <GuestInfo>
+              <GuestAvatar />
+              <GuestDetails>
+                <GuestName>Geovanny</GuestName>
+                <TimeAgo>8-5 ... 10-5</TimeAgo>
+              </GuestDetails>
+            </GuestInfo>
+          </BookingInfo>
+          <DateBadge style={{ backgroundColor: "#ff9800" }}>20</DateBadge>
+        </ItemContainer>
+
+        <ViewMore>View More</ViewMore>
+      </RecentBookings>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: flex-start;
+`;
+
+const KPIGroup = styled.div`
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  min-width: 70%;
+`;
 
 const StyledCalendar = styled(Calendar)`
   border: none;
   border-radius: 12px;
+  width: 40%;
   font-family: "Inter", sans-serif;
   padding: 1rem;
+`;
 
-  .react-calendar__navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
+const RecentBookings = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  gap: 20px;
+`;
 
-  .react-calendar__navigation button {
-    background: none;
-    border: none;
-    color: #333;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-  }
+const ItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+`;
 
-  .react-calendar__navigation button:disabled {
-    color: #ccc;
-  }
+const ImagePlaceholder = styled.div`
+  width: 60px;
+  height: 60px;
+  background: #ccc;
+  border-radius: 8px;
+`;
 
-  .react-calendar__month-view__weekdays {
-    text-align: center;
-    text-transform: capitalize;
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #999;
-  }
+const BookingInfo = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
 
-  .react-calendar__tile {
-    height: 48px;
-    max-width: 48px;
-    text-align: center;
-    padding: 0.5rem 0;
-    border-radius: 50%;
-    font-size: 0.9rem;
-    position: relative;
-  }
+const RoomName = styled.div`
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+`;
 
-  .react-calendar__tile:hover {
-    background-color: #f3f3f3;
-  }
+const GuestInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-  .react-calendar__tile--active {
-    background: #004d40;
-    color: white;
-    border-radius: 50%;
-  }
+const GuestAvatar = styled.div`
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  border-radius: 50%;
+  margin-right: 8px;
+`;
 
-  .react-calendar__tile--range {
-    background: #e53935;
-    color: white;
-    border-radius: 0;
-  }
+const GuestDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  .react-calendar__tile--rangeStart,
-  .react-calendar__tile--rangeEnd {
-    background: #e53935;
-    color: white;
-    border-radius: 50%;
-  }
+const GuestName = styled.div`
+  font-size: 13px;
+  color: #444;
+`;
 
-  /* Punto verde bajo ciertos días */
-  .dot::after {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: #4caf50;
-    border-radius: 50%;
-    display: block;
-    margin: 4px auto 0;
-  }
+const TimeAgo = styled.div`
+  font-size: 12px;
+  color: #aaa;
+`;
 
-  /* Día especial en naranja */
-  .special-day {
-    background-color: #ffb74d !important;
-    color: white !important;
-    border-radius: 50%;
-  }
+const DateBadge = styled.div`
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  color: white;
+`;
+
+const ViewMore = styled.div`
+  text-align: center;
+  color: #007a5a;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
 `;
 
 export default DashboardPage;

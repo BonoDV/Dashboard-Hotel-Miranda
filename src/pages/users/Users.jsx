@@ -7,13 +7,17 @@ import Table from "../../components/Table";
 import Image from "../../components/Image.jsx";
 import StatusButton from "./../../components/buttons/StatusButton.jsx";
 import styled from "styled-components";
-
+import SpecialRequestButton from "./../../components/buttons/SpecialRequestButton.jsx";
+import { useState } from "react";
+import Modal from "./../../components/Modal.jsx";
 function Users() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Seleccionamos los datos desde el store
   const { guests, loading, error } = useSelector((state) => state.guest);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
   useEffect(() => {
     dispatch(fetchGuests());
@@ -31,6 +35,11 @@ function Users() {
 
   const handleAdd = () => {
     navigate(`/dashboard/booking/new`);
+  };
+
+  const handleOpenModal = (text) => {
+    setModalContent(text);
+    setIsModalOpen(true);
   };
 
   const data = guests.map((res) => ({
@@ -53,9 +62,21 @@ function Users() {
     "Order Date": res.orderDate,
     "Check In": `${res.checkIn.date} at ${res.checkIn.hour}`,
     "Check Out": `${res.checkOut.date} at ${res.checkOut.hour}`,
-    "Special Request": res.specialRequest.status
-      ? res.specialRequest.text
-      : "None",
+    "Special Request": (
+      <SpecialRequestButton
+        specialRequest={
+          res.specialRequest && res.specialRequest.text
+            ? res.specialRequest.text
+            : "None Request"
+        }
+        onClick={() =>
+          res.specialRequest && res.specialRequest.text
+            ? handleOpenModal(res.specialRequest.text)
+            : null
+        }
+      />
+    ),
+
     "Room Type": res.roomType,
     Status: <StatusButton buttonStatus={res.status} />,
   }));
@@ -85,6 +106,10 @@ function Users() {
           <Table cols={cols} data={data} basePath={"booking"} />
         </TableWrapper>
       </TableContainer>
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <h2>Special Request</h2>
+        <p>{modalContent}</p>
+      </Modal>
     </div>
   );
 }

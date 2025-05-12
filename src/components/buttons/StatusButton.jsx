@@ -43,7 +43,6 @@ const ButtonStyled = styled.button`
   background-color: ${({ buttonStatus }) => getBackgroundColor(buttonStatus)};
   color: ${({ buttonStatus }) => getTextColor(buttonStatus)};
   font: normal normal 500 14px/21px Poppins;
-  cursor: pointer;
 `;
 
 StatusButton.propTypes = {

@@ -17,7 +17,7 @@
         "text": "Late check-out requested"
       },
       "roomType": "Single Bed - Elegant",
-      "status": "Refund",
+      "status": "Check In",
       "phone": "+62 812-3456-7890",
       "email": "cahyadi.purnomo@example.com"
     },
@@ -39,7 +39,7 @@
         "text": ""
       },
       "roomType": "Double Bed - Luxe",
-      "status": "Check In",
+      "status": "Check Out",
       "phone": "+34 612-345-678",
       "email": "luis.martinez@example.com"
     },
@@ -61,7 +61,7 @@
         "text": "Late check-out requested"
       },
       "roomType": "Suite - Presidential",
-      "status": "In Progress",
+      "status": "In progress",
       "phone": "+1 917-555-0132",
       "email": "sophia.lee@example.com"
     },
@@ -83,7 +83,7 @@
         "text": ""
       },
       "roomType": "Double Superior - Signature",
-      "status": "Booked",
+      "status": "Check In",
       "phone": "+52 55 1234 5678",
       "email": "carlos.gomez@example.com"
     },
@@ -127,7 +127,7 @@
         "text": ""
       },
       "roomType": "Double Bed - Deluxe",
-      "status": "Cancelled",
+      "status": "In progress",
       "phone": "+82 10-1234-5678",
       "email": "noah.kim@example.com"
     },
@@ -149,7 +149,7 @@
         "text": "Vegetarian meals only"
       },
       "roomType": "Suite B - 02",
-      "status": "Booked",
+      "status": "Check In",
       "phone": "+39 347 123 4567",
       "email": "isabella.rossi@example.com"
     },
@@ -171,7 +171,7 @@
         "text": ""
       },
       "roomType": "Double Superior - Cityview",
-      "status": "Refund",
+      "status": "Check Out",
       "phone": "+1 212-555-0198",
       "email": "ethan.brown@example.com"
     },
@@ -193,7 +193,7 @@
         "text": "Early check-in"
       },
       "roomType": "Suite - Signature",
-      "status": "Check In",
+      "status": "In progress",
       "phone": "+84 90 123 4567",
       "email": "ava.nguyen@example.com"
     },
@@ -215,7 +215,7 @@
         "text": ""
       },
       "roomType": "Single Bed - Luxury",
-      "status": "In Progress",
+      "status": "Check In",
       "phone": "+33 6 12 34 56 78",
       "email": "oliver.dupont@example.com"
     },
@@ -237,7 +237,7 @@
           "text": ""
         },
         "roomType": "Doble Bed - Refined",
-        "status": "Booked",
+        "status": "Check Out",
         "phone": "+49 170 123 4567",
         "email": "lena.fischer@example.com"
       }

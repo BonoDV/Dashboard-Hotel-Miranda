@@ -1,9 +1,12 @@
+import { BiChevronDown } from "react-icons/bi";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGuests } from "./../../redux/features/guests/guestsSlice.js";
 import { useNavigate } from "react-router";
 import Table from "../../components/Table";
 import Image from "../../components/Image.jsx";
+import StatusButton from "./../../components/buttons/StatusButton.jsx";
+import styled from "styled-components";
 
 function Users() {
   const dispatch = useDispatch();
@@ -54,7 +57,7 @@ function Users() {
       ? res.specialRequest.text
       : "None",
     "Room Type": res.roomType,
-    Status: res.status,
+    Status: <StatusButton buttonStatus={res.status} />,
   }));
 
   if (loading) return <div>Loading guests...</div>;
@@ -62,10 +65,69 @@ function Users() {
 
   return (
     <div style={{ padding: "20px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Tabs>
+          <Tab active>All Guest</Tab>
+          <Tab>Pending</Tab>
+          <Tab>Booked</Tab>
+          <Tab>Canceled</Tab>
+          <Tab>Refund</Tab>
+        </Tabs>
+        <SortMenu>
+          <SortButton>
+            Newest <BiChevronDown />
+          </SortButton>
+        </SortMenu>
+      </div>
       <button onClick={() => handleAdd()}>+</button>
-      <Table cols={cols} data={data} basePath={"booking"} />
+      <TableContainer>
+        <TableWrapper>
+          <Table cols={cols} data={data} basePath={"booking"} />
+        </TableWrapper>
+      </TableContainer>
     </div>
   );
 }
 
 export default Users;
+
+const TableContainer = styled.div`
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+`;
+
+const Tabs = styled.div`
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+`;
+
+const Tab = styled.div`
+  font-weight: 500;
+  color: ${({ active }) => (active ? "#135846" : "#888")};
+  border-bottom: ${({ active }) => (active ? "2px solid #135846" : "none")};
+  padding-bottom: 8px;
+  cursor: pointer;
+`;
+
+const TableWrapper = styled.div`
+  overflow-x: auto;
+`;
+
+const SortMenu = styled.div`
+  top: 24px;
+  right: 24px;
+`;
+
+const SortButton = styled.button`
+  background: transparent;
+  border: 1px solid #135846;
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 50px;
+  width: 130px;
+`;

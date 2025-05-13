@@ -6,7 +6,7 @@ import RoomList from "./../../../public/data/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";
 import SendMessageButton from "./../../components/buttons/SendMessageButton.jsx";
-import FacilitiesButton from "./../../components/buttons/FacilitiesButton.jsx";
+import FacilitiesButton from "./../../components/buttons/FacilitiesButton.tsx";
 import Image from "./../../components/Image.jsx";
 
 const UserDetail = () => {

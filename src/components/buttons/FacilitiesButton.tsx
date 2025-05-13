@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const amenitiesMap = {
+const amenitiesMap: Record<string, string> = {
   "TV": "📺",
   "Wi-Fi": "📶",
   "Work Desk": "💼",
@@ -33,7 +33,11 @@ const amenitiesMap = {
   "Art Collection": "🖼️",
 };
 
-const FacilitiesButton = ({ facilities }) => {
+type FacilitiesButtonProps = {
+  facilities: string[];
+};
+
+const FacilitiesButton = ({ facilities }: FacilitiesButtonProps) => {
   return (
     <FacilitiesContainer>
       {facilities.map((facility, index) => (

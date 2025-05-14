@@ -20,7 +20,7 @@ const Header = () => {
   const location = useLocation();
   const originalPath = location.pathname;
   const path = location.pathname.split("/").filter(Boolean).pop(); // Obtener la última parte de la ruta
-  let pathCapitalize = path.charAt(0).toUpperCase() + path.slice(1); // Capitalizar la primera letra
+  let pathCapitalize = path ? path.charAt(0).toUpperCase() + path.slice(1) : ""; // Capitalizar la primera letra
 
   if (
     pathCapitalize === "Guest" ||
@@ -39,7 +39,7 @@ const Header = () => {
 
   useEffect(() => {
     // Sincronizar con cambios externos del idioma
-    const handleLanguageChange = (lng) => {
+    const handleLanguageChange = (lng: string) => {
       setSelectedLanguage(lng);
     };
 
@@ -49,7 +49,7 @@ const Header = () => {
     };
   }, [i18n]);
 
-  const changeLanguage = (event) => {
+  const changeLanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const lng = event.target.value.toLowerCase();
     i18n
       .changeLanguage(lng)
@@ -65,7 +65,7 @@ const Header = () => {
       <IconContext.Provider value={{ size: "2rem" }}>
         <ArrowLeftIcon />
       </IconContext.Provider>
-      <LeftSection hasBreadcrumb={shouldShowBreadcrumb()}>
+      <LeftSection $hasBreadcrumb={shouldShowBreadcrumb()}>
         <DashboardTitleStyled>{pathCapitalize}</DashboardTitleStyled>
         {shouldShowBreadcrumb() && <Breadcrumb />}
       </LeftSection>
@@ -112,12 +112,11 @@ const HeaderStyled = styled.header`
   z-index: 10;
 `;
 
-const LeftSection = styled.div`
+const LeftSection = styled.div<{ $hasBreadcrumb: boolean }>`
   display: flex;
   flex-direction: column;
-  margin-right: 40%;
-  margin-right: ${({ hasBreadcrumb }) => (hasBreadcrumb ? "40%" : "50%")};
-  margin-top: ${({ hasBreadcrumb }) => (hasBreadcrumb ? "1rem" : "0")};
+  margin-right: ${({ $hasBreadcrumb }) => ($hasBreadcrumb ? "40%" : "50%")};
+  margin-top: ${({ $hasBreadcrumb }) => ($hasBreadcrumb ? "1rem" : "0")};
 `;
 
 const RightSection = styled.div`

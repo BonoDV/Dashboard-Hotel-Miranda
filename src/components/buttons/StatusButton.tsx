@@ -1,14 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const StatusButton = ({ buttonStatus }) => {
+type StatusType = "Check In" | "Check Out" | "In progress";
+
+interface StatusButtonProps {
+  buttonStatus: StatusType;
+}
+
+const StatusButton: React.FC<StatusButtonProps> = ({ buttonStatus }) => {
   return (
-    <ButtonStyled buttonStatus={buttonStatus}>{buttonStatus}</ButtonStyled>
+    <ButtonStyled $buttonStatus={buttonStatus}>
+      {buttonStatus}
+    </ButtonStyled>
   );
 };
 
-const getBackgroundColor = (status) => {
+const getBackgroundColor = (status: string): string => {
   switch (status) {
     case "Check In":
       return "#135846";
@@ -21,7 +28,7 @@ const getBackgroundColor = (status) => {
   }
 };
 
-const getTextColor = (status) => {
+const getTextColor = (status: string): string => {
   switch (status) {
     case "Check In":
     case "Check Out":
@@ -32,7 +39,7 @@ const getTextColor = (status) => {
   }
 };
 
-const ButtonStyled = styled.button`
+const ButtonStyled = styled.button<{ $buttonStatus: string }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,14 +47,11 @@ const ButtonStyled = styled.button`
   height: 65px;
   border-radius: 8px;
   border: none;
-  background-color: ${({ buttonStatus }) => getBackgroundColor(buttonStatus)};
-  color: ${({ buttonStatus }) => getTextColor(buttonStatus)};
+  background-color: ${({ $buttonStatus }) =>
+    getBackgroundColor($buttonStatus)};
+  color: ${({ $buttonStatus }) => getTextColor($buttonStatus)};
   font: normal normal 500 14px/21px Poppins;
 `;
 
-StatusButton.propTypes = {
-  buttonStatus: PropTypes.oneOf(["Check In", "Check Out", "In progress"])
-    .isRequired,
-};
-
 export default StatusButton;
+

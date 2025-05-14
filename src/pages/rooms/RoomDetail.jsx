@@ -3,7 +3,7 @@ import GuestsList from "./../../../public/data/guests.json";
 import RoomList from "./../../../public/data/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";
-import SendMessageButton from "./../../components/buttons/SendMessageButton.jsx";
+import SendMessageButton from "./../../components/buttons/SendMessageButton.tsx";
 import FacilitiesButton from "./../../components/buttons/FacilitiesButton.tsx";
 import Image from "./../../components/Image.jsx";
 

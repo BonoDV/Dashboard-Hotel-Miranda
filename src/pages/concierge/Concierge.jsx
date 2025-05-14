@@ -1,5 +1,5 @@
 import Table from "./../../components/Table.jsx";
-import Image from "./../../components/Image.jsx";
+import Image from "./../../components/Image.tsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

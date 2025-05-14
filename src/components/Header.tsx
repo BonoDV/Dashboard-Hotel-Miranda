@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 import { useLocation } from "react-router";
 import Breadcrumb from "./Breadcrumb.tsx";
-import Image from "./Image.jsx";
+import Image from "./Image.tsx";
 const Header = () => {
   const { i18n } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);

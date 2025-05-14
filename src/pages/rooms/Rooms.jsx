@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import Table from "./../../components/Table.jsx";
-import Image from "./../../components/Image.jsx";
+import Image from "./../../components/Image.tsx";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRooms } from "./../../redux/features/rooms/roomsSlice.js";

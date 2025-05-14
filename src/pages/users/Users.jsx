@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGuests } from "./../../redux/features/guests/guestsSlice.js";
 import { useNavigate } from "react-router";
 import Table from "../../components/Table";
-import Image from "../../components/Image.jsx";
+import Image from "../../components/Image.tsx";
 import StatusButton from "./../../components/buttons/StatusButton.tsx";
 import styled from "styled-components";
 import SpecialRequestButton from "./../../components/buttons/SpecialRequestButton.tsx";

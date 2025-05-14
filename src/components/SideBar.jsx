@@ -14,7 +14,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 import { useTranslation } from "react-i18next";
 
-import Image from "./Image.jsx";
+import Image from "./Image.tsx";
 function SideBar() {
   const { t } = useTranslation();
 

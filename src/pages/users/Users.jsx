@@ -9,7 +9,7 @@ import StatusButton from "./../../components/buttons/StatusButton.tsx";
 import styled from "styled-components";
 import SpecialRequestButton from "./../../components/buttons/SpecialRequestButton.tsx";
 import { useState } from "react";
-import Modal from "./../../components/Modal.jsx";
+import Modal from "./../../components/Modal.tsx";
 function Users() {
   const dispatch = useDispatch();
   const navigate = useNavigate();

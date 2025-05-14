@@ -1,7 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const BookingItem = ({ room, guest, timeAgo, dates, color }) => {
+type BookingItemProps = {
+  room: string;
+  guest: string;
+  timeAgo: string;
+  dates: string[];
+  color?: string;
+};
+
+const BookingItem: React.FC<BookingItemProps> = ({ room, guest, timeAgo, dates, color }) => {
   return (
     <ItemContainer>
       <ImagePlaceholder />

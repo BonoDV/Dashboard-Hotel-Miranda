@@ -1,18 +1,24 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-// Cols -> objects array representing each column.
-// Data -> objects array representing each row. Example: rooms, bookings, etc.
 
-const Table = ({ cols, data, basePath }) => {
+interface TableProps {
+  cols: string[]; // Arreglo de strings representando los nombres de las columnas
+  data: { [key: string]: string | number }[]; // Arreglo de objetos que representa las filas de la tabla
+  basePath: string; // Ruta base para las acciones de navegación
+}
+
+const Table: React.FC<TableProps> = ({ cols, data, basePath }) => {
   const navigate = useNavigate();
 
-  const handleView = (id) => {
+  // Función para navegar a la vista de detalles
+  const handleView = (id: string | number) => {
     console.log(`/dashboard/${basePath}/${id}`);
     navigate(`/dashboard/${basePath}/${id}`);
   };
 
-  const handleEditView = (id) => {
+  // Función para navegar a la vista de edición
+  const handleEditView = (id: string | number) => {
     navigate(`/dashboard/${basePath}/edit/${id}`);
   };
 

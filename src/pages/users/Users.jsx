@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGuests } from "./../../redux/features/guests/guestsSlice.js";
 import { useNavigate } from "react-router";
-import Table from "../../components/Table";
+import Table from "../../components/Table.tsx";
 import Image from "../../components/Image.tsx";
 import StatusButton from "./../../components/buttons/StatusButton.tsx";
 import styled from "styled-components";

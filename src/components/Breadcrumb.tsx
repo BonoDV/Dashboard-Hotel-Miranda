@@ -2,11 +2,15 @@ import React from "react";
 import { useLocation, Link } from "react-router";
 import styled from "styled-components";
 
+type BreadCrumbProps = {
+  name: string;
+}
+
 const Breadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter(Boolean); // Elimina vacíos
 
-  const formatName = (name) => {
+  const formatName = (name: string) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
   };
 

@@ -3,9 +3,13 @@ import { IconContext } from "react-icons";
 import React from 'react';
 import styled from 'styled-components';
 
-const SendMessageButton = (params) => {
+type CallButtonProps = {
+  email: string;
+};
+
+const SendMessageButton = ({ email }: CallButtonProps) => {
     return (
-        <a href={`mailto:${params.email}`} style={{ marginLeft: '20px' }}>
+        <a href={`mailto:${email}`} style={{ marginLeft: '20px' }}>
             <ButtonStyled>
                 <IconContext.Provider value={{ size: "24px", color: "#ffffff" }}>
                     <AiFillMessage style={{ marginRight: "10px", marginTop: "5px" }} />

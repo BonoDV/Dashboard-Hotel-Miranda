@@ -85,7 +85,10 @@ const Header = () => {
         <IconContext.Provider value={{ size: "2rem" }}>
           <MessageIcon />
         </IconContext.Provider>
-        <Image src="https://randomuser.me/api/portraits/men/12.jpg" />
+        <Image
+          src="https://randomuser.me/api/portraits/men/12.jpg"
+          alt="avatar"
+        />
         <div
           style={{ background: "#EBEBEB 0% 0% no-repeat padding-box" }}
         ></div>

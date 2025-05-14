@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 type ImageProps = {
   src: string;
+  alt: string;
 };
 
-const Image = ({ src }: ImageProps) => {
+const Image = ({ src, alt }: ImageProps) => {
   return (
     <UserSquareDivStyled>
       <img

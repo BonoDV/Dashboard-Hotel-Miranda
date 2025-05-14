@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const KPI = ({ value, label, icon }) => {
+type KPIprops = {
+  value: string;
+  label: string;
+  icon: string;
+};
+
+const KPI = ({ value, label, icon }: KPIprops) => {
   return (
     <Card>
       <IconWrapper>{icon}</IconWrapper>

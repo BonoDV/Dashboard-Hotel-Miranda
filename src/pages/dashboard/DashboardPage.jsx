@@ -3,7 +3,7 @@ import { BiCalendarCheck } from "react-icons/bi";
 import { IoBedOutline } from "react-icons/io5";
 import React from "react";
 import styled from "styled-components";
-import KPI from "./../../components/KPI.jsx";
+import KPI from "./../../components/KPI.tsx";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { FaArrowRight } from "react-icons/fa";

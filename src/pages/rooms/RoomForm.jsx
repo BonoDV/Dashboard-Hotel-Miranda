@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import FacilitiesButton from "./../../components/buttons/FacilitiesButton.tsx";
-import { fetchRoomById } from "../../redux/features/rooms/roomsSlice.js";
+import { fetchRoomById } from "../../redux/features/rooms/roomsSlice.ts";
 
 const RoomForm = ({ onSubmit }) => {
   const { id } = useParams();

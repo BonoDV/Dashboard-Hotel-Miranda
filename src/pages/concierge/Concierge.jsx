@@ -3,7 +3,7 @@ import Image from "./../../components/Image.tsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchConcierges } from "../../redux/features/concierge/conciergeSlice.js";
+import { fetchConcierges } from "../../redux/features/concierge/conciergeSlice.ts";
 function Concierge() {
   const dispatch = useDispatch();
 

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import guestsReducer from "./../features/guests/guestsSlice";
-import roomsReducer from "./../features/rooms/roomsSlice";
-import conciergeReducer from "./../features/concierge/conciergeSlice";
+import guestsReducer from "../features/guests/guestsSlice.ts";
+import roomsReducer from "../features/rooms/roomsSlice.ts";
+import conciergeReducer from "../features/concierge/conciergeSlice.ts";
 
 const store = configureStore({
   reducer: {

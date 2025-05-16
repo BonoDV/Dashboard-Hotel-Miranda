@@ -1,25 +1,43 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import type { Guest } from "../../../type/Guest";
+
+// Estado inicial tipado
+interface GuestsState {
+  guests: Guest[];
+  guest: Guest | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: GuestsState = {
+  guests: [],
+  guest: null,
+  loading: false,
+  error: null,
+};
 
 // Thunks
-export const fetchGuests = createAsyncThunk("guests/fetchGuests", async () => {
-  const response = await fetch("/data/guests.json");
-  const data = await response.json();
-  // Simula una demora de 200ms
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return data;
-});
+export const fetchGuests = createAsyncThunk<Guest[]>(
+  "guests/fetchGuests",
+  async () => {
+    const response = await fetch("/data/guests.json");
+    const data: Guest[] = await response.json();
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return data;
+  }
+);
 
-export const fetchGuestById = createAsyncThunk(
+export const fetchGuestById = createAsyncThunk<Guest | undefined, string>(
   "guests/fetchGuestById",
   async (id) => {
     const response = await fetch("/data/guests.json");
-    const data = await response.json();
+    const data: Guest[] = await response.json();
     await new Promise((resolve) => setTimeout(resolve, 200));
     return data.find((g) => g.id === id);
   }
 );
 
-export const createGuest = createAsyncThunk(
+export const createGuest = createAsyncThunk<Guest, Guest>(
   "guests/createGuest",
   async (newGuest) => {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -27,7 +45,7 @@ export const createGuest = createAsyncThunk(
   }
 );
 
-export const updateGuest = createAsyncThunk(
+export const updateGuest = createAsyncThunk<Guest, Guest>(
   "guests/updateGuest",
   async (updatedGuest) => {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -35,7 +53,7 @@ export const updateGuest = createAsyncThunk(
   }
 );
 
-export const deleteGuest = createAsyncThunk(
+export const deleteGuest = createAsyncThunk<string, string>(
   "guests/deleteGuest",
   async (id) => {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -46,12 +64,8 @@ export const deleteGuest = createAsyncThunk(
 // Slice
 const guestsSlice = createSlice({
   name: "guests",
-  initialState: {
-    guests: [],
-    guest: null,
-    loading: false,
-    error: null,
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       // FETCH ALL
@@ -59,13 +73,16 @@ const guestsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchGuests.fulfilled, (state, action) => {
-        state.loading = false;
-        state.guests = action.payload;
-      })
+      .addCase(
+        fetchGuests.fulfilled,
+        (state, action: PayloadAction<Guest[]>) => {
+          state.loading = false;
+          state.guests = action.payload;
+        }
+      )
       .addCase(fetchGuests.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al cargar los huéspedes";
       })
 
       // FETCH ONE
@@ -73,13 +90,16 @@ const guestsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchGuestById.fulfilled, (state, action) => {
-        state.loading = false;
-        state.guest = action.payload;
-      })
+      .addCase(
+        fetchGuestById.fulfilled,
+        (state, action: PayloadAction<Guest | undefined>) => {
+          state.loading = false;
+          state.guest = action.payload ?? null;
+        }
+      )
       .addCase(fetchGuestById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al cargar el huésped";
       })
 
       // CREATE
@@ -87,13 +107,13 @@ const guestsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(createGuest.fulfilled, (state, action) => {
+      .addCase(createGuest.fulfilled, (state, action: PayloadAction<Guest>) => {
         state.loading = false;
         state.guests.push(action.payload);
       })
       .addCase(createGuest.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al crear el huésped";
       })
 
       // UPDATE
@@ -101,14 +121,14 @@ const guestsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(updateGuest.fulfilled, (state, action) => {
+      .addCase(updateGuest.fulfilled, (state, action: PayloadAction<Guest>) => {
         state.loading = false;
         const index = state.guests.findIndex((g) => g.id === action.payload.id);
         if (index !== -1) state.guests[index] = action.payload;
       })
       .addCase(updateGuest.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al actualizar el huésped";
       })
 
       // DELETE
@@ -116,13 +136,16 @@ const guestsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteGuest.fulfilled, (state, action) => {
-        state.loading = false;
-        state.guests = state.guests.filter((g) => g.id !== action.payload);
-      })
+      .addCase(
+        deleteGuest.fulfilled,
+        (state, action: PayloadAction<string>) => {
+          state.loading = false;
+          state.guests = state.guests.filter((g) => g.id !== action.payload);
+        }
+      )
       .addCase(deleteGuest.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al eliminar el huésped";
       });
   },
 });

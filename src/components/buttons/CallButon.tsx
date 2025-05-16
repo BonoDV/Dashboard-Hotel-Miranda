@@ -2,7 +2,6 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import React from "react";
 import styled from "styled-components";
-import {User} from './../../interfaces/User.ts';
 
 type CallButtonProps = {
   phone: string;

@@ -1,24 +1,42 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import type { Room } from "../../../type/Room";
+
+interface RoomState {
+  rooms: Room[];
+  room: Room | null;
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: RoomState = {
+  rooms: [],
+  room: null,
+  loading: false,
+  error: null,
+};
 
 // Thunks
-export const fetchRooms = createAsyncThunk("rooms/fetchRooms", async () => {
-  const response = await fetch("/data/rooms.json");
-  const data = await response.json();
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return data;
-});
+export const fetchRooms = createAsyncThunk<Room[]>(
+  "rooms/fetchRooms",
+  async () => {
+    const response = await fetch("/data/rooms.json");
+    const data: Room[] = await response.json();
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return data;
+  }
+);
 
-export const fetchRoomById = createAsyncThunk(
+export const fetchRoomById = createAsyncThunk<Room | undefined, string>(
   "rooms/fetchRoomById",
   async (id) => {
     const response = await fetch("/data/rooms.json");
-    const data = await response.json();
+    const data: Room[] = await response.json();
     await new Promise((resolve) => setTimeout(resolve, 200));
     return data.find((r) => r.roomNumber.toString() === id);
   }
 );
 
-export const createRoom = createAsyncThunk(
+export const createRoom = createAsyncThunk<Room, Room>(
   "rooms/createRoom",
   async (newRoom) => {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -26,7 +44,7 @@ export const createRoom = createAsyncThunk(
   }
 );
 
-export const updateRoom = createAsyncThunk(
+export const updateRoom = createAsyncThunk<Room, Room>(
   "rooms/updateRoom",
   async (updatedRoom) => {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -34,20 +52,19 @@ export const updateRoom = createAsyncThunk(
   }
 );
 
-export const deleteRoom = createAsyncThunk("rooms/deleteRoom", async (id) => {
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return id;
-});
+export const deleteRoom = createAsyncThunk<string, string>(
+  "rooms/deleteRoom",
+  async (id) => {
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return id;
+  }
+);
 
 // Slice
 const roomsSlice = createSlice({
   name: "rooms",
-  initialState: {
-    rooms: [],
-    room: null,
-    loading: false,
-    error: null,
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       // FETCH ALL
@@ -55,28 +72,32 @@ const roomsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchRooms.fulfilled, (state, action) => {
+      .addCase(fetchRooms.fulfilled, (state, action: PayloadAction<Room[]>) => {
         state.loading = false;
         state.rooms = action.payload;
       })
       .addCase(fetchRooms.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error =
+          action.error.message ?? "Error al cargar las habitaciones";
       })
 
       // FETCH ONE
       .addCase(fetchRoomById.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.selectedRoom = null;
+        state.room = null;
       })
-      .addCase(fetchRoomById.fulfilled, (state, action) => {
-        state.loading = false;
-        state.selectedRoom = action.payload;
-      })
+      .addCase(
+        fetchRoomById.fulfilled,
+        (state, action: PayloadAction<Room | undefined>) => {
+          state.loading = false;
+          state.room = action.payload ?? null;
+        }
+      )
       .addCase(fetchRoomById.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al cargar la habitación";
       })
 
       // CREATE
@@ -84,13 +105,13 @@ const roomsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(createRoom.fulfilled, (state, action) => {
+      .addCase(createRoom.fulfilled, (state, action: PayloadAction<Room>) => {
         state.loading = false;
         state.rooms.push(action.payload);
       })
       .addCase(createRoom.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al crear la habitación";
       })
 
       // UPDATE
@@ -98,14 +119,15 @@ const roomsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(updateRoom.fulfilled, (state, action) => {
+      .addCase(updateRoom.fulfilled, (state, action: PayloadAction<Room>) => {
         state.loading = false;
         const index = state.rooms.findIndex((r) => r.id === action.payload.id);
         if (index !== -1) state.rooms[index] = action.payload;
       })
       .addCase(updateRoom.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error =
+          action.error.message ?? "Error al actualizar la habitación";
       })
 
       // DELETE
@@ -113,13 +135,13 @@ const roomsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteRoom.fulfilled, (state, action) => {
+      .addCase(deleteRoom.fulfilled, (state, action: PayloadAction<string>) => {
         state.loading = false;
         state.rooms = state.rooms.filter((r) => r.id !== action.payload);
       })
       .addCase(deleteRoom.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message ?? "Error al eliminar la habitación";
       });
   },
 });

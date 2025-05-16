@@ -4,7 +4,7 @@ import Table from "./../../components/Table.tsx";
 import Image from "./../../components/Image.tsx";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRooms } from "./../../redux/features/rooms/roomsSlice.js";
+import { fetchRooms } from "./../../redux/features/rooms/roomsSlice.ts";
 
 function Rooms() {
   const dispatch = useDispatch();

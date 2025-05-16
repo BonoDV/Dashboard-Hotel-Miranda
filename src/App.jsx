@@ -16,7 +16,7 @@ import { I18nextProvider } from "react-i18next";
 
 import { AuthProvider } from "./context/AuthContext";
 
-import { AuthContext } from "./context/AuthContext";
+import { AuthContext } from "./context/AuthContext.tsx";
 import store from "./redux/store/store.js";
 import AddUser from "./pages/users/AddUser.jsx";
 import RoomForm from "./pages/rooms/RoomForm.jsx";

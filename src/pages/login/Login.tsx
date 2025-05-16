@@ -3,16 +3,21 @@ import styled from "styled-components";
 import { useNavigate } from "react-router";
 
 import { AuthContext } from "../../context/AuthContext";
+import type { AuthContextType } from "../../context/AuthContext";
 import UserList from "./users.json";
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const auth = useContext(AuthContext);
+
+  if (!auth) throw new Error("AuthContext not found");
+
+  const { loginUser } = auth;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate(); // Hook para navegación
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const success = loginUser(username, password);
     if (success) {

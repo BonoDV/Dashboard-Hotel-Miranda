@@ -1,6 +1,14 @@
-import { createContext, useReducer, useEffect } from "react";
-import { authReducer, initialState } from "../reducers/AuthReducer";
-import UserList from "./../pages/login/users.json";
+import { createContext, useReducer, useEffect, ReactNode } from "react";
+import { authReducer, initialState } from "../reducers/AuthReducer.ts";
+import UserList from "../pages/login/users.json";
+
+export type AuthContextType = {
+  state: typeof initialState;
+  loginUser: (username: string, password: string) => boolean;
+  logoutUser: () => void;
+  updateUserInfo: (user: string, password: string) => void;
+};
+
 // Recuperar estado desde localStorage (si existe)
 const getInitialState = () => {
   const userData = localStorage.getItem("logged");
@@ -11,10 +19,10 @@ const getInitialState = () => {
 };
 
 // Crear el contexto
-export const AuthContext = createContext(null);
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 // Crear el proveedor
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(
     authReducer,
     initialState,
@@ -26,11 +34,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("logged", JSON.stringify(state));
   }, [state]);
 
-  const loginUser = (user, password) => {
+  const loginUser = (user: string, password: string) => {
     const validUser = UserList.find(
       (u) => u.user === user && u.password === password
     );
-  
+
     if (validUser) {
       dispatch({ type: "LOGIN", payload: { user, password } });
       return true; // éxito
@@ -43,7 +51,7 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: "LOGOUT" });
   };
 
-  const updateUserInfo = (user, password) => {
+  const updateUserInfo = (user: string, password: string) => {
     dispatch({ type: "UPDATE_USER", payload: { user, password } });
   };
 

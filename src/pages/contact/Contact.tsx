@@ -55,7 +55,7 @@ function Contact() {
               <ReviewTime>4m ago</ReviewTime>
             </ReviewerDetails>
             <ActionButtons>
-              <ActionIcon approved />
+              <ActionIcon approved={true} />
               <ActionIcon />
             </ActionButtons>
           </ReviewerInfo>
@@ -114,6 +114,14 @@ function Contact() {
   );
 }
 
+interface ActionIconProps {
+  approved?: boolean;
+}
+
+interface TabProps {
+  active?: boolean;
+}
+
 const ReviewCardsContainer = styled.div`
   display: flex;
   gap: 20px;
@@ -170,7 +178,7 @@ const ActionButtons = styled.div`
   gap: 8px;
 `;
 
-const ActionIcon = styled.div`
+const ActionIcon = styled.div<ActionIconProps>`
   width: 20px;
   height: 20px;
   background: ${(props) => (props.approved ? "#00c853" : "#e53935")};
@@ -190,7 +198,7 @@ const Tabs = styled.div`
   margin-bottom: 24px;
 `;
 
-const Tab = styled.div`
+const Tab = styled.div<TabProps>`
   font-weight: 500;
   color: ${({ active }) => (active ? "#135846" : "#888")};
   border-bottom: ${({ active }) => (active ? "2px solid #135846" : "none")};

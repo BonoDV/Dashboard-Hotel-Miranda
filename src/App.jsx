@@ -21,7 +21,7 @@ import store from "./redux/store/store.js";
 import AddUser from "./pages/users/AddUser.jsx";
 import RoomForm from "./pages/rooms/RoomForm.jsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.jsx";
-import Contact from "./pages/contact/Contact.jsx";
+import Contact from "./pages/contact/Contact.tsx";
 
 function App() {
   return (

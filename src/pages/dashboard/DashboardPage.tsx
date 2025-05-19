@@ -3,7 +3,7 @@ import { BiCalendarCheck } from "react-icons/bi";
 import { IoBedOutline } from "react-icons/io5";
 import React from "react";
 import styled from "styled-components";
-import KPI from "./../../components/KPI.tsx";
+import KPI from "../../components/KPI.tsx";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { FaArrowRight } from "react-icons/fa";
@@ -199,7 +199,9 @@ const DashboardPage = () => {
   );
 };
 
-// Styled Components
+interface ActionIconProps {
+  approved?: boolean;
+}
 
 const Container = styled.div`
   display: flex;
@@ -378,7 +380,7 @@ const ActionButtons = styled.div`
   gap: 8px;
 `;
 
-const ActionIcon = styled.div`
+const ActionIcon = styled.div<ActionIconProps>`
   width: 20px;
   height: 20px;
   background: ${(props) => (props.approved ? "#00c853" : "#e53935")};

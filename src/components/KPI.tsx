@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 type KPIprops = {
-  value: string;
+  value: string | number;
   label: string;
-  icon: string;
+  icon: React.ReactNode;
 };
 
 const KPI = ({ value, label, icon }: KPIprops) => {

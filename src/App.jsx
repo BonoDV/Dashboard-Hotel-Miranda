@@ -19,7 +19,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { AuthContext } from "./context/AuthContext.tsx";
 import store from "./redux/store/store.js";
 import AddUser from "./pages/users/AddUser.tsx";
-import RoomForm from "./pages/rooms/RoomForm.jsx";
+import RoomForm from "./pages/rooms/RoomForm.tsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.tsx";
 import Contact from "./pages/contact/Contact.tsx";
 

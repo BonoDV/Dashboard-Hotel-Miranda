@@ -1,51 +1,71 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import FacilitiesButton from "./../../components/buttons/FacilitiesButton.tsx";
+import FacilitiesButton from "../../components/buttons/FacilitiesButton.tsx";
 import { fetchRoomById } from "../../redux/features/rooms/roomsSlice.ts";
+import { RootState, AppDispatch } from "../../redux/store/store.ts";
+import { number } from "prop-types";
 
-const RoomForm = ({ onSubmit }) => {
+type RoomFormProps = {
+  onSubmit?: (formData: RoomFormData) => void;
+};
+
+type RoomFormData = {
+  roomNumber: number;
+  roomType: string;
+  bedType: string;
+  roomFloor: string;
+  photos: string[];
+  description: string;
+  offer: string;
+  price: number;
+  discount: number;
+  cancellation: string;
+  amenities: string[];
+};
+
+const RoomForm: React.FC<RoomFormProps> = ({ onSubmit }) => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { rooms, loading, error, selectedRoom } = useSelector(
-    (state) => state.room
-  );
+  const {
+    room: selectedRoom,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.room);
 
-  const [formData, setFormData] = useState({
-    roomNumber: "",
+  const [formData, setFormData] = useState<RoomFormData>({
+    roomNumber: 0,
     roomType: "",
     bedType: "",
     roomFloor: "",
     photos: [""],
     description: "",
     offer: "",
-    price: "",
-    discount: "",
+    price: 0,
+    discount: 0,
     cancellation: "",
     amenities: [""],
   });
 
-  // Fetch room by ID on load
   useEffect(() => {
     if (id) {
-      dispatch(fetchRoomById(id));
+      dispatch(fetchRoomById(Number(id)));
     }
   }, [dispatch, id]);
 
-  // Set form data once room is loaded
   useEffect(() => {
     if (selectedRoom) {
       setFormData({
-        roomNumber: selectedRoom.roomNumber || "",
+        roomNumber: selectedRoom.roomNumber || 0,
         roomType: selectedRoom.roomType || "",
         bedType: selectedRoom.bedType || "",
         roomFloor: selectedRoom.roomFloor || "",
         photos: selectedRoom.photos?.length ? selectedRoom.photos : [""],
         description: selectedRoom.description || "",
         offer: selectedRoom.offer || "",
-        price: selectedRoom.price || "",
-        discount: selectedRoom.discount || "",
+        price: selectedRoom.price,
+        discount: selectedRoom.discount,
         cancellation: selectedRoom.cancellation || "",
         amenities: selectedRoom.amenities?.length
           ? selectedRoom.amenities
@@ -58,16 +78,22 @@ const RoomForm = ({ onSubmit }) => {
   if (error) return <p>Error: {error}</p>;
   if (!selectedRoom) return <p>Habitación no encontrada.</p>;
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "roomNumber" ? Number(value) : value,
     }));
   };
 
-  const handleArrayChange = (e, field, index) => {
-    const newArray = [...formData[field]];
+  const handleArrayChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    field: keyof RoomFormData,
+    index: number
+  ) => {
+    const newArray = [...(formData[field] as string[])];
     newArray[index] = e.target.value;
     setFormData((prev) => ({
       ...prev,
@@ -75,21 +101,21 @@ const RoomForm = ({ onSubmit }) => {
     }));
   };
 
-  const addArrayItem = (field) => {
+  const addArrayItem = (field: keyof RoomFormData) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: [...prev[field], ""],
+      [field]: [...(prev[field] as string[]), ""],
     }));
   };
 
-  const removeArrayItem = (field, index) => {
+  const removeArrayItem = (field: keyof RoomFormData, index: number) => {
     setFormData((prev) => ({
       ...prev,
-      [field]: prev[field].filter((_, i) => i !== index),
+      [field]: (prev[field] as string[]).filter((_, i) => i !== index),
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (onSubmit) onSubmit(formData);
     console.log("Submitted:", formData);
@@ -107,6 +133,7 @@ const RoomForm = ({ onSubmit }) => {
     >
       <input
         name="roomNumber"
+        type="number"
         placeholder="Room Number"
         value={formData.roomNumber}
         onChange={handleChange}

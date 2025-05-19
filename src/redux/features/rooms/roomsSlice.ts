@@ -26,13 +26,13 @@ export const fetchRooms = createAsyncThunk<Room[]>(
   }
 );
 
-export const fetchRoomById = createAsyncThunk<Room | undefined, string>(
+export const fetchRoomById = createAsyncThunk<Room | undefined, number>(
   "rooms/fetchRoomById",
   async (id) => {
     const response = await fetch("/data/rooms.json");
     const data: Room[] = await response.json();
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return data.find((r) => r.roomNumber.toString() === id);
+    return data.find((r) => r.roomNumber === id);
   }
 );
 
@@ -52,7 +52,7 @@ export const updateRoom = createAsyncThunk<Room, Room>(
   }
 );
 
-export const deleteRoom = createAsyncThunk<string, string>(
+export const deleteRoom = createAsyncThunk<number, number>(
   "rooms/deleteRoom",
   async (id) => {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -121,7 +121,9 @@ const roomsSlice = createSlice({
       })
       .addCase(updateRoom.fulfilled, (state, action: PayloadAction<Room>) => {
         state.loading = false;
-        const index = state.rooms.findIndex((r) => r.id === action.payload.id);
+        const index = state.rooms.findIndex(
+          (r) => r.roomNumber === action.payload.roomNumber
+        );
         if (index !== -1) state.rooms[index] = action.payload;
       })
       .addCase(updateRoom.rejected, (state, action) => {
@@ -135,9 +137,11 @@ const roomsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteRoom.fulfilled, (state, action: PayloadAction<string>) => {
+      .addCase(deleteRoom.fulfilled, (state, action: PayloadAction<number>) => {
         state.loading = false;
-        state.rooms = state.rooms.filter((r) => r.id !== action.payload);
+        state.rooms = state.rooms.filter(
+          (r) => r.roomNumber !== Number(action.payload)
+        );
       })
       .addCase(deleteRoom.rejected, (state, action) => {
         state.loading = false;

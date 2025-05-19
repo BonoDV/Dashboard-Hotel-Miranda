@@ -1,10 +1,12 @@
-import React from "react";
+import React, { JSX } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 
+type TableRow = Record<string, string | number | JSX.Element>;
+
 interface TableProps {
   cols: string[]; // Arreglo de strings representando los nombres de las columnas
-  data: { [key: string]: string | number }[]; // Arreglo de objetos que representa las filas de la tabla
+  data: TableRow[]; // Arreglo de objetos que representa las filas de la tabla
   basePath: string; // Ruta base para las acciones de navegación
 }
 
@@ -40,8 +42,14 @@ const Table: React.FC<TableProps> = ({ cols, data, basePath }) => {
                 <td key={colIndex}>{row[col]}</td>
               ))}
               <td>
-                <button onClick={() => handleView(row.id)}>Ver Detalles</button>
-                <button onClick={() => handleEditView(row.id)}>Editar</button>
+                <button onClick={() => handleView(row.id as string | number)}>
+                  Ver Detalles
+                </button>
+                <button
+                  onClick={() => handleEditView(row.id as string | number)}
+                >
+                  Editar
+                </button>
               </td>
             </tr>
           ))}

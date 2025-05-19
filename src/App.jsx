@@ -7,7 +7,7 @@ import Dashboard from "./pages/Dashboard.tsx";
 import Rooms from "./pages/Rooms/Rooms";
 import RoomDetail from "./pages/rooms/RoomDetail";
 import Bookings from "./pages/Bookings/Bookings";
-import Users from "./pages/users/Users";
+import Users from "./pages/users/Users.tsx";
 import UserDetail from "./pages/users/UserDetail";
 import Concierge from "./pages/concierge/Concierge";
 

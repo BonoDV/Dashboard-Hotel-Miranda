@@ -1,21 +1,28 @@
 import { BiChevronDown } from "react-icons/bi";
-import { useEffect } from "react";
+import { JSX, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGuests } from "./../../redux/features/guests/guestsSlice.js";
+import { fetchGuests } from "../../redux/features/guests/guestsSlice.js";
 import { useNavigate } from "react-router";
 import Table from "../../components/Table.tsx";
 import Image from "../../components/Image.tsx";
-import StatusButton from "./../../components/buttons/StatusButton.tsx";
+import StatusButton, {
+  StatusType,
+} from "../../components/buttons/StatusButton.tsx";
 import styled from "styled-components";
-import SpecialRequestButton from "./../../components/buttons/SpecialRequestButton.tsx";
+import SpecialRequestButton from "../../components/buttons/SpecialRequestButton.tsx";
 import { useState } from "react";
-import Modal from "./../../components/Modal.tsx";
+import Modal from "../../components/Modal.tsx";
+
+import { RootState, AppDispatch } from "./../../redux/store/store.ts";
+import { Guest } from "../../type/Guest.ts";
 function Users() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   // Seleccionamos los datos desde el store
-  const { guests, loading, error } = useSelector((state) => state.guest);
+  const { guests, loading, error } = useSelector(
+    (state: RootState) => state.guest
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
 
@@ -37,12 +44,12 @@ function Users() {
     navigate(`/dashboard/booking/new`);
   };
 
-  const handleOpenModal = (text) => {
+  const handleOpenModal = (text: string) => {
     setModalContent(text);
     setIsModalOpen(true);
   };
 
-  const data = guests.map((res) => ({
+  const data = guests.map((res: Guest) => ({
     Guest: (
       <div style={{ display: "flex", alignItems: "center" }}>
         <Image src={res.image} alt="Guest" />
@@ -60,8 +67,8 @@ function Users() {
     ),
     id: res.id,
     "Order Date": res.orderDate,
-    "Check In": `${res.checkIn.date} at ${res.checkIn.hour}`,
-    "Check Out": `${res.checkOut.date} at ${res.checkOut.hour}`,
+    "Check In": `${res.checkIn}`,
+    "Check Out": `${res.checkOut}`,
     "Special Request": (
       <SpecialRequestButton
         specialRequest={
@@ -78,7 +85,7 @@ function Users() {
     ),
 
     "Room Type": res.roomType,
-    Status: <StatusButton buttonStatus={res.status} />,
+    Status: <StatusButton buttonStatus={res.status as StatusType} />,
   }));
 
   if (loading) return <div>Loading guests...</div>;
@@ -88,8 +95,8 @@ function Users() {
     <div style={{ padding: "20px" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Tabs>
-          <Tab active>All Guest</Tab>
-          <Tab>Pending</Tab>
+          <Tab active={true}>All Guest</Tab>
+          <Tab active={false}>Pending</Tab>
           <Tab>Booked</Tab>
           <Tab>Canceled</Tab>
           <Tab>Refund</Tab>
@@ -116,6 +123,10 @@ function Users() {
 
 export default Users;
 
+interface TabProps {
+  active?: boolean;
+}
+
 const TableContainer = styled.div`
   background: white;
   border-radius: 12px;
@@ -129,7 +140,7 @@ const Tabs = styled.div`
   margin-bottom: 24px;
 `;
 
-const Tab = styled.div`
+const Tab = styled.div<TabProps>`
   font-weight: 500;
   color: ${({ active }) => (active ? "#135846" : "#888")};
   border-bottom: ${({ active }) => (active ? "2px solid #135846" : "none")};

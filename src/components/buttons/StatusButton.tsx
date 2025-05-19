@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-type StatusType = "Check In" | "Check Out" | "In progress";
+export type StatusType = "Check In" | "Check Out" | "In progress";
 
 interface StatusButtonProps {
   buttonStatus: StatusType;
@@ -9,9 +9,7 @@ interface StatusButtonProps {
 
 const StatusButton: React.FC<StatusButtonProps> = ({ buttonStatus }) => {
   return (
-    <ButtonStyled $buttonStatus={buttonStatus}>
-      {buttonStatus}
-    </ButtonStyled>
+    <ButtonStyled $buttonStatus={buttonStatus}>{buttonStatus}</ButtonStyled>
   );
 };
 
@@ -39,7 +37,7 @@ const getTextColor = (status: string): string => {
   }
 };
 
-const ButtonStyled = styled.button<{ $buttonStatus: string }>`
+const ButtonStyled = styled.button<{ $buttonStatus: StatusType }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,11 +45,9 @@ const ButtonStyled = styled.button<{ $buttonStatus: string }>`
   height: 65px;
   border-radius: 8px;
   border: none;
-  background-color: ${({ $buttonStatus }) =>
-    getBackgroundColor($buttonStatus)};
+  background-color: ${({ $buttonStatus }) => getBackgroundColor($buttonStatus)};
   color: ${({ $buttonStatus }) => getTextColor($buttonStatus)};
   font: normal normal 500 14px/21px Poppins;
 `;
 
 export default StatusButton;
-

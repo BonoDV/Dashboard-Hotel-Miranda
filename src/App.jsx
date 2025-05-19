@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import LoginForm from "./pages/login/Login";
 import Dashboard from "./pages/Dashboard.tsx";
-import Rooms from "./pages/Rooms/Rooms";
+import Rooms from "./pages/Rooms/Rooms.tsx";
 import RoomDetail from "./pages/rooms/RoomDetail";
 import Bookings from "./pages/Bookings/Bookings";
 import Users from "./pages/users/Users.tsx";

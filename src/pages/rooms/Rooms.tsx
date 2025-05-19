@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 
-import Table from "./../../components/Table.tsx";
-import Image from "./../../components/Image.tsx";
+import Table from "../../components/Table.tsx";
+import Image from "../../components/Image.tsx";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchRooms } from "./../../redux/features/rooms/roomsSlice.ts";
+import { fetchRooms } from "../../redux/features/rooms/roomsSlice.ts";
+import { RootState, AppDispatch } from "../../redux/store/store.ts";
 
 function Rooms() {
-  const dispatch = useDispatch();
-  const { rooms, loading, error } = useSelector((state) => state.room);
+  const dispatch = useDispatch<AppDispatch>();
+  const { rooms, loading, error } = useSelector(
+    (state: RootState) => state.room
+  );
 
   useEffect(() => {
     dispatch(fetchRooms());

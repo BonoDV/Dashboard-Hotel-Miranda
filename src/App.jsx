@@ -11,7 +11,7 @@ import Users from "./pages/users/Users.tsx";
 import UserDetail from "./pages/users/UserDetail.tsx";
 import Concierge from "./pages/concierge/Concierge.tsx";
 
-import i18n from "./locales/translation/i18n";
+import i18n from "./locales/translation/i18n.ts";
 import { I18nextProvider } from "react-i18next";
 
 import { AuthProvider } from "./context/AuthContext";

@@ -1,19 +1,24 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGuestById } from "./../../redux/features/guests/guestsSlice.js"; // Ajusta la ruta según tu estructura
-import RoomList from "./../../../public/data/rooms.json";
+import { fetchGuestById } from "../../redux/features/guests/guestsSlice.js"; // Ajusta la ruta según tu estructura
+import RoomList from "../../../public/data/rooms.json";
 
-import CallButton from "./../../components/buttons/CallButon.jsx";
-import SendMessageButton from "./../../components/buttons/SendMessageButton.tsx";
-import FacilitiesButton from "./../../components/buttons/FacilitiesButton.tsx";
-import Image from "./../../components/Image.tsx";
+import CallButton from "../../components/buttons/CallButon.js";
+import SendMessageButton from "../../components/buttons/SendMessageButton.tsx";
+import FacilitiesButton from "../../components/buttons/FacilitiesButton.tsx";
+import Image from "../../components/Image.tsx";
+import { RootState, AppDispatch } from "../../redux/store/store.ts";
 
 const UserDetail = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { guest: user, loading, error } = useSelector((state) => state.guest);
+  const {
+    guest: user,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.guest);
 
   const room = user ? RoomList.find((r) => r.roomType === user.roomType) : null;
 
@@ -66,17 +71,13 @@ const UserDetail = () => {
         <div>
           <p style={{ color: "#888", marginBottom: "4px" }}>Check In</p>
           <p>
-            <strong>
-              {user.checkIn.date} | {user.checkIn.hour}
-            </strong>
+            <strong>{user.checkIn.toString()}</strong>
           </p>
         </div>
         <div>
           <p style={{ color: "#888", marginBottom: "4px" }}>Check Out</p>
           <p>
-            <strong>
-              {user.checkOut.date} | {user.checkOut.hour}
-            </strong>
+            <strong>{user.checkOut.toString()}</strong>
           </p>
         </div>
       </div>

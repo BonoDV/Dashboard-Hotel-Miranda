@@ -8,7 +8,7 @@ import Rooms from "./pages/Rooms/Rooms";
 import RoomDetail from "./pages/rooms/RoomDetail";
 import Bookings from "./pages/Bookings/Bookings";
 import Users from "./pages/users/Users.tsx";
-import UserDetail from "./pages/users/UserDetail";
+import UserDetail from "./pages/users/UserDetail.tsx";
 import Concierge from "./pages/concierge/Concierge.tsx";
 
 import i18n from "./locales/translation/i18n";

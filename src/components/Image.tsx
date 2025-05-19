@@ -4,6 +4,7 @@ import styled from "styled-components";
 type ImageProps = {
   src: string;
   alt: string;
+  style?: React.CSSProperties;
 };
 
 const Image = ({ src, alt }: ImageProps) => {

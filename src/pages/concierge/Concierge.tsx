@@ -1,15 +1,16 @@
-import Table from "./../../components/Table.tsx";
-import Image from "./../../components/Image.tsx";
+import Table from "../../components/Table.tsx";
+import Image from "../../components/Image.tsx";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../redux/store/store.ts";
 
 import { fetchConcierges } from "../../redux/features/concierge/conciergeSlice.ts";
 function Concierge() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   // Seleccionamos los datos desde el store
   const { concierges, loading, error } = useSelector(
-    (state) => state.concierge
+    (state: RootState) => state.concierge
   );
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function Concierge() {
             {res.first_name} {res.last_name}
           </span>
           <span>#{res.id}</span>
-          <span>{res.start_date}</span>
+          <span>{new Date(res.start_date).toLocaleDateString()}</span>
         </div>
       </div>
     ),

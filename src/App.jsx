@@ -9,7 +9,7 @@ import RoomDetail from "./pages/rooms/RoomDetail";
 import Bookings from "./pages/Bookings/Bookings";
 import Users from "./pages/users/Users.tsx";
 import UserDetail from "./pages/users/UserDetail";
-import Concierge from "./pages/concierge/Concierge";
+import Concierge from "./pages/concierge/Concierge.tsx";
 
 import i18n from "./locales/translation/i18n";
 import { I18nextProvider } from "react-i18next";

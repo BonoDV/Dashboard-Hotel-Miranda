@@ -1,13 +1,31 @@
 import React, { useState } from "react";
 
-const AddUser = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
+interface FormData {
+  id: string;
+  name: string;
+  image: string;
+  orderDate: string;
+  checkIn: Date;
+  checkOut: Date;
+  specialRequest: { status: boolean; text: string };
+  roomType: string;
+  status: string;
+  phone: string;
+  email: string;
+}
+
+interface AddUserProps {
+  onSubmit: (data: FormData) => void;
+}
+
+const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
+  const [formData, setFormData] = useState<FormData>({
     id: "",
     name: "",
     image: "",
     orderDate: "",
-    checkIn: { date: "", hour: "" },
-    checkOut: { date: "", hour: "" },
+    checkIn: new Date(),
+    checkOut: new Date(),
     specialRequest: { status: false, text: "" },
     roomType: "",
     status: "",
@@ -15,14 +33,17 @@ const AddUser = ({ onSubmit }) => {
     email: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
     if (name.startsWith("checkIn.") || name.startsWith("checkOut.")) {
       const [section, key] = name.split(".");
       setFormData((prev) => ({
         ...prev,
-        [section]: { ...prev[section], [key]: value },
+        [section]: {
+          ...prev[section as "checkIn" | "checkOut"],
+          [key]: value,
+        },
       }));
     } else if (name === "specialRequest.status") {
       setFormData((prev) => ({
@@ -37,12 +58,12 @@ const AddUser = ({ onSubmit }) => {
     } else {
       setFormData((prev) => ({
         ...prev,
-        [name]: value,
+        [name as keyof FormData]: value,
       }));
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (onSubmit) onSubmit(formData);
     console.log("Submitted:", formData);
@@ -87,7 +108,7 @@ const AddUser = ({ onSubmit }) => {
         Check In Date:
         <input
           name="checkIn.date"
-          value={formData.checkIn.date}
+          value={formData.checkIn.toString()}
           onChange={handleChange}
         />
       </label>
@@ -95,7 +116,7 @@ const AddUser = ({ onSubmit }) => {
         Check In Hour:
         <input
           name="checkIn.hour"
-          value={formData.checkIn.hour}
+          value={formData.checkIn.toString()}
           onChange={handleChange}
         />
       </label>
@@ -104,7 +125,7 @@ const AddUser = ({ onSubmit }) => {
         Check Out Date:
         <input
           name="checkOut.date"
-          value={formData.checkOut.date}
+          value={formData.checkOut.toString()}
           onChange={handleChange}
         />
       </label>
@@ -112,7 +133,7 @@ const AddUser = ({ onSubmit }) => {
         Check Out Hour:
         <input
           name="checkOut.hour"
-          value={formData.checkOut.hour}
+          value={formData.checkOut.toString()}
           onChange={handleChange}
         />
       </label>

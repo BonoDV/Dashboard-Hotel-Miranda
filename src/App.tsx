@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
-import { useContext } from "react";
+import { useContext, ReactNode } from "react";
 import { Provider } from "react-redux";
 
-import LoginForm from "./pages/login/Login";
+import LoginForm from "./pages/login/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
-import Rooms from "./pages/Rooms/Rooms.tsx";
-import RoomDetail from "./pages/rooms/RoomDetail";
-import Bookings from "./pages/Bookings/Bookings";
+import Rooms from "./pages/rooms/Rooms.tsx";
+import RoomDetail from "./pages/rooms/RoomDetail.jsx";
+import Bookings from "./pages/bookings/Bookings.jsx";
 import Users from "./pages/users/Users.tsx";
 import UserDetail from "./pages/users/UserDetail.tsx";
 import Concierge from "./pages/concierge/Concierge.tsx";
@@ -14,7 +14,7 @@ import Concierge from "./pages/concierge/Concierge.tsx";
 import i18n from "./locales/translation/i18n.ts";
 import { I18nextProvider } from "react-i18next";
 
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext.tsx";
 
 import { AuthContext } from "./context/AuthContext.tsx";
 import store from "./redux/store/store.js";
@@ -48,7 +48,10 @@ function App() {
                 <Route path="room/:id" element={<RoomDetail />} />
                 <Route path="room/edit/:id" element={<RoomForm />} />
                 <Route path="booking" element={<Users />} />
-                <Route path="booking/new" element={<AddUser />} />
+                <Route
+                  path="booking/new"
+                  element={<AddUser onSubmit={() => {}} />}
+                />
                 <Route path="booking/:id" element={<UserDetail />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="users" element={<Concierge />} />
@@ -65,8 +68,8 @@ function App() {
 }
 
 // Componente para proteger rutas
-const ProtectedRoute = ({ children }) => {
-  const { state } = useContext(AuthContext);
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+  const { state } = useContext(AuthContext)!;
   return state.isAuthenticated ? children : <Navigate to="/" replace />;
 };
 

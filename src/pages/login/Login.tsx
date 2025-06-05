@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 import { AuthContext } from "../../context/AuthContext";
 import type { AuthContextType } from "../../context/AuthContext";
-import UserList from "./users.json";
+import axios from "axios";
 const Login = () => {
   const auth = useContext(AuthContext);
 
@@ -17,9 +17,9 @@ const Login = () => {
 
   const navigate = useNavigate(); // Hook para navegación
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const success = loginUser(username, password);
+    const success = await loginUser(username, password);
     if (success) {
       navigate("/dashboard");
     } else {

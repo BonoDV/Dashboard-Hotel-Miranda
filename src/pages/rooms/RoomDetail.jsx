@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import GuestsList from "./../../../public/data/guests.json";
-import RoomList from "./../../../public/data/rooms.json";
 
 import CallButton from "./../../components/buttons/CallButon.jsx";
 import SendMessageButton from "./../../components/buttons/SendMessageButton.tsx";

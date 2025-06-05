@@ -60,6 +60,32 @@ export const deleteConcierge = createAsyncThunk<string, string>(
   }
 );
 
+interface LoginPayload {
+  email: string;
+  password: string;
+}
+
+export const loginConcierge = createAsyncThunk<Concierge, LoginPayload>(
+  "concierges/loginConcierge",
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        return rejectWithValue(error.message || "Login failed");
+      }
+      const data: Concierge = await response.json();
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.message || "Login failed");
+    }
+  }
+);
+
 // Slice
 const conciergesSlice = createSlice({
   name: "concierges",

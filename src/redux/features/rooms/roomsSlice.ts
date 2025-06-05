@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Room } from "../../../type/Room";
+import axios from "axios";
 
 interface RoomState {
   rooms: Room[];
@@ -19,10 +20,13 @@ const initialState: RoomState = {
 export const fetchRooms = createAsyncThunk<Room[]>(
   "rooms/fetchRooms",
   async () => {
-    const response = await fetch("/data/rooms.json");
-    const data: Room[] = await response.json();
+    const response = await axios.get<Room[]>("http://localhost:3000/rooms", {
+      headers: {
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM1YjE5NjQyOWVlYWRmYjIyZWFhMGQiLCJlbWFpbCI6ImptYmNAZ21haWwuY29tIiwiaWF0IjoxNzQ5MTIxNDA0LCJleHAiOjE3NDkyMDc4MDR9.LkM29oLFXckqGD6n0WxNiXhrOFrRsDpUPjSuxJtw2ig`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return data;
+    return response.data;
   }
 );
 

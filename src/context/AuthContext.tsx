@@ -1,10 +1,11 @@
 import { createContext, useReducer, useEffect, ReactNode } from "react";
 import { authReducer, initialState } from "../reducers/AuthReducer.ts";
-import UserList from "../pages/login/users.json";
-
+import { loginConcierge } from "./../redux/features/concierge/conciergeSlice.ts";
+import type { AppDispatch } from "./../redux/store/store.ts";
+import { useDispatch } from "react-redux";
 export type AuthContextType = {
   state: typeof initialState;
-  loginUser: (username: string, password: string) => boolean;
+  loginUser: (email: string, password: string) => Promise<boolean>;
   logoutUser: () => void;
   updateUserInfo: (user: string, password: string) => void;
 };
@@ -34,16 +35,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("logged", JSON.stringify(state));
   }, [state]);
 
-  const loginUser = (user: string, password: string) => {
-    const validUser = UserList.find(
-      (u) => u.user === user && u.password === password
-    );
+  const reduxDispatch = useDispatch<AppDispatch>();
 
-    if (validUser) {
-      dispatch({ type: "LOGIN", payload: { user, password } });
-      return true; // éxito
-    } else {
-      return false; // credenciales incorrectas
+  const loginUser = async (
+    email: string,
+    password: string
+  ): Promise<boolean> => {
+    try {
+      const resultAction = await reduxDispatch(
+        loginConcierge({ email, password })
+      );
+
+      if (loginConcierge.fulfilled.match(resultAction)) {
+        dispatch({ type: "LOGIN", payload: resultAction.payload }); // actualiza tu estado local
+        // Guardar token de la api
+        localStorage.setItem("token", resultAction.payload.token);
+
+        return true;
+      } else {
+        return false;
+      }
+    } catch {
+      return false;
     }
   };
 

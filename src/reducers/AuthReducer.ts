@@ -11,7 +11,7 @@ export type AuthState = {
 };
 
 export type AuthAction =
-  | { type: "LOGIN"; payload: { user: string; password: string } }
+  | { type: "LOGIN"; payload: { email: string; password: string } }
   | { type: "LOGOUT" }
   | { type: "UPDATE_USER"; payload: { user: string; password: string } };
 
@@ -21,7 +21,7 @@ export function authReducer(state: AuthState, action: AuthAction): AuthState {
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.user,
+        user: action.payload.email,
         password: action.payload.password,
       };
 

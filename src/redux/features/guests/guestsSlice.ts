@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Guest } from "../../../type/Guest";
+import axios from "axios";
 
 // Estado inicial tipado
 interface GuestsState {
@@ -20,10 +21,13 @@ const initialState: GuestsState = {
 export const fetchGuests = createAsyncThunk<Guest[]>(
   "guests/fetchGuests",
   async () => {
-    const response = await fetch("/data/guests.json");
-    const data: Guest[] = await response.json();
+    const response = await axios.get<Guest[]>("http://localhost:3000/booking", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return data;
+    return response.data;
   }
 );
 

@@ -34,10 +34,16 @@ export const fetchGuests = createAsyncThunk<Guest[]>(
 export const fetchGuestById = createAsyncThunk<Guest | undefined, string>(
   "guests/fetchGuestById",
   async (id) => {
-    const response = await fetch("/data/guests.json");
-    const data: Guest[] = await response.json();
+    const response = await axios.get<Guest>(
+      `http://localhost:3000/booking/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return data.find((g) => g.id === id);
+    return response.data;
   }
 );
 

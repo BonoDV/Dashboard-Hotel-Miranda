@@ -22,7 +22,7 @@ export const fetchRooms = createAsyncThunk<Room[]>(
   async () => {
     const response = await axios.get<Room[]>("http://localhost:3000/rooms", {
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODM1YjE5NjQyOWVlYWRmYjIyZWFhMGQiLCJlbWFpbCI6ImptYmNAZ21haWwuY29tIiwiaWF0IjoxNzQ5MTIxNDA0LCJleHAiOjE3NDkyMDc4MDR9.LkM29oLFXckqGD6n0WxNiXhrOFrRsDpUPjSuxJtw2ig`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -33,10 +33,16 @@ export const fetchRooms = createAsyncThunk<Room[]>(
 export const fetchRoomById = createAsyncThunk<Room | undefined, number>(
   "rooms/fetchRoomById",
   async (id) => {
-    const response = await fetch("/data/rooms.json");
-    const data: Room[] = await response.json();
+    const response = await axios.get<Room>(
+      `http://localhost:3000/rooms/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return data.find((r) => r.roomNumber === id);
+    return response.data;
   }
 );
 

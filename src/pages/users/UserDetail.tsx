@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGuestById } from "../../redux/features/guests/guestsSlice.js"; // Ajusta la ruta según tu estructura
-import RoomList from "../../../public/data/rooms.json";
+import { fetchRoomById } from "../../redux/features/rooms/roomsSlice.ts";
 
 import CallButton from "../../components/buttons/CallButon.js";
 import SendMessageButton from "../../components/buttons/SendMessageButton.tsx";
@@ -20,13 +20,19 @@ const UserDetail = () => {
     error,
   } = useSelector((state: RootState) => state.guest);
 
-  const room = user ? RoomList.find((r) => r.roomType === user.roomType) : null;
+  const room = useSelector((state: RootState) => state.room.room);
 
   useEffect(() => {
     if (id) {
       dispatch(fetchGuestById(id));
     }
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (user?.roomNumber) {
+      dispatch(fetchRoomById(user.roomNumber));
+    }
+  }, [dispatch, user?.roomNumber]);
 
   if (loading) return <p>Cargando datos del usuario...</p>;
   if (error) return <p>Error: {error}</p>;

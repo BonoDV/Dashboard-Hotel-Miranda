@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGuestById } from "../../redux/features/guests/guestsSlice.js"; // Ajusta la ruta según tu estructura
+import { fetchGuestById } from "../../redux/features/guests/guestsSlice.js";
 import { fetchRoomById } from "../../redux/features/rooms/roomsSlice.ts";
 
 import CallButton from "../../components/buttons/CallButon.js";

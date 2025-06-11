@@ -2,7 +2,7 @@ export type Guest = {
   id: string;
   name: string;
   image: string;
-  orderDate: string; // Puedes convertirlo a Date si lo necesitas también
+  orderDate: Date;
   checkIn: Date;
   checkOut: Date;
   specialRequest: {

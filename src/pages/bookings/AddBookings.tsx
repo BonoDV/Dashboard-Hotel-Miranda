@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store/store"; // Adjust path if needed
+import { createGuest } from "../../redux/features/guests/guestsSlice";
 
 interface FormData {
   name: string;
   image: string;
-  orderDate: string;
+  orderDate: Date;
   checkIn: Date;
   checkOut: Date;
   specialRequest: { status: boolean; text: string };
@@ -14,15 +17,12 @@ interface FormData {
   roomNumber: string;
 }
 
-interface AddUserProps {
-  onSubmit: (data: FormData) => void;
-}
-
-const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
+const AddUser: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     image: "",
-    orderDate: "",
+    orderDate: new Date(),
     checkIn: new Date(),
     checkOut: new Date(),
     specialRequest: { status: false, text: "" },
@@ -35,15 +35,20 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
-
-    if (name.startsWith("checkIn.") || name.startsWith("checkOut.")) {
-      const [section, key] = name.split(".");
+    if (name === "orderDate") {
       setFormData((prev) => ({
         ...prev,
-        [section]: {
-          ...prev[section as "checkIn" | "checkOut"],
-          [key]: value,
-        },
+        orderDate: value ? new Date(value) : new Date(),
+      }));
+    } else if (name === "checkIn.date") {
+      setFormData((prev) => ({
+        ...prev,
+        checkIn: value ? new Date(value) : new Date(),
+      }));
+    } else if (name === "checkOut.date") {
+      setFormData((prev) => ({
+        ...prev,
+        checkOut: value ? new Date(value) : new Date(),
       }));
     } else if (name === "specialRequest.status") {
       setFormData((prev) => ({
@@ -63,10 +68,44 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
     }
   };
 
+  const [specialRequestStatus, setSpecialRequestStatus] = useState(true);
+
+  const handleSpecialRequestChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { checked } = e.target;
+    setSpecialRequestStatus(checked);
+    setFormData((prev) => ({
+      ...prev,
+      specialRequest: { ...prev.specialRequest, status: checked },
+    }));
+  };
+
+  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(
+    null
+  );
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (onSubmit) onSubmit(formData);
-    console.log("Submitted:", formData);
+
+    // Simple validation example: all required fields must be filled
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.roomType ||
+      !formData.status ||
+      !formData.phone ||
+      !formData.roomNumber
+    ) {
+      setSubmitStatus("error");
+      return;
+    }
+
+    // Generate a unique id for the new guest
+    const guestWithId = { ...formData, id: Date.now().toString() };
+    dispatch(createGuest(guestWithId));
+    setSubmitStatus("success");
+    console.log("Submitted:", guestWithId);
   };
 
   return (
@@ -91,27 +130,31 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
         value={formData.image}
         onChange={handleChange}
       />
-      <input
-        name="orderDate"
-        placeholder="Order Date"
-        value={formData.orderDate}
-        onChange={handleChange}
-      />
-
+      <label>
+        Order Date:
+        <input
+          name="orderDate"
+          placeholder="Order Date"
+          value={
+            formData.orderDate instanceof Date
+              ? formData.orderDate.toISOString().slice(0, 16)
+              : ""
+          }
+          onChange={handleChange}
+          type="datetime-local"
+        />
+      </label>
       <label>
         Check In Date:
         <input
           name="checkIn.date"
-          value={formData.checkIn.toString()}
+          value={
+            formData.checkIn instanceof Date
+              ? formData.checkIn.toISOString().slice(0, 16)
+              : ""
+          }
           onChange={handleChange}
-        />
-      </label>
-      <label>
-        Check In Hour:
-        <input
-          name="checkIn.hour"
-          value={formData.checkIn.toString()}
-          onChange={handleChange}
+          type="datetime-local"
         />
       </label>
 
@@ -119,16 +162,13 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
         Check Out Date:
         <input
           name="checkOut.date"
-          value={formData.checkOut.toString()}
+          value={
+            formData.checkOut instanceof Date
+              ? formData.checkOut.toISOString().slice(0, 16)
+              : ""
+          }
           onChange={handleChange}
-        />
-      </label>
-      <label>
-        Check Out Hour:
-        <input
-          name="checkOut.hour"
-          value={formData.checkOut.toString()}
-          onChange={handleChange}
+          type="datetime-local"
         />
       </label>
 
@@ -137,8 +177,8 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
         <input
           type="checkbox"
           name="specialRequest.status"
-          checked={formData.specialRequest.status}
-          onChange={handleChange}
+          checked={specialRequestStatus}
+          onChange={handleSpecialRequestChange}
         />
       </label>
       <input
@@ -146,6 +186,7 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
         placeholder="Special Request Text"
         value={formData.specialRequest.text}
         onChange={handleChange}
+        disabled={!specialRequestStatus}
       />
 
       <input
@@ -180,6 +221,12 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
       />
 
       <button type="submit">Submit</button>
+      {submitStatus === "success" && (
+        <div style={{ color: "green" }}>Submitted successfully!</div>
+      )}
+      {submitStatus === "error" && (
+        <div style={{ color: "red" }}>Please fill in all required fields.</div>
+      )}
     </form>
   );
 };

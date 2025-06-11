@@ -50,16 +50,34 @@ export const fetchGuestById = createAsyncThunk<Guest | undefined, string>(
 export const createGuest = createAsyncThunk<Guest, Guest>(
   "guests/createGuest",
   async (newGuest) => {
+    const response = await axios.post<Guest>(
+      "http://localhost:3000/booking",
+      newGuest,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return newGuest;
+    return response.data;
   }
 );
 
 export const updateGuest = createAsyncThunk<Guest, Guest>(
   "guests/updateGuest",
   async (updatedGuest) => {
+    const response = await axios.put<Guest>(
+      `http://localhost:3000/booking/${updatedGuest.id}`,
+      updatedGuest,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return updatedGuest;
+    return response.data;
   }
 );
 

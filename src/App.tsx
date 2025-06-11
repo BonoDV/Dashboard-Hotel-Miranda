@@ -18,10 +18,11 @@ import { AuthProvider } from "./context/AuthContext.tsx";
 
 import { AuthContext } from "./context/AuthContext.tsx";
 import store from "./redux/store/store.js";
-import AddUser from "./pages/users/AddUser.tsx";
+import AddBookings from "./pages/bookings/AddBookings.tsx";
 import RoomForm from "./pages/rooms/RoomForm.tsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.tsx";
 import Contact from "./pages/contact/Contact.tsx";
+import EditBooking from "./pages/bookings/EditBooking.tsx";
 
 function App() {
   return (
@@ -50,9 +51,10 @@ function App() {
                 <Route path="booking" element={<Users />} />
                 <Route
                   path="booking/new"
-                  element={<AddUser onSubmit={() => {}} />}
+                  element={<AddBookings onSubmit={() => {}} />}
                 />
                 <Route path="booking/:id" element={<UserDetail />} />
+                <Route path="booking/edit/:id" element={<EditBooking />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="users" element={<Concierge />} />
               </Route>

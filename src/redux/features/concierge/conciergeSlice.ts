@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Concierge } from "../../../type/Concierge";
+import axios from "axios";
 
 interface ConciergesState {
   concierges: Concierge[];
@@ -19,10 +20,16 @@ const initialState: ConciergesState = {
 export const fetchConcierges = createAsyncThunk<Concierge[]>(
   "concierges/fetchConcierges",
   async () => {
-    const response = await fetch("/data/concierge.json");
-    const data = await response.json();
+    const response = await axios.get<Concierge[]>(
+      "http://localhost:3000/users",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return data;
+    return response.data;
   }
 );
 

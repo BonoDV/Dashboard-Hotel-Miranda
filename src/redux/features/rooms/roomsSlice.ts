@@ -49,8 +49,17 @@ export const fetchRoomById = createAsyncThunk<Room | undefined, number>(
 export const createRoom = createAsyncThunk<Room, Room>(
   "rooms/createRoom",
   async (newRoom) => {
+    const response = await axios.post<Room>(
+      "http://localhost:3000/rooms",
+      newRoom,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return newRoom;
+    return response.data;
   }
 );
 

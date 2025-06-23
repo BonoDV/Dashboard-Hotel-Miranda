@@ -11,7 +11,7 @@ interface FormData {
   status: string;
   phone: string;
   email: string;
-  roomNumber: string;
+  roomNumber: number;
 }
 
 interface AddUserProps {
@@ -30,7 +30,7 @@ const AddUser: React.FC<AddUserProps> = ({ onSubmit }) => {
     status: "",
     phone: "",
     email: "",
-    roomNumber: "",
+    roomNumber: 0,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

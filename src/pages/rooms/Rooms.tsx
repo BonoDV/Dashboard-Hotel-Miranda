@@ -3,12 +3,15 @@ import { useEffect, useState } from "react";
 import Table from "../../components/Table.tsx";
 import Image from "../../components/Image.tsx";
 
+import { useNavigate } from "react-router";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRooms } from "../../redux/features/rooms/roomsSlice.ts";
 import { RootState, AppDispatch } from "../../redux/store/store.ts";
 
 function Rooms() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { rooms, loading, error } = useSelector(
     (state: RootState) => state.room
   );
@@ -20,6 +23,10 @@ function Rooms() {
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch]);
+
+  const handleAdd = () => {
+    navigate(`/dashboard/room/new`);
+  };
 
   const cols = [
     "Room Name",
@@ -72,6 +79,7 @@ function Rooms() {
 
   return (
     <div style={{ padding: "20px" }}>
+      <button onClick={() => handleAdd()}>+</button>
       {/* Componente de la tabla */}
       <Table cols={cols} data={data} basePath={"room"} />
 

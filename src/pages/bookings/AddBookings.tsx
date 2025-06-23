@@ -17,7 +17,7 @@ interface FormData {
   roomNumber: string;
 }
 
-const AddUser: React.FC = () => {
+const AddBookings: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -231,4 +231,4 @@ const AddUser: React.FC = () => {
   );
 };
 
-export default AddUser;
+export default AddBookings;

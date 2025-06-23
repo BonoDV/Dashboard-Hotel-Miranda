@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import LoginForm from "./pages/login/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Rooms from "./pages/rooms/Rooms.tsx";
+import AddRoom from "./pages/rooms/AddRoom.tsx";
 import RoomDetail from "./pages/rooms/RoomDetail.jsx";
 import Bookings from "./pages/bookings/Bookings.jsx";
 import Users from "./pages/users/Users.tsx";
@@ -45,8 +46,12 @@ function App() {
                 {/* Rutas anidadas - todas protegidas por el ProtectedRoute padre */}
                 <Route index element={<DashboardPage />} />{" "}
                 {/* Página por defecto al entrar a /dashboard */}
-                <Route path="room" element={<Rooms />} />
+                <Route
+                  path="room/new"
+                  element={<AddRoom onSubmit={() => {}} />}
+                />
                 <Route path="room/:id" element={<RoomDetail />} />
+                <Route path="room" element={<Rooms />} />
                 <Route path="room/edit/:id" element={<RoomForm />} />
                 <Route path="booking" element={<Users />} />
                 <Route

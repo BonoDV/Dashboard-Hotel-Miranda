@@ -2,7 +2,10 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import FacilitiesButton from "../../components/buttons/FacilitiesButton.tsx";
-import { fetchRoomById } from "../../redux/features/rooms/roomsSlice.ts";
+import {
+  fetchRoomById,
+  updateRoom,
+} from "../../redux/features/rooms/roomsSlice.ts";
 import { RootState, AppDispatch } from "../../redux/store/store.ts";
 import { number } from "prop-types";
 
@@ -117,8 +120,11 @@ const RoomForm: React.FC<RoomFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (onSubmit) onSubmit(formData);
-    console.log("Submitted:", formData);
+    const dataToSend = {
+      ...formData,
+    };
+    dispatch(updateRoom(dataToSend));
+    console.log("Submitted:", dataToSend);
   };
 
   return (

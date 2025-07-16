@@ -66,8 +66,17 @@ export const createRoom = createAsyncThunk<Room, Room>(
 export const updateRoom = createAsyncThunk<Room, Room>(
   "rooms/updateRoom",
   async (updatedRoom) => {
+    const response = await axios.put<Room>(
+      `http://localhost:3000/rooms/${updatedRoom.roomNumber}`,
+      updatedRoom,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return updatedRoom;
+    return response.data;
   }
 );
 

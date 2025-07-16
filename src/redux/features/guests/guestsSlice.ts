@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Guest } from "../../../type/Guest";
 import axios from "axios";
+import dotenv from "dotenv";
 
+dotenv.config();
+
+const API_URL = process.env.API_URL;
 // Estado inicial tipado
 interface GuestsState {
   guests: Guest[];
@@ -21,7 +25,7 @@ const initialState: GuestsState = {
 export const fetchGuests = createAsyncThunk<Guest[]>(
   "guests/fetchGuests",
   async () => {
-    const response = await axios.get<Guest[]>("http://localhost:3000/booking", {
+    const response = await axios.get<Guest[]>(`${API_URL}/dev/booking`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -34,14 +38,11 @@ export const fetchGuests = createAsyncThunk<Guest[]>(
 export const fetchGuestById = createAsyncThunk<Guest | undefined, string>(
   "guests/fetchGuestById",
   async (id) => {
-    const response = await axios.get<Guest>(
-      `http://localhost:3000/booking/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.get<Guest>(`${API_URL}/dev/booking/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
     return response.data;
   }
@@ -50,8 +51,9 @@ export const fetchGuestById = createAsyncThunk<Guest | undefined, string>(
 export const createGuest = createAsyncThunk<Guest, Guest>(
   "guests/createGuest",
   async (newGuest) => {
+    console.log(newGuest);
     const response = await axios.post<Guest>(
-      "http://localhost:3000/booking",
+      `${API_URL}/dev/booking`,
       newGuest,
       {
         headers: {
@@ -68,7 +70,7 @@ export const updateGuest = createAsyncThunk<Guest, Guest>(
   "guests/updateGuest",
   async (updatedGuest) => {
     const response = await axios.put<Guest>(
-      `http://localhost:3000/booking/${updatedGuest.id}`,
+      `${API_URL}/dev/booking/${updatedGuest.id}`,
       updatedGuest,
       {
         headers: {

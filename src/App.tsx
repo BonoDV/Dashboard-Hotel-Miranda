@@ -6,7 +6,7 @@ import LoginForm from "./pages/login/Login.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Rooms from "./pages/rooms/Rooms.tsx";
 import AddRoom from "./pages/rooms/AddRoom.tsx";
-import RoomDetail from "./pages/rooms/RoomDetail.jsx";
+import RoomDetail from "./pages/rooms/RoomDetail.tsx";
 import Bookings from "./pages/bookings/Bookings.jsx";
 import Users from "./pages/users/Users.tsx";
 import UserDetail from "./pages/users/UserDetail.tsx";

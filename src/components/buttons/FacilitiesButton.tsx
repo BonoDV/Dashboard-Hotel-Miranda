@@ -1,36 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const amenitiesMap: Record<string, string> = {
-  "TV": "📺",
-  "Wi-Fi": "📶",
-  "Work Desk": "💼",
-  "Minibar": "🍸",
-  "24h Room Service": "🛎️",
-  "Bathtub": "🛁",
-  "Espresso Machine": "☕",
-  "Sea View": "🌊",
-  "Private Jacuzzi": "♨️",
-  "Butler Service": "🤵",
-  "Rainfall Shower": "🚿",
-  "Balcony": "🌇",
-  "Pillow Menu": "🛏️",
-  "Smart TV": "📺",
-  "Soundproofing": "🔇",
-  "Nespresso Machine": "☕",
-  "Aromatherapy System": "🌺",
-  "Luxury Linens": "🛌",
-  "Heated Floors": "🔥",
-  "City View": "🏙️",
-  "Curated Minibar": "🥂",
-  "Terrace": "🏖️",
-  "Grand Piano": "🎹",
-  "Private Chef": "👨‍🍳",
-  "Blackout Curtains": "🪟",
-  "Silk Robes": "👘",
-  "Mood Lighting": "💡",
-  "Marble Bathroom": "🛁",
-  "Art Collection": "🖼️",
+  "Air Aconditioner": "❄️",
+  "High speed WiFi": "📶",
+  Breakfast: "🥐",
+  Kitchen: "🍳",
+  Cleaning: "🧹",
+  Shower: "🚿",
+  Grocery: "🛒",
+  "Single bed": "🛏️",
+  "Shop near": "🏪",
+  Towels: "🧺",
+  "24/7 Online Support": "💬",
+  "Strong Locker": "🔒",
+  "Smart Security": "🛡️",
+  "Expert Team": "👨‍🔧",
 };
 
 type FacilitiesButtonProps = {
@@ -42,8 +27,8 @@ const FacilitiesButton = ({ facilities }: FacilitiesButtonProps) => {
     <FacilitiesContainer>
       {facilities.map((facility, index) => (
         <ButtonStyled key={index}>
-            <Emoji>{amenitiesMap[facility] || '❓'}</Emoji>
-            <p>{facility}</p>
+          <Emoji>{amenitiesMap[facility] || "❓"}</Emoji>
+          <p>{facility}</p>
         </ButtonStyled>
       ))}
     </FacilitiesContainer>

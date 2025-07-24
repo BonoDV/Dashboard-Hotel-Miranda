@@ -1,6 +1,9 @@
+/// <reference types="vite/client" />
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Room } from "../../../type/Room";
 import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface RoomState {
   rooms: Room[];
@@ -20,7 +23,7 @@ const initialState: RoomState = {
 export const fetchRooms = createAsyncThunk<Room[]>(
   "rooms/fetchRooms",
   async () => {
-    const response = await axios.get<Room[]>("http://localhost:3000/rooms", {
+    const response = await axios.get<Room[]>(`${API_URL}/rooms`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -33,14 +36,11 @@ export const fetchRooms = createAsyncThunk<Room[]>(
 export const fetchRoomById = createAsyncThunk<Room | undefined, number>(
   "rooms/fetchRoomById",
   async (id) => {
-    const response = await axios.get<Room>(
-      `http://localhost:3000/rooms/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.get<Room>(`${API_URL}/rooms/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
     return response.data;
   }

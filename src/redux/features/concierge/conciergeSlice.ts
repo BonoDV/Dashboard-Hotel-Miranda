@@ -1,6 +1,9 @@
+/// <reference types="vite/client" />
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Concierge } from "../../../type/Concierge";
 import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface ConciergesState {
   concierges: Concierge[];
@@ -76,7 +79,8 @@ export const loginConcierge = createAsyncThunk<Concierge, LoginPayload>(
   "concierges/loginConcierge",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      console.log(API_URL);
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

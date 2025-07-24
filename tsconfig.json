@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
+    "module": "es2022",
     "strict": true,
     "jsx": "react-jsx",
     "noEmit": true,
@@ -10,6 +10,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "checkJs": false,
     "outDir": "dist"

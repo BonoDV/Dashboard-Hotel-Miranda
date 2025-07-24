@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Guest } from "../../../type/Guest";
 import axios from "axios";
 
-const API_URL = import.meta.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 // Estado inicial tipado
 interface GuestsState {
   guests: Guest[];

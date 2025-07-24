@@ -49,44 +49,50 @@ function Users() {
     setIsModalOpen(true);
   };
 
-  const data = guests.map((res: Guest) => ({
-    Guest: (
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Image src={res.image} alt="Guest" />
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginLeft: "10px",
-          }}
-        >
-          <span>{res.name}</span>
-          <span>#{res.id}</span>
-        </div>
-      </div>
-    ),
-    id: res.id,
-    "Order Date": res.orderDate,
-    "Check In": `${res.checkIn}`,
-    "Check Out": `${res.checkOut}`,
-    "Special Request": (
-      <SpecialRequestButton
-        specialRequest={
-          res.specialRequest && res.specialRequest.text
-            ? res.specialRequest.text
-            : "None Request"
-        }
-        onClick={() =>
-          res.specialRequest && res.specialRequest.text
-            ? handleOpenModal(res.specialRequest.text)
-            : null
-        }
-      />
-    ),
+  const data = Array.isArray(guests)
+    ? guests.map((res: Guest) => ({
+        Guest: (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <Image src={res.image} alt="Guest" />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginLeft: "10px",
+              }}
+            >
+              <span>{res.name}</span>
+              <span>#{res.id}</span>
+            </div>
+          </div>
+        ),
+        id: res.id,
+        "Order Date": res.orderDate,
+        "Check In": `${res.checkIn}`,
+        "Check Out": `${res.checkOut}`,
+        "Special Request": (
+          <SpecialRequestButton
+            specialRequest={
+              res.specialRequest &&
+              res.specialRequest.status !== false &&
+              res.specialRequest.text
+                ? res.specialRequest.text
+                : "None Request"
+            }
+            onClick={() =>
+              res.specialRequest &&
+              res.specialRequest.status !== false &&
+              res.specialRequest.text
+                ? handleOpenModal(res.specialRequest.text)
+                : ""
+            }
+          />
+        ),
 
-    "Room Type": res.roomType,
-    Status: <StatusButton buttonStatus={res.status as StatusType} />,
-  }));
+        "Room Type": res.roomType,
+        Status: <StatusButton buttonStatus={res.status as StatusType} />,
+      }))
+    : [];
 
   if (loading) return <div>Loading guests...</div>;
   if (error) return <div>Error loading guests: {error}</div>;

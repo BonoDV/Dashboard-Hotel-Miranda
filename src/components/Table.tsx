@@ -63,13 +63,12 @@ const TableStyled = styled.table`
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 20px;
   width: 90%;
-  height: 62.5rem;
   text-align: left;
   border-collapse: collapse;
   box-shadow: 13px 3px 40px var(--shadows);
   th:first-child,
   td:first-child {
-    width: 20%; /* Ajusta este valor según lo que necesites */
+    width: 20%;
   }
 
   th,

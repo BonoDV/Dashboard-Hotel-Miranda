@@ -13,4 +13,5 @@ export type Guest = {
   status: string;
   phone: string;
   email: string;
+  roomNumber: number;
 };

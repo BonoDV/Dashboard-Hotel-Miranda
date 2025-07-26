@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store/store"; // Adjust path if needed
 import { createGuest } from "../../redux/features/guests/guestsSlice";
+import { formatDateForInput, parseInputDate } from "../../utils/dateUtils";
 
 interface FormData {
   name: string;
   image: string;
-  orderDate: Date;
-  checkIn: Date;
-  checkOut: Date;
+  orderDate: string;
+  checkIn: string;
+  checkOut: string;
   specialRequest: { status: boolean; text: string };
   roomType: string;
   status: string;
@@ -22,9 +23,9 @@ const AddBookings: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     image: "",
-    orderDate: new Date(),
-    checkIn: new Date(),
-    checkOut: new Date(),
+    orderDate: "",
+    checkIn: "",
+    checkOut: "",
     specialRequest: { status: false, text: "" },
     roomType: "",
     status: "",
@@ -38,17 +39,17 @@ const AddBookings: React.FC = () => {
     if (name === "orderDate") {
       setFormData((prev) => ({
         ...prev,
-        orderDate: value ? new Date(value) : new Date(),
+        orderDate: parseInputDate(value) || "",
       }));
     } else if (name === "checkIn.date") {
       setFormData((prev) => ({
         ...prev,
-        checkIn: value ? new Date(value) : new Date(),
+        checkIn: parseInputDate(value) || "",
       }));
     } else if (name === "checkOut.date") {
       setFormData((prev) => ({
         ...prev,
-        checkOut: value ? new Date(value) : new Date(),
+        checkOut: parseInputDate(value) || "",
       }));
     } else if (name === "specialRequest.status") {
       setFormData((prev) => ({
@@ -102,7 +103,13 @@ const AddBookings: React.FC = () => {
     }
 
     // Generate a unique id for the new guest
-    const guestWithId = { ...formData, id: Date.now().toString() };
+    const guestWithId = {
+      ...formData,
+      id: Date.now().toString(),
+      orderDate: formatDateForInput(formData.orderDate),
+      checkIn: formatDateForInput(formData.checkIn),
+      checkOut: formatDateForInput(formData.checkOut),
+    };
     dispatch(createGuest(guestWithId));
     setSubmitStatus("success");
     console.log("Submitted:", guestWithId);
@@ -135,11 +142,7 @@ const AddBookings: React.FC = () => {
         <input
           name="orderDate"
           placeholder="Order Date"
-          value={
-            formData.orderDate instanceof Date
-              ? formData.orderDate.toISOString().slice(0, 16)
-              : ""
-          }
+          value={formatDateForInput(formData.orderDate)}
           onChange={handleChange}
           type="datetime-local"
         />
@@ -148,11 +151,7 @@ const AddBookings: React.FC = () => {
         Check In Date:
         <input
           name="checkIn.date"
-          value={
-            formData.checkIn instanceof Date
-              ? formData.checkIn.toISOString().slice(0, 16)
-              : ""
-          }
+          value={formatDateForInput(formData.checkIn)}
           onChange={handleChange}
           type="datetime-local"
         />
@@ -162,11 +161,7 @@ const AddBookings: React.FC = () => {
         Check Out Date:
         <input
           name="checkOut.date"
-          value={
-            formData.checkOut instanceof Date
-              ? formData.checkOut.toISOString().slice(0, 16)
-              : ""
-          }
+          value={formatDateForInput(formData.checkOut)}
           onChange={handleChange}
           type="datetime-local"
         />

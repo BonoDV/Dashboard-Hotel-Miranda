@@ -6,6 +6,7 @@ import {
   updateGuest,
 } from "../../redux/features/guests/guestsSlice";
 import { RootState, AppDispatch } from "../../redux/store/store";
+import { formatDateForInput, parseInputDate } from "../../utils/dateUtils";
 
 type BookingFormData = {
   id: string;
@@ -101,7 +102,7 @@ const EditBooking: React.FC = () => {
     ) {
       setFormData((prev) => ({
         ...prev,
-        [name]: value ? new Date(value) : null,
+        [name]: parseInputDate(value),
       }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
@@ -112,6 +113,9 @@ const EditBooking: React.FC = () => {
     e.preventDefault();
     const dataToSend = {
       ...formData,
+      orderDate: formatDateForInput(formData.orderDate),
+      checkIn: formatDateForInput(formData.checkIn),
+      checkOut: formatDateForInput(formData.checkOut),
       specialRequest: {
         ...formData.specialRequest,
         text: formData.specialRequest.status
@@ -152,31 +156,23 @@ const EditBooking: React.FC = () => {
       />
       <input
         name="orderDate"
-        type="date"
+        type="datetime-local"
         placeholder="Order Date"
-        value={
-          formData.orderDate
-            ? formData.orderDate.toISOString().slice(0, 10)
-            : ""
-        }
+        value={formatDateForInput(formData.orderDate)}
         onChange={handleChange}
       />
       <input
         name="checkIn"
-        type="date"
+        type="datetime-local"
         placeholder="Check In"
-        value={
-          formData.checkIn ? formData.checkIn.toISOString().slice(0, 10) : ""
-        }
+        value={formatDateForInput(formData.checkIn)}
         onChange={handleChange}
       />
       <input
         name="checkOut"
-        type="date"
+        type="datetime-local"
         placeholder="Check Out"
-        value={
-          formData.checkOut ? formData.checkOut.toISOString().slice(0, 10) : ""
-        }
+        value={formatDateForInput(formData.checkOut)}
         onChange={handleChange}
       />
       <label>

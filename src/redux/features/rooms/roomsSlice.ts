@@ -49,15 +49,11 @@ export const fetchRoomById = createAsyncThunk<Room | undefined, number>(
 export const createRoom = createAsyncThunk<Room, Room>(
   "rooms/createRoom",
   async (newRoom) => {
-    const response = await axios.post<Room>(
-      "http://localhost:3000/rooms",
-      newRoom,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.post<Room>(`${API_URL}/rooms`, newRoom, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
     return response.data;
   }
@@ -67,7 +63,7 @@ export const updateRoom = createAsyncThunk<Room, Room>(
   "rooms/updateRoom",
   async (updatedRoom) => {
     const response = await axios.put<Room>(
-      `http://localhost:3000/rooms/${updatedRoom.roomNumber}`,
+      `${API_URL}/rooms/${updatedRoom.roomNumber}`,
       updatedRoom,
       {
         headers: {

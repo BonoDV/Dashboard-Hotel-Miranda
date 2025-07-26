@@ -23,14 +23,11 @@ const initialState: ConciergesState = {
 export const fetchConcierges = createAsyncThunk<Concierge[]>(
   "concierges/fetchConcierges",
   async () => {
-    const response = await axios.get<Concierge[]>(
-      "http://localhost:3000/users",
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.get<Concierge[]>(`${API_URL}/users`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
     return response.data;
   }

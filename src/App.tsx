@@ -24,6 +24,7 @@ import RoomForm from "./pages/rooms/RoomForm.tsx";
 import DashboardPage from "./pages/dashboard/DashboardPage.tsx";
 import Contact from "./pages/contact/Contact.tsx";
 import EditBooking from "./pages/bookings/EditBooking.tsx";
+import ConciergeDetail from "./pages/concierge/ConciergeDetail.tsx";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
                 <Route path="booking/edit/:id" element={<EditBooking />} />
                 <Route path="contact" element={<Contact />} />
                 <Route path="users" element={<Concierge />} />
+                <Route path="users/:id" element={<ConciergeDetail />} />
               </Route>
 
               {/* Redirección para rutas no encontradas */}

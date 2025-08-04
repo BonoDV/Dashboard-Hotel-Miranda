@@ -21,6 +21,7 @@ function Concierge() {
 
   // Mapeamos los datos de ConciergeList
   const data = concierges.map((res) => ({
+    id: res.id,
     Name: (
       <div style={{ display: "flex", alignItems: "center" }}>
         <Image
@@ -56,7 +57,7 @@ function Concierge() {
   return (
     <div style={{ padding: "20px" }}>
       {/* Componente de la tabla */}
-      <Table cols={cols} data={data} basePath={"concierge"} />
+      <Table cols={cols} data={data} basePath={"users"} />
     </div>
   );
 }

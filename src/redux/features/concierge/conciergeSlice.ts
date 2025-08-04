@@ -33,15 +33,18 @@ export const fetchConcierges = createAsyncThunk<Concierge[]>(
   }
 );
 
-export const fetchConciergeById = createAsyncThunk<
-  Concierge | undefined,
-  string
->("concierges/fetchConciergeById", async (id) => {
-  const response = await fetch("/data/concierge.json");
-  const data: Concierge[] = await response.json();
-  await new Promise((resolve) => setTimeout(resolve, 200));
-  return data.find((c) => c.id === id);
-});
+export const fetchConciergeById = createAsyncThunk<Concierge, string>(
+  "concierges/fetchConciergeById",
+  async (id) => {
+    const response = await axios.get<Concierge>(`${API_URL}/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return response.data;
+  }
+);
 
 export const createConcierge = createAsyncThunk<Concierge, Concierge>(
   "concierges/createConcierge",
@@ -126,7 +129,7 @@ const conciergesSlice = createSlice({
       })
       .addCase(
         fetchConciergeById.fulfilled,
-        (state, action: PayloadAction<Concierge | null>) => {
+        (state, action: PayloadAction<Concierge>) => {
           state.loading = false;
           state.concierge = action.payload;
         }

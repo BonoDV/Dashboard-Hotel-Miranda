@@ -25,6 +25,7 @@ import DashboardPage from "./pages/dashboard/DashboardPage.tsx";
 import Contact from "./pages/contact/Contact.tsx";
 import EditBooking from "./pages/bookings/EditBooking.tsx";
 import ConciergeDetail from "./pages/concierge/ConciergeDetail.tsx";
+import EditConcierge from "./pages/concierge/EditConcierge.tsx";
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
                 <Route path="contact" element={<Contact />} />
                 <Route path="users" element={<Concierge />} />
                 <Route path="users/:id" element={<ConciergeDetail />} />
+                <Route path="users/edit/:id" element={<EditConcierge />} />
               </Route>
 
               {/* Redirección para rutas no encontradas */}

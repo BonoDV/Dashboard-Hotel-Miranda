@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import type { Concierge } from "../../../type/Concierge";
 import axios from "axios";
+import { Guest } from "../../../type/Guest";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -57,8 +58,17 @@ export const createConcierge = createAsyncThunk<Concierge, Concierge>(
 export const updateConcierge = createAsyncThunk<Concierge, Concierge>(
   "concierges/updateConcierge",
   async (updatedConcierge) => {
+    const response = await axios.put<Concierge>(
+      `${API_URL}/users/${updatedConcierge.id}`,
+      updatedConcierge,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     await new Promise((resolve) => setTimeout(resolve, 200));
-    return updatedConcierge;
+    return response.data;
   }
 );
 

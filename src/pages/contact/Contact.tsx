@@ -1,115 +1,55 @@
 import styled from "styled-components";
+import { RootState } from "../../redux/store/store.ts";
+import { fetchContacts } from "../../redux/features/contact/contactSlice";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import Table from "../../components/Table.tsx";
+import Image from "../../components/Image.tsx";
 
 function Contact() {
+  const dispatch = useDispatch();
+  const { contacts, loading, error } = useSelector(
+    (state: RootState) => state.contact
+  );
+
+  useEffect(() => {
+    dispatch(fetchContacts() as any);
+  }, [dispatch]);
+
+  if (loading) return <div>Loading contacts...</div>;
+  if (error) return <div>Error loading contacts: {error}</div>;
+
+  const cols = ["Order ID", "Date", "Customer", "Comment", "Action"];
+  const data = contacts.map((contact) => ({
+    "Order ID": contact.id,
+    Date: contact.contactDate,
+    Customer: contact.firstNameCustomer + " " + contact.lastNameCustomer,
+    Comment: contact.message,
+    Action: (
+      <div>
+        <button
+          style={{ color: "#00c853", border: "none", background: "none" }}
+        >
+          Publish
+        </button>
+        <button
+          style={{ color: "#e53935", border: "none", background: "none" }}
+        >
+          Archive
+        </button>
+      </div>
+    ),
+  }));
+
   return (
     <>
-      <ReviewCardsContainer>
-        <ReviewCard>
-          <ReviewText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam
-          </ReviewText>
-          <ReviewerInfo>
-            <ReviewerAvatar />
-            <ReviewerDetails>
-              <ReviewerName>Kusnaidi Anderson</ReviewerName>
-              <ReviewTime>4m ago</ReviewTime>
-            </ReviewerDetails>
-            <ActionButtons>
-              <ActionIcon approved />
-              <ActionIcon />
-            </ActionButtons>
-          </ReviewerInfo>
-        </ReviewCard>
-
-        <ReviewCard>
-          <ReviewText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam
-          </ReviewText>
-          <ReviewerInfo>
-            <ReviewerAvatar />
-            <ReviewerDetails>
-              <ReviewerName>Bella Saphira</ReviewerName>
-              <ReviewTime>4m ago</ReviewTime>
-            </ReviewerDetails>
-            <ActionButtons>
-              <ActionIcon approved />
-              <ActionIcon />
-            </ActionButtons>
-          </ReviewerInfo>
-        </ReviewCard>
-
-        <ReviewCard>
-          <ReviewText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam
-          </ReviewText>
-          <ReviewerInfo>
-            <ReviewerAvatar />
-            <ReviewerDetails>
-              <ReviewerName>Thomas Al–Ghazali</ReviewerName>
-              <ReviewTime>4m ago</ReviewTime>
-            </ReviewerDetails>
-            <ActionButtons>
-              <ActionIcon approved={true} />
-              <ActionIcon />
-            </ActionButtons>
-          </ReviewerInfo>
-        </ReviewCard>
-      </ReviewCardsContainer>
-
-      <TableContainer>
-        <Tabs>
-          <Tab active>All Customer Reviews</Tab>
-          <Tab>Archived</Tab>
-        </Tabs>
-
-        <TableWrapper>
-          <Table>
-            <thead>
-              <tr>
-                <Th>Order ID</Th>
-                <Th>Date</Th>
-                <Th>Customer</Th>
-                <Th>Comment</Th>
-                <Th>Action</Th>
-              </tr>
-            </thead>
-            <tbody>
-              <Tr>
-                <Td>#00032456</Td>
-                <Td>Nov 27th 2020 09:21 AM</Td>
-                <Td>James Sikepu</Td>
-                <Td>
-                  <Comment>
-                    <Stars>★★★★★</Stars>
-                    <CommentText>
-                      We recently had dinner with friends at Dimas Can Zheng and
-                      we all walked away with a great experience. Good food,
-                      pleasant environment, personal attention through all the
-                      evening. Thanks to the team and we will be back.
-                    </CommentText>
-                  </Comment>
-                </Td>
-                <Td>
-                  <Action>
-                    <PublishLink>Publish</PublishLink>
-                    <ArchiveLink>Archive</ArchiveLink>
-                  </Action>
-                </Td>
-              </Tr>
-            </tbody>
-          </Table>
-        </TableWrapper>
-
-        <SortMenu>
-          <SortButton>Newest</SortButton>
-        </SortMenu>
-      </TableContainer>
+      <Table
+        cols={cols}
+        data={data}
+        basePath={"contacts"}
+        showActions={false}
+      />
     </>
   );
 }
@@ -210,7 +150,7 @@ const TableWrapper = styled.div`
   overflow-x: auto;
 `;
 
-const Table = styled.table`
+const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;

@@ -8,9 +8,15 @@ interface TableProps {
   cols: string[]; // Arreglo de strings representando los nombres de las columnas
   data: TableRow[]; // Arreglo de objetos que representa las filas de la tabla
   basePath: string; // Ruta base para las acciones de navegación
+  showActions?: boolean; // Nueva prop para mostrar/ocultar acciones
 }
 
-const Table: React.FC<TableProps> = ({ cols, data, basePath }) => {
+const Table: React.FC<TableProps> = ({
+  cols,
+  data,
+  basePath,
+  showActions = true,
+}) => {
   const navigate = useNavigate();
 
   // Función para navegar a la vista de detalles
@@ -32,7 +38,7 @@ const Table: React.FC<TableProps> = ({ cols, data, basePath }) => {
             {cols.map((col, index) => (
               <th key={index}>{col}</th>
             ))}
-            <th>Acciones</th>
+            {showActions && <th>Acciones</th>}
           </tr>
         </thead>
         <tbody>
@@ -41,16 +47,18 @@ const Table: React.FC<TableProps> = ({ cols, data, basePath }) => {
               {cols.map((col, colIndex) => (
                 <td key={colIndex}>{row[col]}</td>
               ))}
-              <td>
-                <button onClick={() => handleView(row.id as string | number)}>
-                  Ver Detalles
-                </button>
-                <button
-                  onClick={() => handleEditView(row.id as string | number)}
-                >
-                  Editar
-                </button>
-              </td>
+              {showActions && (
+                <td>
+                  <button onClick={() => handleView(row.id as string | number)}>
+                    Ver Detalles
+                  </button>
+                  <button
+                    onClick={() => handleEditView(row.id as string | number)}
+                  >
+                    Editar
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

@@ -49,6 +49,22 @@ export const fetchContactById = createAsyncThunk<Contact, string>(
   }
 );
 
+export const fetchContactNonActioned = createAsyncThunk<Contact[]>(
+  "contacts/fetchContactNonActioned",
+  async () => {
+    const response = await axios.get<Contact[]>(
+      `http://localhost:3000/contacts/status/non-actioned`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    return response.data;
+  }
+);
+
 export const createContact = createAsyncThunk<Contact, Contact>(
   "contacts/createContact",
   async (newContact) => {
@@ -61,7 +77,7 @@ export const updateContact = createAsyncThunk<Contact, Contact>(
   "contacts/updateContact",
   async (updatedContact) => {
     const response = await axios.put<Contact>(
-      `${API_URL}/contacts/${updatedContact.id}`,
+      `http://localhost:3000/contacts/${updatedContact.id}`,
       updatedContact,
       {
         headers: {
@@ -129,6 +145,25 @@ const contactsSlice = createSlice({
         }
       )
       .addCase(fetchContacts.rejected, (state, action) => {
+        state.loading = false;
+        state.error =
+          action.error.message ?? "Error al cargar los trabajadores";
+      })
+
+      // FETCH NON ACTIONED
+
+      .addCase(fetchContactNonActioned.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        fetchContactNonActioned.fulfilled,
+        (state, action: PayloadAction<Contact[]>) => {
+          state.loading = false;
+          state.contacts = action.payload;
+        }
+      )
+      .addCase(fetchContactNonActioned.rejected, (state, action) => {
         state.loading = false;
         state.error =
           action.error.message ?? "Error al cargar los trabajadores";

@@ -1,27 +1,48 @@
 import styled from "styled-components";
 import { RootState } from "../../redux/store/store.ts";
-import { fetchContacts } from "../../redux/features/contact/contactSlice";
-import { useEffect } from "react";
+import {
+  fetchContactNonActioned,
+  fetchContacts,
+  updateContact,
+} from "../../redux/features/contact/contactSlice";
+import { ContactStatus } from "../../type/Contact";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store/store";
 import Table from "../../components/Table.tsx";
 import Image from "../../components/Image.tsx";
 
 function Contact() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { contacts, loading, error } = useSelector(
     (state: RootState) => state.contact
   );
+  const nonActionedContacts = useSelector((state: RootState) =>
+    state.contact.contacts.filter((c) => c.status === "Non Actioned")
+  );
+
+  // Estado para la paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     dispatch(fetchContacts() as any);
+    dispatch(fetchContactNonActioned() as any);
   }, [dispatch]);
+
+  // Calcular el rango de habitaciones a mostrar
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedContacts = contacts.slice(startIndex, endIndex);
 
   if (loading) return <div>Loading contacts...</div>;
   if (error) return <div>Error loading contacts: {error}</div>;
+  // Calcular el número total de páginas
+  const totalPages = Math.ceil(contacts.length / itemsPerPage);
 
   const cols = ["Order ID", "Date", "Customer", "Comment", "Action"];
-  const data = contacts.map((contact) => ({
+  const data = paginatedContacts.map((contact) => ({
     "Order ID": contact.id,
     Date: contact.contactDate,
     Customer: contact.firstNameCustomer + " " + contact.lastNameCustomer,
@@ -29,12 +50,36 @@ function Contact() {
     Action: (
       <div>
         <button
-          style={{ color: "#00c853", border: "none", background: "none" }}
+          style={{
+            color: "#00c853",
+            border: "none",
+            background: "none",
+            cursor: "pointer",
+          }}
+          onClick={async () => {
+            await dispatch(
+              updateContact({ ...contact, status: ContactStatus.PUBLISHED })
+            );
+            dispatch(fetchContacts());
+            dispatch(fetchContactNonActioned());
+          }}
         >
           Publish
         </button>
         <button
-          style={{ color: "#e53935", border: "none", background: "none" }}
+          style={{
+            color: "#e53935",
+            border: "none",
+            background: "none",
+            cursor: "pointer",
+          }}
+          onClick={async () => {
+            await dispatch(
+              updateContact({ ...contact, status: ContactStatus.ARCHIVED })
+            );
+            dispatch(fetchContacts());
+            dispatch(fetchContactNonActioned());
+          }}
         >
           Archive
         </button>
@@ -45,19 +90,46 @@ function Contact() {
   return (
     <>
       <ReviewCardsContainer>
-        {contacts.slice(0, 3).map((contact) => (
-          <ReviewCard key={contact.id}>
-            <ReviewText>{contact.message}</ReviewText>
+        {nonActionedContacts.slice(0, 3).map((nonActionedContacts) => (
+          <ReviewCard key={nonActionedContacts.id}>
+            <ReviewText>{nonActionedContacts.message}</ReviewText>
             <ReviewerInfo>
               <ReviewerDetails>
                 <ReviewerName>
-                  {contact.firstNameCustomer} {contact.lastNameCustomer}
+                  {nonActionedContacts.firstNameCustomer}{" "}
+                  {nonActionedContacts.lastNameCustomer}
                 </ReviewerName>
-                <ReviewTime>{contact.contactDate}</ReviewTime>
+                <ReviewTime>{nonActionedContacts.contactDate}</ReviewTime>
               </ReviewerDetails>
               <ActionButtons>
-                <ActionIcon approved={contact.status === "Published"} />
-                <ActionIcon approved={contact.status === "Archived"} />
+                <ActionIcon
+                  approved={true}
+                  onClick={async () => {
+                    await dispatch(
+                      updateContact({
+                        ...nonActionedContacts,
+                        status: ContactStatus.PUBLISHED,
+                      })
+                    );
+                    dispatch(fetchContacts());
+                    dispatch(fetchContactNonActioned());
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+                <ActionIcon
+                  approved={false}
+                  onClick={async () => {
+                    await dispatch(
+                      updateContact({
+                        ...nonActionedContacts,
+                        status: ContactStatus.ARCHIVED,
+                      })
+                    );
+                    dispatch(fetchContacts());
+                    dispatch(fetchContactNonActioned());
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
               </ActionButtons>
             </ReviewerInfo>
           </ReviewCard>
@@ -69,6 +141,26 @@ function Contact() {
         basePath={"contacts"}
         showActions={false}
       />
+      {/* Controles de paginación */}
+      <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        >
+          Anterior
+        </button>
+        <span>
+          Página {currentPage} de {totalPages}
+        </span>
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+        >
+          Siguiente
+        </button>
+      </div>
     </>
   );
 }

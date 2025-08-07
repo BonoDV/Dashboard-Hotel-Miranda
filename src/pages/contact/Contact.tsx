@@ -44,6 +44,25 @@ function Contact() {
 
   return (
     <>
+      <ReviewCardsContainer>
+        {contacts.slice(0, 3).map((contact) => (
+          <ReviewCard key={contact.id}>
+            <ReviewText>{contact.message}</ReviewText>
+            <ReviewerInfo>
+              <ReviewerDetails>
+                <ReviewerName>
+                  {contact.firstNameCustomer} {contact.lastNameCustomer}
+                </ReviewerName>
+                <ReviewTime>{contact.contactDate}</ReviewTime>
+              </ReviewerDetails>
+              <ActionButtons>
+                <ActionIcon approved={contact.status === "Published"} />
+                <ActionIcon approved={contact.status === "Archived"} />
+              </ActionButtons>
+            </ReviewerInfo>
+          </ReviewCard>
+        ))}
+      </ReviewCardsContainer>
       <Table
         cols={cols}
         data={data}

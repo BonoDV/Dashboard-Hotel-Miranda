@@ -1,7 +1,7 @@
 import { BsBoxArrowInRight, BsBoxArrowInLeft } from "react-icons/bs";
 import { BiCalendarCheck } from "react-icons/bi";
 import { IoBedOutline } from "react-icons/io5";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import KPI from "../../components/KPI.tsx";
 import Calendar from "react-calendar";
@@ -18,6 +18,16 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store/store";
+import {
+  fetchContactNonActioned,
+  fetchContacts,
+  updateContact,
+} from "../../redux/features/contact/contactSlice.ts";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store/store";
+import { ContactStatus } from "../../type/Contact";
 
 const data = [
   { name: "Monday", check_in: 50, check_out: 35 },
@@ -30,6 +40,19 @@ const data = [
 ];
 
 const DashboardPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { contacts, loading, error } = useSelector(
+    (state: RootState) => state.contact
+  );
+  const nonActionedContacts = useSelector((state: RootState) =>
+    state.contact.contacts.filter((c) => c.status === "Non Actioned")
+  );
+
+  useEffect(() => {
+    dispatch(fetchContacts() as any);
+    dispatch(fetchContactNonActioned() as any);
+  }, [dispatch]);
+
   return (
     <Container>
       <KPIGroup>
@@ -128,73 +151,52 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      <ReviewSection>
-        <ReviewHeader>
-          <SectionTitle>Latest Review by Customers</SectionTitle>
-          <NextButton>
-            <FaArrowRight />
-          </NextButton>
-        </ReviewHeader>
-
-        <ReviewCardsContainer>
-          <ReviewCard>
-            <ReviewText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam
-            </ReviewText>
+      <ReviewCardsContainer>
+        {nonActionedContacts.slice(0, 3).map((nonActionedContacts) => (
+          <ReviewCard key={nonActionedContacts.id}>
+            <ReviewText>{nonActionedContacts.message}</ReviewText>
             <ReviewerInfo>
-              <ReviewerAvatar />
               <ReviewerDetails>
-                <ReviewerName>Kusnaidi Anderson</ReviewerName>
-                <ReviewTime>4m ago</ReviewTime>
+                <ReviewerName>
+                  {nonActionedContacts.firstNameCustomer}{" "}
+                  {nonActionedContacts.lastNameCustomer}
+                </ReviewerName>
+                <ReviewTime>{nonActionedContacts.contactDate}</ReviewTime>
               </ReviewerDetails>
               <ActionButtons>
-                <ActionIcon approved />
-                <ActionIcon />
+                <ActionIcon
+                  approved={true}
+                  onClick={async () => {
+                    await dispatch(
+                      updateContact({
+                        ...nonActionedContacts,
+                        status: ContactStatus.PUBLISHED,
+                      })
+                    );
+                    dispatch(fetchContacts());
+                    dispatch(fetchContactNonActioned());
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+                <ActionIcon
+                  approved={false}
+                  onClick={async () => {
+                    await dispatch(
+                      updateContact({
+                        ...nonActionedContacts,
+                        status: ContactStatus.ARCHIVED,
+                      })
+                    );
+                    dispatch(fetchContacts());
+                    dispatch(fetchContactNonActioned());
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
               </ActionButtons>
             </ReviewerInfo>
           </ReviewCard>
-
-          <ReviewCard>
-            <ReviewText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam
-            </ReviewText>
-            <ReviewerInfo>
-              <ReviewerAvatar />
-              <ReviewerDetails>
-                <ReviewerName>Bella Saphira</ReviewerName>
-                <ReviewTime>4m ago</ReviewTime>
-              </ReviewerDetails>
-              <ActionButtons>
-                <ActionIcon approved />
-                <ActionIcon />
-              </ActionButtons>
-            </ReviewerInfo>
-          </ReviewCard>
-
-          <ReviewCard>
-            <ReviewText>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam
-            </ReviewText>
-            <ReviewerInfo>
-              <ReviewerAvatar />
-              <ReviewerDetails>
-                <ReviewerName>Thomas Al–Ghazali</ReviewerName>
-                <ReviewTime>4m ago</ReviewTime>
-              </ReviewerDetails>
-              <ActionButtons>
-                <ActionIcon approved />
-                <ActionIcon />
-              </ActionButtons>
-            </ReviewerInfo>
-          </ReviewCard>
-        </ReviewCardsContainer>
-      </ReviewSection>
+        ))}
+      </ReviewCardsContainer>
     </Container>
   );
 };

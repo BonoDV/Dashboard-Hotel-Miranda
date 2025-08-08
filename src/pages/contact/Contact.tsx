@@ -26,20 +26,32 @@ function Contact() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Pestañas
+  const [selectedTab, setSelectedTab] = useState("all");
+
   useEffect(() => {
     dispatch(fetchContacts() as any);
     dispatch(fetchContactNonActioned() as any);
   }, [dispatch]);
 
-  // Calcular el rango de habitaciones a mostrar
+  // Filtrar contactos según la pestaña seleccionada
+  const filteredContacts = contacts.filter((contact) => {
+    if (selectedTab === "all") return true;
+    if (selectedTab === "archived")
+      return contact.status === ContactStatus.ARCHIVED;
+    return true;
+  });
+
+  // Calcular el rango de reviews a mostrar
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedContacts = contacts.slice(startIndex, endIndex);
+  const paginatedContacts = filteredContacts.slice(startIndex, endIndex);
 
   if (loading) return <div>Loading contacts...</div>;
   if (error) return <div>Error loading contacts: {error}</div>;
+
   // Calcular el número total de páginas
-  const totalPages = Math.ceil(contacts.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredContacts.length / itemsPerPage);
 
   const cols = ["Order ID", "Date", "Customer", "Comment", "Action"];
   const data = paginatedContacts.map((contact) => ({
@@ -135,6 +147,34 @@ function Contact() {
           </ReviewCard>
         ))}
       </ReviewCardsContainer>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "20px",
+        }}
+      >
+        <Tabs>
+          <Tab
+            active={selectedTab === "all"}
+            onClick={() => {
+              setSelectedTab("all");
+              setCurrentPage(1);
+            }}
+          >
+            All Contacts
+          </Tab>
+          <Tab
+            active={selectedTab === "archived"}
+            onClick={() => {
+              setSelectedTab("archived");
+              setCurrentPage(1);
+            }}
+          >
+            Archived
+          </Tab>
+        </Tabs>
+      </div>
       <Table
         cols={cols}
         data={data}
@@ -246,7 +286,7 @@ const TableContainer = styled.div`
 const Tabs = styled.div`
   display: flex;
   gap: 24px;
-  margin-bottom: 24px;
+  margin-top: 24px;
 `;
 
 const Tab = styled.div<TabProps>`

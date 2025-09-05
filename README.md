@@ -1,26 +1,20 @@
-# Status
-🚀 Development
+# Dashboard-Hotel-Miranda
 
-# CRUD Routes
-## Booking
-- /pages/bookings/NewBooking
-- /pages/bookings/BookingsList
-- /pages/bookings/BookingDetails
-- /pages/bookings/EditBooking
-- /pages/bookings/DeleteBooking
-## Rooms
-- /pages/rooms/NewRoom
-- /pages/rooms/RoomsList
-- /pages/rooms/RoomDetails
-- /pages/rooms/EditRoom
-- /pages/rooms/DeleteRoom
-## Users
-- /pages/users/NewUser
-- /pages/users/UserList
-- /pages/users/UserDetails
-- /pages/users/EditUser
-- /pages/users/DeleteUser
-## Contact
-- /pages/contact/ReviewList
-- /pages/contact/PublishReview
-- /pages/contact/ArchiveReview
+**Licencia**: MIT
+
+## Estado
+Terminado (“Finished”)
+
+## Descripción
+Panel tipo dashboard para la gestión de un hotel. Incluye rutas CRUD para reservas (*bookings*), habitaciones (*rooms*), usuarios (*users*) y contactos/reseñas (*contact*).
+
+## Tecnologías y herramientas
+- **Lenguajes**: TypeScript (~96 %), JavaScript (~3 %)
+- **Stack**: React + Vite (deducido por configuración)
+- **Pruebas**: Cypress, Jest
+- **Configuraciones**: Babel, ESLint
+- **Infraestructura**: `.github/workflows` para CI/CD
+
+## Despliegue
+El proyecto está disponible en:
+`hotel-miranda.dashboard.s3-website.eu-west-3.amazonaws.com`

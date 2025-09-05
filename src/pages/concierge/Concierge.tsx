@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import { fetchConcierges } from "../../redux/features/concierge/conciergeSlice.ts";
 import Pagination from "../../components/Pagination.tsx";
+import { Helmet } from "react-helmet";
 function Concierge() {
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
@@ -80,15 +81,24 @@ function Concierge() {
   const totalPages = Math.ceil(concierges.length / itemsPerPage);
 
   return (
-    <div style={{ padding: "20px" }}>
-      {/* Componente de la tabla */}
-      <Table cols={cols} data={data} basePath={"users"} />
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
-    </div>
+    <>
+      <Helmet>
+        <title>Concierge</title>
+        <meta
+          name="description"
+          content="Concierge page for Hotel Management System"
+        />
+      </Helmet>
+      <div style={{ padding: "20px" }}>
+        {/* Componente de la tabla */}
+        <Table cols={cols} data={data} basePath={"users"} />
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      </div>
+    </>
   );
 }
 

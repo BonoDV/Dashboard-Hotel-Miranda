@@ -15,6 +15,7 @@ import { fetchGuests } from "../../redux/features/guests/guestsSlice.ts";
 import { RootState, AppDispatch } from "../../redux/store/store.ts";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 function Rooms() {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,30 +38,21 @@ function Rooms() {
 
   useEffect(() => {
     if (guests.length > 0 && rooms.length > 0) {
-      (
-        "Guests completos:",
+      "Guests completos:",
         guests.map((g) => ({
           roomNumber: g.roomNumber,
           status: g.status,
-        }))
-      );
+        }));
       ("Ejemplo de comparación para la primera habitación:");
       const firstRoom = rooms[0];
-      (
-        "Room number:",
+      "Room number:",
         firstRoom.roomNumber,
         "tipo:",
-        typeof firstRoom.roomNumber
-      );
+        typeof firstRoom.roomNumber;
       const matchingGuest = guests.find(
         (g) => g.roomNumber.toString() === firstRoom.roomNumber.toString()
       );
-      (
-        "Guest encontrado:",
-        matchingGuest,
-        "status:",
-        matchingGuest?.status
-      );
+      "Guest encontrado:", matchingGuest, "status:", matchingGuest?.status;
     }
   }, [guests, rooms]);
 
@@ -116,26 +108,20 @@ function Rooms() {
             (guest) => guest.roomNumber.toString() === res.roomNumber.toString()
           );
 
-          (`Room ${res.roomNumber} - Guest:`, matchingGuest?.status);
+          `Room ${res.roomNumber} - Guest:`, matchingGuest?.status;
 
           if (matchingGuest) {
             const status = matchingGuest.status.toLowerCase();
             if (status === "pending" || status === "booked") {
-              (
-                `Room ${res.roomNumber} is Booked (status: ${status})`
-              );
+              `Room ${res.roomNumber} is Booked (status: ${status})`;
               return "Booked";
             } else if (status === "refund" || status === "cancelled") {
-              (
-                `Room ${res.roomNumber} is Refund (status: ${status})`
-              );
+              `Room ${res.roomNumber} is Refund (status: ${status})`;
               return "Available";
             }
           }
 
-          (
-            `Room ${res.roomNumber} is Check In (no matching guest or invalid status)`
-          );
+          `Room ${res.roomNumber} is Check In (no matching guest or invalid status)`;
           return "Check In";
         })()}
       />
@@ -154,18 +140,27 @@ function Rooms() {
   const totalPages = Math.ceil(rooms.length / itemsPerPage);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <SortButton onClick={() => handleAdd()}>
-        {t("rooms_button_new_room")} +
-      </SortButton>
-      {/* Componente de la tabla */}
-      <Table cols={cols} data={data} basePath={"room"} />
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
-    </div>
+    <>
+      <Helmet>
+        <title>Rooms</title>
+        <meta
+          name="description"
+          content="Rooms page for Hotel Management System"
+        />
+      </Helmet>
+      <div style={{ padding: "20px" }}>
+        <SortButton onClick={() => handleAdd()}>
+          {t("rooms_button_new_room")} +
+        </SortButton>
+        {/* Componente de la tabla */}
+        <Table cols={cols} data={data} basePath={"room"} />
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      </div>
+    </>
   );
 }
 

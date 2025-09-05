@@ -18,6 +18,7 @@ import { RootState, AppDispatch } from "./../../redux/store/store.ts";
 import { Guest } from "../../type/Guest.ts";
 import { useTranslation } from "react-i18next";
 import { formatDateTimeDisplay } from "../../utils/dateUtils";
+import { Helmet } from "react-helmet";
 function Users() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -124,77 +125,87 @@ function Users() {
   const totalPages = Math.ceil(filteredGuests.length / itemsPerPage);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Tabs>
-          <Tab
-            active={selectedTab === "all"}
-            onClick={() => {
-              setSelectedTab("all");
-              setCurrentPage(1);
-            }}
-          >
-            {t("bookings_all_guest_table_tab")}
-          </Tab>
-          <Tab
-            active={selectedTab === "pending"}
-            onClick={() => {
-              setSelectedTab("pending");
-              setCurrentPage(1);
-            }}
-          >
-            {t("bookings_pending_table_tab")}
-          </Tab>
-          <Tab
-            active={selectedTab === "booked"}
-            onClick={() => {
-              setSelectedTab("booked");
-              setCurrentPage(1);
-            }}
-          >
-            {t("bookings_booked_table_tab")}
-          </Tab>
-          <Tab
-            active={selectedTab === "cancelled"}
-            onClick={() => {
-              setSelectedTab("cancelled");
-              setCurrentPage(1);
-            }}
-          >
-            {t("bookings_canceled_table_tab")}
-          </Tab>
-          <Tab
-            active={selectedTab === "refund"}
-            onClick={() => {
-              setSelectedTab("refund");
-              setCurrentPage(1);
-            }}
-          >
-            {t("bookings_refund_table_tab")}
-          </Tab>
-        </Tabs>
-        <AddMenu>
-          <AddButton onClick={() => handleAdd()}>
-            {t("bookings_button_new_booking")} +
-          </AddButton>
-        </AddMenu>
-      </div>
+    <>
+      <Helmet>
+        <title>Bookings</title>
+        <meta
+          name="description"
+          content="Bookings page for Hotel Management System"
+        />
+      </Helmet>
 
-      <TableContainer>
-        <TableWrapper>
-          <Table cols={cols} data={data} basePath={"booking"} />
-        </TableWrapper>
-      </TableContainer>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <h2>{t("bookings_table_special_request")}</h2>
-        <p>{modalContent}</p>
-      </Modal>
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        totalPages={totalPages}
-      />
-    </div>
+      <div style={{ padding: "20px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <Tabs>
+            <Tab
+              active={selectedTab === "all"}
+              onClick={() => {
+                setSelectedTab("all");
+                setCurrentPage(1);
+              }}
+            >
+              {t("bookings_all_guest_table_tab")}
+            </Tab>
+            <Tab
+              active={selectedTab === "pending"}
+              onClick={() => {
+                setSelectedTab("pending");
+                setCurrentPage(1);
+              }}
+            >
+              {t("bookings_pending_table_tab")}
+            </Tab>
+            <Tab
+              active={selectedTab === "booked"}
+              onClick={() => {
+                setSelectedTab("booked");
+                setCurrentPage(1);
+              }}
+            >
+              {t("bookings_booked_table_tab")}
+            </Tab>
+            <Tab
+              active={selectedTab === "cancelled"}
+              onClick={() => {
+                setSelectedTab("cancelled");
+                setCurrentPage(1);
+              }}
+            >
+              {t("bookings_canceled_table_tab")}
+            </Tab>
+            <Tab
+              active={selectedTab === "refund"}
+              onClick={() => {
+                setSelectedTab("refund");
+                setCurrentPage(1);
+              }}
+            >
+              {t("bookings_refund_table_tab")}
+            </Tab>
+          </Tabs>
+          <AddMenu>
+            <AddButton onClick={() => handleAdd()}>
+              {t("bookings_button_new_booking")} +
+            </AddButton>
+          </AddMenu>
+        </div>
+
+        <TableContainer>
+          <TableWrapper>
+            <Table cols={cols} data={data} basePath={"booking"} />
+          </TableWrapper>
+        </TableContainer>
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <h2>{t("bookings_table_special_request")}</h2>
+          <p>{modalContent}</p>
+        </Modal>
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalPages={totalPages}
+        />
+      </div>
+    </>
   );
 }
 

@@ -8,7 +8,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-
+import { Helmet } from "react-helmet";
 import {
   BarChart,
   Bar,
@@ -56,152 +56,169 @@ const DashboardPage = () => {
   ];
 
   return (
-    <Container>
-      <KPIGroup>
-        <KPI value={13} label="kpi_new_booking" icon={<IoBedOutline />} />
-        <KPI value={24} label="kpi_scheduled_room" icon={<BiCalendarCheck />} />
-        <KPI value={12} label="kpi_check_in" icon={<BsBoxArrowInLeft />} />
-        <KPI value={16} label="kpi_check_out" icon={<BsBoxArrowInRight />} />
-      </KPIGroup>
+    <>
+      <Helmet>
+        <title>Dashboard</title>
+        <meta
+          name="description"
+          content="Dashboard page for Hotel Management System"
+        />
+      </Helmet>
+      <Container>
+        <KPIGroup>
+          <KPI value={13} label="kpi_new_booking" icon={<IoBedOutline />} />
+          <KPI
+            value={24}
+            label="kpi_scheduled_room"
+            icon={<BiCalendarCheck />}
+          />
+          <KPI value={12} label="kpi_check_in" icon={<BsBoxArrowInLeft />} />
+          <KPI value={16} label="kpi_check_out" icon={<BsBoxArrowInRight />} />
+        </KPIGroup>
 
-      <div style={{ display: "flex", gap: "20px" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-            width: "40%",
-            backgroundColor: "#ffffff",
-          }}
-        >
-          <StyledCalendar />
-          <RecentBookings>
-            <ItemContainer>
-              <ImagePlaceholder />
-              <BookingInfo>
-                <RoomName>Queen Bed A–12324</RoomName>
-                <GuestInfo>
-                  <GuestAvatar />
-                  <GuestDetails>
-                    <GuestName>James Sukardi</GuestName>
-                    <TimeAgo>8-5 ... 10-5</TimeAgo>
-                  </GuestDetails>
-                </GuestInfo>
-              </BookingInfo>
-              <DateBadge style={{ backgroundColor: "#004d40" }}>3</DateBadge>
-            </ItemContainer>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+              width: "40%",
+              backgroundColor: "#ffffff",
+            }}
+          >
+            <StyledCalendar />
+            <RecentBookings>
+              <ItemContainer>
+                <ImagePlaceholder />
+                <BookingInfo>
+                  <RoomName>Queen Bed A–12324</RoomName>
+                  <GuestInfo>
+                    <GuestAvatar />
+                    <GuestDetails>
+                      <GuestName>James Sukardi</GuestName>
+                      <TimeAgo>8-5 ... 10-5</TimeAgo>
+                    </GuestDetails>
+                  </GuestInfo>
+                </BookingInfo>
+                <DateBadge style={{ backgroundColor: "#004d40" }}>3</DateBadge>
+              </ItemContainer>
 
-            <ItemContainer>
-              <ImagePlaceholder />
-              <BookingInfo>
-                <RoomName>Deluxe Room B–1324</RoomName>
-                <GuestInfo>
-                  <GuestAvatar />
-                  <GuestDetails>
-                    <GuestName>Angela Moss</GuestName>
-                    <TimeAgo>8-5 ... 10-5</TimeAgo>
-                  </GuestDetails>
-                </GuestInfo>
-              </BookingInfo>
-              <DateBadge style={{ backgroundColor: "#e53935" }}>
-                16, 17, 18
-              </DateBadge>
-            </ItemContainer>
+              <ItemContainer>
+                <ImagePlaceholder />
+                <BookingInfo>
+                  <RoomName>Deluxe Room B–1324</RoomName>
+                  <GuestInfo>
+                    <GuestAvatar />
+                    <GuestDetails>
+                      <GuestName>Angela Moss</GuestName>
+                      <TimeAgo>8-5 ... 10-5</TimeAgo>
+                    </GuestDetails>
+                  </GuestInfo>
+                </BookingInfo>
+                <DateBadge style={{ backgroundColor: "#e53935" }}>
+                  16, 17, 18
+                </DateBadge>
+              </ItemContainer>
 
-            <ItemContainer>
-              <ImagePlaceholder />
-              <BookingInfo>
-                <RoomName>King Big C–2445</RoomName>
-                <GuestInfo>
-                  <GuestAvatar />
-                  <GuestDetails>
-                    <GuestName>Geovanny</GuestName>
-                    <TimeAgo>8-5 ... 10-5</TimeAgo>
-                  </GuestDetails>
-                </GuestInfo>
-              </BookingInfo>
-              <DateBadge style={{ backgroundColor: "#ff9800" }}>20</DateBadge>
-            </ItemContainer>
-          </RecentBookings>
+              <ItemContainer>
+                <ImagePlaceholder />
+                <BookingInfo>
+                  <RoomName>King Big C–2445</RoomName>
+                  <GuestInfo>
+                    <GuestAvatar />
+                    <GuestDetails>
+                      <GuestName>Geovanny</GuestName>
+                      <TimeAgo>8-5 ... 10-5</TimeAgo>
+                    </GuestDetails>
+                  </GuestInfo>
+                </BookingInfo>
+                <DateBadge style={{ backgroundColor: "#ff9800" }}>20</DateBadge>
+              </ItemContainer>
+            </RecentBookings>
+          </div>
+
+          <div
+            style={{
+              width: "60%",
+              height: 650,
+              backgroundColor: "#ffffff",
+              borderRadius: "12px",
+              padding: "1rem",
+            }}
+          >
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={data}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar
+                  dataKey="check_in"
+                  fill="#135846"
+                  name={t("kpi_check_in")}
+                />
+                <Bar
+                  dataKey="check_out"
+                  fill="#e23428"
+                  name={t("kpi_check_out")}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
 
-        <div
-          style={{
-            width: "60%",
-            height: 650,
-            backgroundColor: "#ffffff",
-            borderRadius: "12px",
-            padding: "1rem",
-          }}
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={data}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="check_in" fill="#135846" name={t("kpi_check_in")} />
-              <Bar
-                dataKey="check_out"
-                fill="#e23428"
-                name={t("kpi_check_out")}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <ReviewCardsContainer>
-        {nonActionedContacts.slice(0, 3).map((nonActionedContacts) => (
-          <ReviewCard key={nonActionedContacts.id}>
-            <ReviewText>{nonActionedContacts.message}</ReviewText>
-            <ReviewerInfo>
-              <ReviewerDetails>
-                <ReviewerName>
-                  {nonActionedContacts.firstNameCustomer}{" "}
-                  {nonActionedContacts.lastNameCustomer}
-                </ReviewerName>
-                <ReviewTime>{nonActionedContacts.contactDate}</ReviewTime>
-              </ReviewerDetails>
-              <ActionButtons>
-                <ActionIcon
-                  approved={true}
-                  onClick={async () => {
-                    await dispatch(
-                      updateContact({
-                        ...nonActionedContacts,
-                        status: ContactStatus.PUBLISHED,
-                      })
-                    );
-                    dispatch(fetchContacts());
-                    dispatch(fetchContactNonActioned());
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
-                <ActionIcon
-                  approved={false}
-                  onClick={async () => {
-                    await dispatch(
-                      updateContact({
-                        ...nonActionedContacts,
-                        status: ContactStatus.ARCHIVED,
-                      })
-                    );
-                    dispatch(fetchContacts());
-                    dispatch(fetchContactNonActioned());
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
-              </ActionButtons>
-            </ReviewerInfo>
-          </ReviewCard>
-        ))}
-      </ReviewCardsContainer>
-    </Container>
+        <ReviewCardsContainer>
+          {nonActionedContacts.slice(0, 3).map((nonActionedContacts) => (
+            <ReviewCard key={nonActionedContacts.id}>
+              <ReviewText>{nonActionedContacts.message}</ReviewText>
+              <ReviewerInfo>
+                <ReviewerDetails>
+                  <ReviewerName>
+                    {nonActionedContacts.firstNameCustomer}{" "}
+                    {nonActionedContacts.lastNameCustomer}
+                  </ReviewerName>
+                  <ReviewTime>{nonActionedContacts.contactDate}</ReviewTime>
+                </ReviewerDetails>
+                <ActionButtons>
+                  <ActionIcon
+                    approved={true}
+                    onClick={async () => {
+                      await dispatch(
+                        updateContact({
+                          ...nonActionedContacts,
+                          status: ContactStatus.PUBLISHED,
+                        })
+                      );
+                      dispatch(fetchContacts());
+                      dispatch(fetchContactNonActioned());
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                  <ActionIcon
+                    approved={false}
+                    onClick={async () => {
+                      await dispatch(
+                        updateContact({
+                          ...nonActionedContacts,
+                          status: ContactStatus.ARCHIVED,
+                        })
+                      );
+                      dispatch(fetchContacts());
+                      dispatch(fetchContactNonActioned());
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                </ActionButtons>
+              </ReviewerInfo>
+            </ReviewCard>
+          ))}
+        </ReviewCardsContainer>
+      </Container>
+    </>
   );
 };
 

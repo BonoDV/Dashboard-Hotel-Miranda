@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 import type { AuthContextType } from "../../context/AuthContext";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 const Login = () => {
   const auth = useContext(AuthContext);
 
@@ -27,34 +28,43 @@ const Login = () => {
     }
   };
   return (
-    <FormContainer>
-      <FormTitle>Login</FormTitle>
-      <StyledForm onSubmit={handleSubmit}>
-        <FormGroup>
-          <Label htmlFor="username">User:</Label>
-          <Input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="test@test.com"
-            required
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="password">Password:</Label>
-          <Input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="1234"
-            required
-          />
-        </FormGroup>
-        <SubmitButton type="submit">Send</SubmitButton>
-      </StyledForm>
-    </FormContainer>
+    <>
+      <Helmet>
+        <title>Login - Hotel Management</title>
+        <meta
+          name="description"
+          content="Login page for Hotel Management System"
+        />
+      </Helmet>
+      <FormContainer>
+        <FormTitle>Login</FormTitle>
+        <StyledForm onSubmit={handleSubmit}>
+          <FormGroup>
+            <Label htmlFor="username">User:</Label>
+            <Input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="test@test.com"
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label htmlFor="password">Password:</Label>
+            <Input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="1234"
+              required
+            />
+          </FormGroup>
+          <SubmitButton type="submit">Send</SubmitButton>
+        </StyledForm>
+      </FormContainer>
+    </>
   );
 };
 

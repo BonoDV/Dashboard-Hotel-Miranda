@@ -15,6 +15,7 @@ import Image from "../../components/Image.tsx";
 import { useTranslation } from "react-i18next";
 import { formatDateTimeDisplay } from "../../utils/dateUtils";
 import Pagination from "../../components/Pagination.tsx";
+import { Helmet } from "react-helmet";
 
 function Contact() {
   const dispatch = useDispatch<AppDispatch>();
@@ -106,6 +107,13 @@ function Contact() {
 
   return (
     <>
+      <Helmet>
+        <title>Contacts</title>
+        <meta
+          name="description"
+          content="Contacts page for Hotel Management System"
+        />
+      </Helmet>
       <ReviewCardsContainer>
         {nonActionedContacts.slice(0, 3).map((nonActionedContacts) => (
           <ReviewCard key={nonActionedContacts.id}>

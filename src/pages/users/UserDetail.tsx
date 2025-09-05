@@ -9,11 +9,13 @@ import SendMessageButton from "../../components/buttons/SendMessageButton.tsx";
 import FacilitiesButton from "../../components/buttons/FacilitiesButton.tsx";
 import Image from "../../components/Image.tsx";
 import { RootState, AppDispatch } from "../../redux/store/store.ts";
+import { useTranslation } from "react-i18next";
+import { formatDateTimeDisplay } from "../../utils/dateUtils";
 
 const UserDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-
+  const { t } = useTranslation();
   const {
     guest: user,
     loading,
@@ -34,9 +36,9 @@ const UserDetail = () => {
     }
   }, [dispatch, user?.roomNumber]);
 
-  if (loading) return <p>Cargando datos del usuario...</p>;
+  if (loading) return <p>{t("bookings_details_charging")}</p>;
+  if (!user) return <p>{t("bookings_details_charging_user_not_found")}</p>;
   if (error) return <p>Error: {error}</p>;
-  if (!user) return <p>Usuario no encontrado.</p>;
 
   return (
     <div
@@ -75,15 +77,19 @@ const UserDetail = () => {
         }}
       >
         <div>
-          <p style={{ color: "#888", marginBottom: "4px" }}>Check In</p>
+          <p style={{ color: "#888", marginBottom: "4px" }}>
+            {t("kpi_check_in")}
+          </p>
           <p>
-            <strong>{user.checkIn.toString()}</strong>
+            <strong>{formatDateTimeDisplay(user.checkIn)}</strong>
           </p>
         </div>
         <div>
-          <p style={{ color: "#888", marginBottom: "4px" }}>Check Out</p>
+          <p style={{ color: "#888", marginBottom: "4px" }}>
+            {t("kpi_check_out")}
+          </p>
           <p>
-            <strong>{user.checkOut.toString()}</strong>
+            <strong>{formatDateTimeDisplay(user.checkOut)}</strong>
           </p>
         </div>
       </div>
@@ -100,15 +106,21 @@ const UserDetail = () => {
           }}
         >
           <div>
-            <p style={{ color: "#888", marginBottom: "4px" }}>Room Info</p>
+            <p style={{ color: "#888", marginBottom: "4px" }}>
+              {t("user_detail.room_info")}
+            </p>
             <p>
               <strong>{user.roomType}</strong>
             </p>
           </div>
           <div>
-            <p style={{ color: "#888", marginBottom: "4px" }}>Price</p>
+            <p style={{ color: "#888", marginBottom: "4px" }}>
+              {t("user_detail.price")}
+            </p>
             <p>
-              <strong>${room?.price}/night</strong>
+              <strong>
+                ${room?.price}/{t("user_detail.price_night")}
+              </strong>
             </p>
           </div>
         </div>
@@ -118,12 +130,12 @@ const UserDetail = () => {
           <strong>
             {user.specialRequest.status
               ? user.specialRequest.text
-              : "No Special Request"}
+              : t("user_detail.no_special_request")}
           </strong>
         </p>
 
         <p>
-          <strong>Facilities</strong>
+          <strong>{t("rooms_table_room_facilities")}</strong>
         </p>
         <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
           <FacilitiesButton facilities={room?.amenities || []} />

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const amenitiesMap: Record<string, string> = {
   "Air Aconditioner": "❄️",
@@ -18,19 +19,42 @@ const amenitiesMap: Record<string, string> = {
   "Expert Team": "👨‍🔧",
 };
 
+const facilityKeyMap: Record<string, string> = {
+  "Air Aconditioner": "facilities.air_conditioner",
+  "High speed WiFi": "facilities.high_speed_wifi",
+  Breakfast: "facilities.breakfast",
+  Kitchen: "facilities.kitchen",
+  Cleaning: "facilities.cleaning",
+  Shower: "facilities.shower",
+  Grocery: "facilities.grocery",
+  "Single bed": "facilities.single_bed",
+  "Shop near": "facilities.shop_near",
+  Towels: "facilities.towels",
+  "24/7 Online Support": "facilities.online_support",
+  "Strong Locker": "facilities.strong_locker",
+  "Smart Security": "facilities.smart_security",
+  "Expert Team": "facilities.expert_team",
+};
+
 type FacilitiesButtonProps = {
   facilities: string[];
 };
 
 const FacilitiesButton = ({ facilities }: FacilitiesButtonProps) => {
+  const { t } = useTranslation();
+
   return (
     <FacilitiesContainer>
-      {facilities.map((facility, index) => (
-        <ButtonStyled key={index}>
-          <Emoji>{amenitiesMap[facility] || "❓"}</Emoji>
-          <p>{facility}</p>
-        </ButtonStyled>
-      ))}
+      {facilities.map((facility, index) => {
+        const translationKey = facilityKeyMap[facility];
+        const label = translationKey ? t(translationKey) : facility;
+        return (
+          <ButtonStyled key={index}>
+            <Emoji>{amenitiesMap[facility] || "❓"}</Emoji>
+            <p>{label}</p>
+          </ButtonStyled>
+        );
+      })}
     </FacilitiesContainer>
   );
 };

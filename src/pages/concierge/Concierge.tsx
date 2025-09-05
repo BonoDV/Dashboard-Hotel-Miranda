@@ -3,10 +3,13 @@ import Image from "../../components/Image.tsx";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../redux/store/store.ts";
+import { useTranslation } from "react-i18next";
 
 import { fetchConcierges } from "../../redux/features/concierge/conciergeSlice.ts";
+import Pagination from "../../components/Pagination.tsx";
 function Concierge() {
   const dispatch = useDispatch<AppDispatch>();
+  const { t } = useTranslation();
 
   // Seleccionamos los datos desde el store
   const { concierges, loading, error } = useSelector(
@@ -20,7 +23,13 @@ function Concierge() {
     dispatch(fetchConcierges());
   }, [dispatch]);
 
-  const cols = ["Name", "Job Desk", "Schedule", "Contact", "Status"];
+  const cols = [
+    t("concierge_table_name"),
+    t("concierge_table_job_desk"),
+    t("concierge_table_schedule"),
+    t("concierge_table_contact"),
+    t("concierge_table_status"),
+  ];
 
   // Calcular el rango de habitaciones a mostrar
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -30,7 +39,7 @@ function Concierge() {
   // Mapeamos los datos de ConciergeList
   const data = paginatedConcierges.map((res) => ({
     id: res.id,
-    Name: (
+    [t("concierge_table_name")]: (
       <div style={{ display: "flex", alignItems: "center" }}>
         <Image
           src={res.photo}
@@ -53,14 +62,19 @@ function Concierge() {
       </div>
     ),
 
-    "Job Desk": res.function_description,
-    Schedule: res.schedule,
-    Contact: res.phone_number,
-    Status: res.status ? "Active" : "Inactive",
+    [t("concierge_table_job_desk")]: res.function_description,
+    [t("concierge_table_schedule")]: res.schedule,
+    [t("concierge_table_contact")]: res.phone_number,
+    [t("concierge_table_status")]: res.status ? "Active" : "Inactive",
   }));
 
-  if (loading) return <div>Loading concierges...</div>;
-  if (error) return <div>Error loading concierges: {error}</div>;
+  if (loading) return <div>{t("loading_concierge")}</div>;
+  if (error)
+    return (
+      <div>
+        {t("loading_concierge_error")} {error}
+      </div>
+    );
 
   // Calcular el número total de páginas
   const totalPages = Math.ceil(concierges.length / itemsPerPage);
@@ -69,26 +83,11 @@ function Concierge() {
     <div style={{ padding: "20px" }}>
       {/* Componente de la tabla */}
       <Table cols={cols} data={data} basePath={"users"} />
-      {/* Controles de paginación */}
-      <div style={{ marginTop: "20px", display: "flex", gap: "10px" }}>
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-        >
-          Siguiente
-        </button>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 }

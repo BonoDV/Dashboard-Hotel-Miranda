@@ -7,6 +7,7 @@ import KPI from "../../components/KPI.tsx";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 import {
   BarChart,
@@ -29,17 +30,8 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store/store";
 import { ContactStatus } from "../../type/Contact";
 
-const data = [
-  { name: "Monday", check_in: 50, check_out: 35 },
-  { name: "Tuesday", check_in: 70, check_out: 45 },
-  { name: "Wednesday", check_in: 40, check_out: 27 },
-  { name: "Thursday", check_in: 58, check_out: 45 },
-  { name: "Friday", check_in: 24, check_out: 11 },
-  { name: "Saturday", check_in: 76, check_out: 44 },
-  { name: "Sunday", check_in: 87, check_out: 45 },
-];
-
 const DashboardPage = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { contacts, loading, error } = useSelector(
     (state: RootState) => state.contact
@@ -53,13 +45,23 @@ const DashboardPage = () => {
     dispatch(fetchContactNonActioned() as any);
   }, [dispatch]);
 
+  const data = [
+    { name: t("monday"), check_in: 8, check_out: 7 },
+    { name: t("tuesday"), check_in: 3, check_out: 5 },
+    { name: t("wednesday"), check_in: 2, check_out: 1 },
+    { name: t("thursday"), check_in: 4, check_out: 2 },
+    { name: t("friday"), check_in: 9, check_out: 3 },
+    { name: t("saturday"), check_in: 16, check_out: 4 },
+    { name: t("sunday"), check_in: 2, check_out: 10 },
+  ];
+
   return (
     <Container>
       <KPIGroup>
-        <KPI value={8461} label="New Booking" icon={<IoBedOutline />} />
-        <KPI value={8461} label="Scheduled Room" icon={<BiCalendarCheck />} />
-        <KPI value={8461} label="Check In" icon={<BsBoxArrowInLeft />} />
-        <KPI value={8461} label="Check Out" icon={<BsBoxArrowInRight />} />
+        <KPI value={13} label="kpi_new_booking" icon={<IoBedOutline />} />
+        <KPI value={24} label="kpi_scheduled_room" icon={<BiCalendarCheck />} />
+        <KPI value={12} label="kpi_check_in" icon={<BsBoxArrowInLeft />} />
+        <KPI value={16} label="kpi_check_out" icon={<BsBoxArrowInRight />} />
       </KPIGroup>
 
       <div style={{ display: "flex", gap: "20px" }}>
@@ -120,8 +122,6 @@ const DashboardPage = () => {
               </BookingInfo>
               <DateBadge style={{ backgroundColor: "#ff9800" }}>20</DateBadge>
             </ItemContainer>
-
-            <ViewMore>View More</ViewMore>
           </RecentBookings>
         </div>
 
@@ -144,8 +144,12 @@ const DashboardPage = () => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="check_in" fill="#135846" name={"Check in"} />
-              <Bar dataKey="check_out" fill="#e23428" name={"Check out"} />
+              <Bar dataKey="check_in" fill="#135846" name={t("kpi_check_in")} />
+              <Bar
+                dataKey="check_out"
+                fill="#e23428"
+                name={t("kpi_check_out")}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -327,32 +331,79 @@ const SectionTitle = styled.h3`
 `;
 
 const ReviewCardsContainer = styled.div`
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 320px);
+  gap: 120px;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  box-sizing: border-box;
+  align-items: start;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    justify-content: center;
+  }
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(2, 320px);
+    justify-content: space-evenly;
+    gap: 28px;
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px;
+  }
 `;
 
 const ReviewCard = styled.div`
-  flex: 1;
-  min-width: 280px;
-  max-width: 32%;
-  background: #f9f9f9;
-  padding: 16px;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 320px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(250, 250, 250, 0.6)
+  );
+  padding: 18px;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(19, 88, 70, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(16, 24, 40, 0.12);
+  }
+
+  @media (max-width: 980px) {
+    max-width: 320px;
+  }
+
+  @media (max-width: 640px) {
+    max-width: 100%;
+  }
 `;
 
 const ReviewText = styled.p`
   font-size: 14px;
-  color: #333;
+  color: #1f2937;
   flex: 1;
+  line-height: 1.45;
+  margin: 0 0 12px 0;
+  word-break: break-word;
 `;
 
 const ReviewerInfo = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 16px;
+  margin-top: 12px;
   gap: 12px;
 `;
 
@@ -365,16 +416,21 @@ const ReviewerAvatar = styled.div`
 
 const ReviewerDetails = styled.div`
   flex-grow: 1;
+  min-width: 0;
 `;
 
 const ReviewerName = styled.div`
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #0f5132;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const ReviewTime = styled.div`
   font-size: 12px;
-  color: #aaa;
+  color: #6b7280;
 `;
 
 const ActionButtons = styled.div`
@@ -383,10 +439,25 @@ const ActionButtons = styled.div`
 `;
 
 const ActionIcon = styled.div<ActionIconProps>`
-  width: 20px;
-  height: 20px;
-  background: ${(props) => (props.approved ? "#00c853" : "#e53935")};
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: ${(props) =>
+    props.approved
+      ? "linear-gradient(180deg,#00e676,#00c853)"
+      : "linear-gradient(180deg,#ff8a80,#e53935)"};
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.08);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.12s ease;
+  border: none;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 18px 36px rgba(2, 6, 23, 0.12);
+  }
 `;
 
 const NextButton = styled.button`

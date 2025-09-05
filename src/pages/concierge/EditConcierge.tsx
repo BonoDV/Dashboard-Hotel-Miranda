@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 import {
   fetchConciergeById,
   updateConcierge,
@@ -8,6 +9,7 @@ import {
 import { RootState, AppDispatch } from "../../redux/store/store";
 import { formatDateForInput, parseInputDate } from "../../utils/dateUtils";
 import type { Concierge } from "../../type/Concierge";
+import styled from "styled-components";
 
 type ConciergeFormData = {
   id: string;
@@ -21,9 +23,11 @@ type ConciergeFormData = {
   schedule: string;
   function_description: string;
   status: boolean;
+  password: string;
 };
 
 const EditConcierge: React.FC = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,7 +49,12 @@ const EditConcierge: React.FC = () => {
     schedule: "",
     function_description: "",
     status: true,
+    password: "",
   });
+
+  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(
+    null
+  );
 
   useEffect(() => {
     if (id) {
@@ -67,6 +76,7 @@ const EditConcierge: React.FC = () => {
         schedule: user.schedule || "",
         function_description: user.function_description || "",
         status: user.status || true,
+        password: (user as any).password || "",
       });
     }
   }, [user, id]);
@@ -91,97 +101,326 @@ const EditConcierge: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (
+      !formData.photo ||
+      !formData.first_name ||
+      !formData.last_name ||
+      !formData.job ||
+      !formData.email ||
+      !formData.phone_number ||
+      !formData.start_date ||
+      !formData.schedule ||
+      !formData.function_description
+    ) {
+      setSubmitStatus("error");
+      return;
+    }
+
     const dataToSend: Concierge = {
       ...formData,
       start_date: formData.start_date || new Date(),
     };
     dispatch(updateConcierge(dataToSend));
+    setSubmitStatus("success");
     console.log("Submitted:", dataToSend);
   };
 
   // Only return JSX after all hooks have been called
-  if (loading) return <p>Cargando datos del conserje...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!user && !loading) return <p>Conserje no encontrado.</p>;
+  if (loading) return <p>{t("concierge_edit.loading")}</p>;
+  if (error)
+    return (
+      <p>
+        {t("concierge_edit.error")}
+        {error}
+      </p>
+    );
+  if (!user && !loading) return <p>{t("concierge_edit.not_found")}</p>;
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "16px",
-        maxWidth: "500px",
-      }}
-    >
-      <input
-        name="photo"
-        placeholder="URL de la foto"
-        value={formData.photo}
-        onChange={handleChange}
-      />
-      <input
-        name="first_name"
-        placeholder="Nombre"
-        value={formData.first_name}
-        onChange={handleChange}
-      />
-      <input
-        name="last_name"
-        placeholder="Apellido"
-        value={formData.last_name}
-        onChange={handleChange}
-      />
-      <input
-        name="job"
-        placeholder="Puesto de trabajo"
-        value={formData.job}
-        onChange={handleChange}
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <input
-        name="phone_number"
-        placeholder="Número de teléfono"
-        value={formData.phone_number}
-        onChange={handleChange}
-      />
-      <input
-        name="start_date"
-        type="datetime-local"
-        placeholder="Fecha de inicio"
-        value={formatDateForInput(formData.start_date)}
-        onChange={handleChange}
-      />
-      <input
-        name="schedule"
-        placeholder="Horario"
-        value={formData.schedule}
-        onChange={handleChange}
-      />
-      <textarea
-        name="function_description"
-        placeholder="Descripción de funciones"
-        value={formData.function_description}
-        onChange={handleChange}
-      />
-      <label>
-        Estado activo:
+    <CardForm onSubmit={handleSubmit}>
+      <TwoColGrid>
+        <Field>
+          <FieldTitle>{t("concierge_edit.photo_url")}</FieldTitle>
+          <TextInput
+            name="photo"
+            placeholder={t("concierge_edit.photo_placeholder")}
+            value={formData.photo}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.first_name")}</FieldTitle>
+          <TextInput
+            name="first_name"
+            placeholder={t("concierge_edit.first_name_placeholder")}
+            value={formData.first_name}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.last_name")}</FieldTitle>
+          <TextInput
+            name="last_name"
+            placeholder={t("concierge_edit.last_name_placeholder")}
+            value={formData.last_name}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.job")}</FieldTitle>
+          <TextInput
+            name="job"
+            placeholder={t("concierge_edit.job_placeholder")}
+            value={formData.job}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.email")}</FieldTitle>
+          <TextInput
+            name="email"
+            type="email"
+            placeholder={t("concierge_edit.email_placeholder")}
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.phone")}</FieldTitle>
+          <TextInput
+            name="phone_number"
+            placeholder={t("concierge_edit.phone_placeholder")}
+            value={formData.phone_number}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.start_date")}</FieldTitle>
+          <TextInput
+            name="start_date"
+            type="datetime-local"
+            value={formatDateForInput(formData.start_date)}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field>
+          <FieldTitle>{t("concierge_edit.schedule")}</FieldTitle>
+          <TextInput
+            name="schedule"
+            placeholder={t("concierge_edit.schedule_placeholder")}
+            value={formData.schedule}
+            onChange={handleChange}
+          />
+        </Field>
+
+        <Field style={{ gridColumn: "1 / -1" }}>
+          <FieldTitle>{t("concierge_edit.function_description")}</FieldTitle>
+          <TextArea
+            name="function_description"
+            placeholder={t("concierge_edit.function_description_placeholder")}
+            value={formData.function_description}
+            onChange={handleChange}
+          />
+        </Field>
+      </TwoColGrid>
+
+      <CheckboxRow>
         <input
           type="checkbox"
           name="status"
           checked={formData.status}
           onChange={handleChange}
         />
-      </label>
-      <button type="submit">Actualizar Conserje</button>
-    </form>
+        <span>{t("concierge_edit.status")}</span>
+      </CheckboxRow>
+
+      <SubmitButton type="submit">
+        {t("concierge_edit.update_button")}
+      </SubmitButton>
+
+      {submitStatus === "success" && (
+        <Alert $type="success">{t("concierge_edit.success_message")}</Alert>
+      )}
+
+      {submitStatus === "error" && (
+        <Alert $type="error">{t("concierge_edit.error_message")}</Alert>
+      )}
+    </CardForm>
   );
 };
 
 export default EditConcierge;
+
+const CardForm = styled.form`
+  display: grid;
+  gap: 16px;
+  max-width: 90%;
+  height: 80%;
+  margin: 0 auto;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: saturate(180%) blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(20, 20, 20, 0.75);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+`;
+
+const TwoColGrid = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Field = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-weight: 500;
+`;
+
+const FieldTitle = styled.span`
+  color: #374151;
+  font-size: 14px;
+
+  @media (prefers-color-scheme: dark) {
+    color: #e5e7eb;
+  }
+`;
+
+const TextInput = styled.input`
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  background: #fafafa;
+  color: #111827;
+  padding: 12px 14px;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    background: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: #374151;
+    background: #111827;
+    color: #f9fafb;
+
+    &:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
+      background: #0b0f1a;
+    }
+  }
+`;
+
+const TextArea = styled.textarea`
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  background: #fafafa;
+  color: #111827;
+  padding: 12px 14px;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  min-height: 100px;
+  resize: vertical;
+
+  &:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    background: #ffffff;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: #374151;
+    background: #111827;
+    color: #f9fafb;
+
+    &:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
+      background: #0b0f1a;
+    }
+  }
+`;
+
+const CheckboxRow = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  text-align: left;
+`;
+
+const SubmitButton = styled.button`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #23a482, #135846);
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  max-height: 40px;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.25);
+    filter: brightness(1.02);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+`;
+
+const Alert = styled.div<{ $type: "success" | "error" }>`
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: ${({ $type }) => ($type === "success" ? "#065f46" : "#991b1b")};
+  background: ${({ $type }) => ($type === "success" ? "#d1fae5" : "#fee2e2")};
+  border: 1px solid
+    ${({ $type }) => ($type === "success" ? "#a7f3d0" : "#fecaca")};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${({ $type }) => ($type === "success" ? "#bbf7d0" : "#fecaca")};
+    background: ${({ $type }) => ($type === "success" ? "#064e3b" : "#7f1d1d")};
+    border-color: ${({ $type }) =>
+      $type === "success" ? "#065f46" : "#991b1b"};
+  }
+`;

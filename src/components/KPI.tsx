@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 type KPIprops = {
   value: string | number;
@@ -8,12 +9,14 @@ type KPIprops = {
 };
 
 const KPI = ({ value, label, icon }: KPIprops) => {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <IconWrapper>{icon}</IconWrapper>
       <Content>
         <Value>{value.toLocaleString()}</Value>
-        <Label>{label}</Label>
+        <Label>{t(label)}</Label>
       </Content>
     </Card>
   );

@@ -44,3 +44,24 @@ export const parseInputDate = (value: string): Date | null => {
 export const getCurrentDateForInput = (): string => {
   return formatDateForInput(new Date());
 };
+
+/**
+ * Formatea una fecha para mostrarla en el formato 'DD/MM/YYYY HH:MM'
+ * Soporta fechas como objetos Date o strings en formato ISO
+ * @param date - La fecha a formatear
+ * @returns String en formato 'DD/MM/YYYY HH:MM'
+ */
+export function formatDateTimeDisplay(
+  date: Date | string | null | undefined
+): string {
+  if (!date) return "";
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (Number.isNaN(d.getTime())) return "";
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  const day = pad(d.getDate());
+  const month = pad(d.getMonth() + 1);
+  const year = d.getFullYear();
+  const hours = pad(d.getHours());
+  const minutes = pad(d.getMinutes());
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
+}

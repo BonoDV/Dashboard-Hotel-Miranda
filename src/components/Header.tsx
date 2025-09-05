@@ -14,7 +14,7 @@ import { useLocation } from "react-router";
 import Breadcrumb from "./Breadcrumb.tsx";
 import Image from "./Image.tsx";
 const Header = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
   const location = useLocation();
@@ -60,13 +60,38 @@ const Header = () => {
       .catch((err) => console.error("Error changing language:", err));
   };
 
+  // Función para obtener el título traducido
+  const getTranslatedTitle = () => {
+    // Si estamos en una ruta de edición, mostrar "Edit" en vez del ID
+    if (originalPath.includes("/edit/")) {
+      return t("bookings_edit_title");
+    } else if (originalPath.includes("/booking/")) {
+      return t("bookings_details_title");
+    }
+    if (path === "dashboard" || path === "") {
+      return t("dashboard");
+    } else if (path === "booking") {
+      return t("bookings");
+    } else if (path === "room") {
+      return t("room");
+    } else if (path === "contact") {
+      return t("contact");
+    } else if (path === "users") {
+      return t("users");
+    } else if (path === "new") {
+      return t("bookings_add_title");
+    } else {
+      return pathCapitalize;
+    }
+  };
+
   return (
     <HeaderStyled>
       <IconContext.Provider value={{ size: "2rem" }}>
         <ArrowLeftIcon />
       </IconContext.Provider>
       <LeftSection $hasBreadcrumb={shouldShowBreadcrumb()}>
-        <DashboardTitleStyled>{pathCapitalize}</DashboardTitleStyled>
+        <DashboardTitleStyled>{getTranslatedTitle()}</DashboardTitleStyled>
         {shouldShowBreadcrumb() && <Breadcrumb />}
       </LeftSection>
       <RightSection>
@@ -118,7 +143,7 @@ const HeaderStyled = styled.header`
 const LeftSection = styled.div<{ $hasBreadcrumb: boolean }>`
   display: flex;
   flex-direction: column;
-  margin-right: ${({ $hasBreadcrumb }) => ($hasBreadcrumb ? "40%" : "50%")};
+  margin-right: ${({ $hasBreadcrumb }) => ($hasBreadcrumb ? "25%" : "50%")};
   margin-top: ${({ $hasBreadcrumb }) => ($hasBreadcrumb ? "1rem" : "0")};
 `;
 
@@ -132,11 +157,12 @@ const RightSection = styled.div`
 const DashboardTitleStyled = styled.h2`
   color: var(--unnamed-color-262626);
   text-align: left;
-  font: normal normal 600 28px/42px Poppins;
+  font: normal normal 600 20px/42px Poppins;
   letter-spacing: 0px;
   color: #262626;
   opacity: 1;
   margin: 0; /* Elimina el margen por defecto del h2 */
+  width: fit-content;
 `;
 
 const TextSelectStyled = styled.select`

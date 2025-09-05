@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 type BreadCrumbProps = {
   name: string;
-}
+};
 
 const Breadcrumb = () => {
   const location = useLocation();
@@ -16,7 +16,6 @@ const Breadcrumb = () => {
 
   return (
     <BreadcrumbContainer>
-      <LinkStyled to="/dashboard">Dashboard</LinkStyled> /
       {pathnames.map((value, index) => {
         const to = `/${pathnames.slice(0, index + 1).join("/")}`;
 

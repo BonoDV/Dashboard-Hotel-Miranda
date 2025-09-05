@@ -28,6 +28,8 @@ function SideBar() {
         height: "100vh", // Cambiado de 90vh a 100vh
         position: "sticky",
         top: 0,
+        minWidth: "250px", // Agregar ancho mínimo
+        width: "250px", // Ancho fijo para consistencia
       }}
     >
       <HeaderContainer>
@@ -63,7 +65,6 @@ function SideBar() {
             <StyledLink to="room">
               <RiKey2Line /> {t("room")}
             </StyledLink>
-            <IoIosArrowDown />
           </li>
           <li style={{ marginBottom: "1rem" }}>
             <StyledLink to="contact">
@@ -85,11 +86,10 @@ function SideBar() {
         />
         <h2>William Johanson</h2>
         <p>williamjohn@mail.com</p>
-        <ContactButton>{t("employee_edit_button")}</ContactButton>
       </UserSquare>
       <CopyrightDiv>
-        <h2>Travl Hotel Admin Dashboard</h2>
-        <p>© 2025 All Rights Reserved</p>
+        <h2>{t("travel_admin_dashboard_text")}</h2>
+        <p>{t("travel_admin_dashboard_copyright")}</p>
       </CopyrightDiv>
     </div>
   );
@@ -160,13 +160,12 @@ const StyledList = styled.ul`
 `;
 
 const UserSquare = styled.div`
-  width: 14.56rem;
-  height: 13.81rem;
+  width: 12.56rem;
+  height: 11.81rem;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   margin-top: 30%;
-  border: 1px solid red;
   position: relative; /* Necesario para posicionar el div interno de forma absoluta */
   display: flex;
   flex-direction: column;
@@ -211,25 +210,9 @@ const UserSquare = styled.div`
   }
 `;
 
-const ContactButton = styled.button`
-  width: 10rem;
-  height: 3rem;
-  background-color: #ebf1ef;
-  border-radius: 8px;
-  border: none;
-
-  color: #135846;
-  text-align: center;
-  font-variant: normal;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 21px;
-  letter-spacing: 0px;
-  font-family: Poppins;
-`;
-
 const CopyrightDiv = styled.div`
   margin-top: 3.8rem;
+  padding: 2%;
 
   h2 {
     width: 100%;
@@ -246,6 +229,7 @@ const CopyrightDiv = styled.div`
     font: normal normal 300 14px/21px Poppins;
     letter-spacing: 0px;
     color: #799283;
+    width: 100%;
   }
 `;
 

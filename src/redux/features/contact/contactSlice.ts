@@ -23,14 +23,11 @@ const initialState: ContactsState = {
 export const fetchContacts = createAsyncThunk<Contact[]>(
   "contacts/fetchContacts",
   async () => {
-    const response = await axios.get<Contact[]>(
-      `http://localhost:3000/contacts`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    const response = await axios.get<Contact[]>(`${API_URL}/contacts`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
     await new Promise((resolve) => setTimeout(resolve, 200));
     return response.data;
   }
@@ -53,7 +50,7 @@ export const fetchContactNonActioned = createAsyncThunk<Contact[]>(
   "contacts/fetchContactNonActioned",
   async () => {
     const response = await axios.get<Contact[]>(
-      `http://localhost:3000/contacts/status/non-actioned`,
+      `${API_URL}/contacts/status/non-actioned`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -77,7 +74,7 @@ export const updateContact = createAsyncThunk<Contact, Contact>(
   "contacts/updateContact",
   async (updatedContact) => {
     const response = await axios.put<Contact>(
-      `http://localhost:3000/contacts/${updatedContact.id}`,
+      `${API_URL}/contacts/${updatedContact.id}`,
       updatedContact,
       {
         headers: {

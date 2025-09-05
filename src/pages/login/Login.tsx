@@ -37,7 +37,7 @@ const Login = () => {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Write your username"
+            placeholder="test@test.com"
             required
           />
         </FormGroup>
@@ -48,7 +48,7 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Write your password"
+            placeholder="1234"
             required
           />
         </FormGroup>

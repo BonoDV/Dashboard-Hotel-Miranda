@@ -69,6 +69,8 @@ const ConciergeDetail = () => {
           <p style={{ color: "#666", margin: "0" }}>{concierge.schedule}</p>
         </div>
       </div>
+            <CallButton phone={concierge.phone_number} />
+            <SendMessageButton email={concierge.email} />
 
       {/* Información de contacto */}
       <div style={{ marginBottom: "32px" }}>
@@ -162,8 +164,6 @@ const ConciergeDetail = () => {
           borderTop: "1px solid #E5E5E5",
         }}
       >
-        <CallButton phone={concierge.phone_number} />
-        <SendMessageButton email={concierge.email} />
       </div>
     </div>
   );

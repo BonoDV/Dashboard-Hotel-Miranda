@@ -51,10 +51,11 @@ function Contact() {
   const endIndex = startIndex + itemsPerPage;
   const paginatedContacts = filteredContacts.slice(startIndex, endIndex);
 
-  if (loading) return <div>{t("loading_contact")}</div>;
+  if (loading)
+    return <div style={{ color: "black" }}>{t("loading_contact")}</div>;
   if (error)
     return (
-      <div>
+      <div style={{ color: "black" }}>
         {t("loading_contact_error")} {error}
       </div>
     );

@@ -30,6 +30,7 @@ function SideBar() {
         top: 0,
         minWidth: "250px", // Agregar ancho mínimo
         width: "250px", // Ancho fijo para consistencia
+        backgroundColor: "#FFFFFF", // Fondo blanco fijo
       }}
     >
       <HeaderContainer>
@@ -138,18 +139,19 @@ const StyledNav = styled.nav`
   text-align: left;
   font: normal normal 600 18px/27px Poppins;
   letter-spacing: 0px;
+  color: #212121;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit; // Hereda el color del padre (generalmente negro)
+  color: inherit;
 
   &:visited {
-    color: inherit; // Mantiene el mismo color que los enlaces no visitados
+    color: #212121;
   }
 
   &:hover {
-    color: #135846; // Color al pasar el mouse (opcional)
+    color: #185935;
   }
 `;
 
@@ -197,6 +199,7 @@ const UserSquare = styled.div`
     line-height: 25px;
     font-family: Poppins;
     margin: 0.5rem 0; /* Espaciado entre elementos */
+    color: #212121;
   }
 
   p {

@@ -127,15 +127,17 @@ const EditConcierge: React.FC = () => {
   };
 
   // Only return JSX after all hooks have been called
-  if (loading) return <p>{t("concierge_edit.loading")}</p>;
+  if (loading)
+    return <p style={{ color: "black" }}>{t("concierge_edit.loading")}</p>;
   if (error)
     return (
-      <p>
+      <p style={{ color: "black" }}>
         {t("concierge_edit.error")}
         {error}
       </p>
     );
-  if (!user && !loading) return <p>{t("concierge_edit.not_found")}</p>;
+  if (!user && !loading)
+    return <p style={{ color: "black" }}>{t("concierge_edit.not_found")}</p>;
 
   return (
     <CardForm onSubmit={handleSubmit}>
@@ -232,7 +234,7 @@ const EditConcierge: React.FC = () => {
         </Field>
       </TwoColGrid>
 
-      <CheckboxRow>
+      <CheckBox>
         <input
           type="checkbox"
           name="status"
@@ -240,7 +242,7 @@ const EditConcierge: React.FC = () => {
           onChange={handleChange}
         />
         <span>{t("concierge_edit.status")}</span>
-      </CheckboxRow>
+      </CheckBox>
 
       <SubmitButton type="submit">
         {t("concierge_edit.update_button")}
@@ -270,11 +272,6 @@ const CardForm = styled.form`
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(180%) blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgba(20, 20, 20, 0.75);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
 `;
 
 const TwoColGrid = styled.div`
@@ -293,93 +290,103 @@ const Field = styled.label`
   gap: 8px;
   text-align: left;
   font-weight: 500;
+  strong {
+    color: #135846;
+  }
 `;
 
 const FieldTitle = styled.span`
-  color: #374151;
+  color: #212121;
   font-size: 14px;
-
-  @media (prefers-color-scheme: dark) {
-    color: #e5e7eb;
+  strong {
+    color: #135846;
   }
 `;
 
 const TextInput = styled.input`
   appearance: none;
   border: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #111827;
+  background: #ffffff;
+  color: #212121;
   padding: 12px 14px;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: #ffffff;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background: #111827;
-    color: #f9fafb;
-
-    &:focus {
-      border-color: #818cf8;
-      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
-      background: #0b0f1a;
-    }
   }
 `;
 
 const TextArea = styled.textarea`
   appearance: none;
   border: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #111827;
+  background: #ffffff;
+  color: #212121;
   padding: 12px 14px;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   min-height: 100px;
   resize: vertical;
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: #ffffff;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background: #111827;
-    color: #f9fafb;
-
-    &:focus {
-      border-color: #818cf8;
-      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
-      background: #0b0f1a;
-    }
-  }
 `;
 
-const CheckboxRow = styled.label`
+const CheckBox = styled.label`
   display: flex;
   align-items: center;
   gap: 12px;
   font-weight: 500;
   text-align: left;
+  color: #212121;
+
+  input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #ffffff;
+    cursor: pointer;
+
+    &:checked {
+      background: #6366f1;
+      border-color: #6366f1;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
+  }
 `;
 
 const SubmitButton = styled.button`

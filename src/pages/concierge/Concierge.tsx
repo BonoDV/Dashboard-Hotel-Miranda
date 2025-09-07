@@ -69,10 +69,11 @@ function Concierge() {
     [t("concierge_table_status")]: res.status ? "Active" : "Inactive",
   }));
 
-  if (loading) return <div>{t("loading_concierge")}</div>;
+  if (loading)
+    return <div style={{ color: "black" }}>{t("loading_concierge")}</div>;
   if (error)
     return (
-      <div>
+      <div style={{ color: "black" }}>
         {t("loading_concierge_error")} {error}
       </div>
     );

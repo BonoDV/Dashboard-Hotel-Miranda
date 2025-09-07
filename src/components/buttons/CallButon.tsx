@@ -22,9 +22,10 @@ const CallButton = ({ phone }: CallButtonProps) => {
 const ButtonStyled = styled.button`
   width: 60px;
   height: 60px;
-  border: 1px solid #e8f2ef;
+  border: 1px solid #004319;
   border-radius: 12px;
   cursor: pointer;
+  background-color: #f7f7f7;
 `;
 
 export default CallButton;

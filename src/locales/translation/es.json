@@ -146,6 +146,20 @@
   "room_form_save_room": "Guardar Habitación",
   "room_created_successfully": "Habitación creada correctamente",
   "room_updated_successfully": "Habitación actualizada correctamente",
+  "concierge_detail": {
+    "loading": "Cargando datos del empleado...",
+    "error": "Error: ",
+    "not_found": "Empleado no encontrado.",
+    "contact_info": "Información de Contacto",
+    "work_info": "Información Laboral",
+    "position": "Cargo",
+    "start_date": "Fecha de Inicio",
+    "schedule": "Horario",
+    "status": "Estado",
+    "function_description": "Descripción de Funciones",
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
   "concierge_edit": {
     "loading": "Cargando datos del empleado...",
     "error": "Error: ",
@@ -171,5 +185,22 @@
     "update_button": "Actualizar empleado",
     "success_message": "Empleado actualizado correctamente",
     "error_message": "Por favor, rellena todos los campos requeridos"
+  },
+  "room_detail": {
+    "loading": "Cargando datos del usuario...",
+    "error": "Error: {{error}}",
+    "not_found": "Habitación no encontrada.",
+    "room_image_alt": "Habitación",
+    "room_number": "Habitación #{{number}}",
+    "bed_floor": "Cama {{bedType}} • Planta {{floor}}",
+    "description": "Descripción",
+    "price": "Precio",
+    "price_value": "${{price}}/noche",
+    "discount": "Descuento",
+    "cancellation": "Cancelación",
+    "status": "Estado:",
+    "booked": "Reservada",
+    "available": "Disponible",
+    "facilities": "Comodidades"
   }
 }

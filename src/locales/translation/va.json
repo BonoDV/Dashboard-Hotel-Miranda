@@ -145,6 +145,20 @@
   "room_form_save_room": "Guardar Habitació",
   "room_created_successfully": "Habitació creada correctament",
   "room_updated_successfully": "Habitació actualitzada correctament",
+  "concierge_detail": {
+    "loading": "Obtenint dades de l'empleat...",
+    "error": "Error: ",
+    "not_found": "Empleat no trobat.",
+    "contact_info": "Informació de Contacte",
+    "work_info": "Informació Laboral",
+    "position": "Càrrec",
+    "start_date": "Data d'Inici",
+    "schedule": "Horari",
+    "status": "Estat",
+    "function_description": "Descripció de Funcions",
+    "active": "Actiu",
+    "inactive": "Inactiu"
+  },
   "concierge_edit": {
     "loading": "Obtenint dades de l'empleat...",
     "error": "Error: ",
@@ -170,5 +184,22 @@
     "update_button": "Actualitzar empleat",
     "success_message": "Empleat actualitzat correctament",
     "error_message": "Per favor, emplene tots els camps requerits"
+  },
+  "room_detail": {
+    "loading": "Obtenint dades de l'usuari...",
+    "error": "Error: {{error}}",
+    "not_found": "Habitació no trobada.",
+    "room_image_alt": "Habitació",
+    "room_number": "Habitació #{{number}}",
+    "bed_floor": "Llit {{bedType}} • Planta {{floor}}",
+    "description": "Descripció",
+    "price": "Preu",
+    "price_value": "${{price}}/nit",
+    "discount": "Descompte",
+    "cancellation": "Cancel·lació",
+    "status": "Estat:",
+    "booked": "Reservada",
+    "available": "Disponible",
+    "facilities": "Comoditats"
   }
 }

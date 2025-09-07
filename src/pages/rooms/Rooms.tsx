@@ -128,10 +128,11 @@ function Rooms() {
     ),
   }));
 
-  if (loading) return <div>{t("loading_rooms")}</div>;
+  if (loading)
+    return <div style={{ color: "black" }}>{t("loading_rooms")}</div>;
   if (error)
     return (
-      <div>
+      <div style={{ color: "black" }}>
         {t("loading_rooms_error")} {error}
       </div>
     );
@@ -149,9 +150,9 @@ function Rooms() {
         />
       </Helmet>
       <div style={{ padding: "20px" }}>
-        <SortButton onClick={() => handleAdd()}>
+        <AddButton onClick={() => handleAdd()}>
           {t("rooms_button_new_room")} +
-        </SortButton>
+        </AddButton>
         {/* Componente de la tabla */}
         <Table cols={cols} data={data} basePath={"room"} />
         <Pagination
@@ -166,7 +167,7 @@ function Rooms() {
 
 export default Rooms;
 
-const SortButton = styled.button`
+const AddButton = styled.button`
   background: transparent;
   border: 1px solid #135846;
   border-radius: 12px;
@@ -178,4 +179,9 @@ const SortButton = styled.button`
   font-family: "Poppins", sans-serif;
   margin-left: 92%;
   margin-bottom: 20px;
+  color: #135846;
+
+  &:hover {
+    background-color: #a5edc6;
+  }
 `;

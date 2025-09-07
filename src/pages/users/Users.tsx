@@ -113,10 +113,11 @@ function Users() {
       }))
     : [];
 
-  if (loading) return <div>{t("loading_bookings")}</div>;
+  if (loading)
+    return <div style={{ color: "black" }}>{t("loading_bookings")}</div>;
   if (error)
     return (
-      <div>
+      <div style={{ color: "black" }}>
         {t("loading_bookings_error")} {error}
       </div>
     );
@@ -254,6 +255,7 @@ const AddButton = styled.button`
   height: 50px;
   width: fit-content;
   font-family: "Poppins", sans-serif;
+  color: #135846;
 
   &:hover {
     background-color: #a5edc6;

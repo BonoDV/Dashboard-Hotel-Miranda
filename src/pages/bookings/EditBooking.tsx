@@ -150,14 +150,16 @@ const EditBooking: React.FC = () => {
   };
 
   // Only return JSX after all hooks have been called
-  if (loading) return <div>{t("loading_bookings")}</div>;
+  if (loading)
+    return <div style={{ color: "black" }}>{t("loading_bookings")}</div>;
   if (error)
     return (
-      <div>
+      <div style={{ color: "black" }}>
         {t("loading_bookings_error")} {error}
       </div>
     );
-  if (!user && !loading) return <div>{t("booking_not_found")}</div>;
+  if (!user && !loading)
+    return <div style={{ color: "black" }}>{t("booking_not_found")}</div>;
 
   return (
     <CardForm onSubmit={handleSubmit}>
@@ -304,18 +306,13 @@ const CardForm = styled.form`
   display: grid;
   gap: 16px;
   max-width: 90%;
-  height: 80%;
+  height: 90%;
   margin: 0 auto;
   padding: 24px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(180%) blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgba(20, 20, 20, 0.75);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
 `;
 
 const TwoColGrid = styled.div`
@@ -337,81 +334,51 @@ const Field = styled.label`
 `;
 
 const FieldTitle = styled.span`
-  color: #374151;
+  color: #212121;
   font-size: 14px;
-
-  @media (prefers-color-scheme: dark) {
-    color: #e5e7eb;
-  }
 `;
 
 const TextInput = styled.input`
   appearance: none;
   border: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #111827;
+  background: #ffffff;
+  color: #212121;
   padding: 12px 14px;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: #ffffff;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background: #111827;
-    color: #f9fafb;
-
-    &:focus {
-      border-color: #818cf8;
-      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
-      background: #0b0f1a;
-    }
   }
 `;
 
 const TextArea = styled.textarea`
   appearance: none;
   border: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #111827;
+  background: #ffffff;
+  color: #212121;
   padding: 12px 14px;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   min-height: 100px;
   resize: vertical;
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: #ffffff;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background: #111827;
-    color: #f9fafb;
-
-    &:focus {
-      border-color: #818cf8;
-      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
-      background: #0b0f1a;
-    }
   }
 `;
 
@@ -421,6 +388,40 @@ const CheckboxRow = styled.label`
   gap: 12px;
   font-weight: 500;
   text-align: left;
+  color: #212121;
+
+  input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #ffffff;
+    cursor: pointer;
+
+    &:checked {
+      background: #6366f1;
+      border-color: #6366f1;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
+  }
 `;
 
 const SubmitButton = styled.button`

@@ -36,9 +36,15 @@ const UserDetail = () => {
     }
   }, [dispatch, user?.roomNumber]);
 
-  if (loading) return <p>{t("bookings_details_charging")}</p>;
-  if (!user) return <p>{t("bookings_details_charging_user_not_found")}</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading)
+    return <p style={{ color: "black" }}>{t("bookings_details_charging")}</p>;
+  if (!user)
+    return (
+      <p style={{ color: "black" }}>
+        {t("bookings_details_charging_user_not_found")}
+      </p>
+    );
+  if (error) return <p style={{ color: "black" }}>Error: {error}</p>;
 
   return (
     <div
@@ -57,7 +63,9 @@ const UserDetail = () => {
           style={{ width: "156px", height: "156px", borderRadius: "12px" }}
         />
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <p style={{ fontSize: "20px", fontWeight: "600" }}>{user.name}</p>
+          <p style={{ fontSize: "20px", fontWeight: "600", color: "#135846" }}>
+            {user.name}
+          </p>
           <p style={{ color: "#888" }}>ID #{user.id}</p>
           <div style={{ display: "flex", gap: "12px" }}>
             <CallButton phone={user.phone} />
@@ -81,7 +89,9 @@ const UserDetail = () => {
             {t("kpi_check_in")}
           </p>
           <p>
-            <strong>{formatDateTimeDisplay(user.checkIn)}</strong>
+            <strong style={{ color: "#135846" }}>
+              {formatDateTimeDisplay(user.checkIn)}
+            </strong>
           </p>
         </div>
         <div>
@@ -89,7 +99,9 @@ const UserDetail = () => {
             {t("kpi_check_out")}
           </p>
           <p>
-            <strong>{formatDateTimeDisplay(user.checkOut)}</strong>
+            <strong style={{ color: "#135846" }}>
+              {formatDateTimeDisplay(user.checkOut)}
+            </strong>
           </p>
         </div>
       </div>
@@ -110,7 +122,7 @@ const UserDetail = () => {
               {t("user_detail.room_info")}
             </p>
             <p>
-              <strong>{user.roomType}</strong>
+              <strong style={{ color: "#135846" }}>{user.roomType}</strong>
             </p>
           </div>
           <div>
@@ -118,7 +130,7 @@ const UserDetail = () => {
               {t("user_detail.price")}
             </p>
             <p>
-              <strong>
+              <strong style={{ color: "#135846" }}>
                 ${room?.price}/{t("user_detail.price_night")}
               </strong>
             </p>
@@ -127,15 +139,17 @@ const UserDetail = () => {
 
         {/* Notes */}
         <p>
-          <strong>
+          <strong style={{ color: "#135846" }}>
             {user.specialRequest.status
               ? user.specialRequest.text
               : t("user_detail.no_special_request")}
           </strong>
         </p>
-
+        <br />
         <p>
-          <strong>{t("rooms_table_room_facilities")}</strong>
+          <strong style={{ color: "#135846" }}>
+            {t("rooms_table_room_facilities")}
+          </strong>
         </p>
         <div style={{ display: "flex", gap: "12px", marginTop: "8px" }}>
           <FacilitiesButton facilities={room?.amenities || []} />

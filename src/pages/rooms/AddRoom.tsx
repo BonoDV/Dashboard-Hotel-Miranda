@@ -229,18 +229,13 @@ const CardForm = styled.form`
   display: grid;
   gap: 16px;
   max-width: 90%;
-  height: 90%;
+  height: 95%;
   margin: 0 auto;
   padding: 24px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(180%) blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-  @media (prefers-color-scheme: dark) {
-    background: rgba(20, 20, 20, 0.75);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
 `;
 
 const TwoColGrid = styled.div`
@@ -262,81 +257,51 @@ const Field = styled.label`
 `;
 
 const FieldTitle = styled.span`
-  color: #374151;
+  color: #212121;
   font-size: 14px;
-
-  @media (prefers-color-scheme: dark) {
-    color: #e5e7eb;
-  }
 `;
 
 const TextInput = styled.input`
   appearance: none;
   border: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #111827;
+  background: #ffffff;
+  color: #212121;
   padding: 12px 14px;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: #ffffff;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background: #111827;
-    color: #f9fafb;
-
-    &:focus {
-      border-color: #818cf8;
-      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
-      background: #0b0f1a;
-    }
   }
 `;
 
 const TextArea = styled.textarea`
   appearance: none;
   border: 1px solid #e5e7eb;
-  background: #fafafa;
-  color: #111827;
+  background: #ffffff;
+  color: #212121;
   padding: 12px 14px;
   border-radius: 12px;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   min-height: 100px;
   resize: vertical;
 
   &:focus {
     border-color: #6366f1;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
-    background: #ffffff;
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #374151;
-    background: #111827;
-    color: #f9fafb;
-
-    &:focus {
-      border-color: #818cf8;
-      box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
-      background: #0b0f1a;
-    }
   }
 `;
 
@@ -349,7 +314,7 @@ const ArrayItemContainer = styled.div`
 const RemoveButton = styled.button`
   padding: 8px 12px;
   border: 1px solid #ef4444;
-  background: #fef2f2;
+  background: #ffffff;
   color: #dc2626;
   border-radius: 8px;
   font-size: 12px;
@@ -361,23 +326,12 @@ const RemoveButton = styled.button`
     background: #fee2e2;
     border-color: #dc2626;
   }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #7f1d1d;
-    background: #1f1f1f;
-    color: #fca5a5;
-
-    &:hover {
-      background: #7f1d1d;
-      border-color: #991b1b;
-    }
-  }
 `;
 
 const AddButton = styled.button`
   padding: 8px 16px;
   border: 1px solid #10b981;
-  background: #f0fdf4;
+  background: #ffffff;
   color: #059669;
   border-radius: 8px;
   font-size: 12px;
@@ -389,17 +343,6 @@ const AddButton = styled.button`
   &:hover {
     background: #dcfce7;
     border-color: #059669;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: #065f46;
-    background: #1f1f1f;
-    color: #6ee7b7;
-
-    &:hover {
-      background: #064e3b;
-      border-color: #047857;
-    }
   }
 `;
 

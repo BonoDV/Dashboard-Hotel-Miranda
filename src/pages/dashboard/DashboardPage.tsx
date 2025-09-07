@@ -230,6 +230,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  color: #212121;
 `;
 
 const KPIGroup = styled.div`
@@ -245,6 +246,14 @@ const StyledCalendar = styled(Calendar)`
   width: 100%;
   font-family: "Inter", sans-serif;
   padding: 1rem;
+  box-shadow: 0px 4px 12px #0000000a;
+  color: #212121;
+
+  .react-calendar__navigation__label,
+  .react-calendar__navigation__arrow,
+  .react-calendar__month-view__days__day {
+    color: black;
+  }
 `;
 
 const RecentBookings = styled.div`

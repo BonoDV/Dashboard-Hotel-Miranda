@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import CallButton from "../../components/buttons/CallButon.js";
 import SendMessageButton from "../../components/buttons/SendMessageButton.tsx";
 import Image from "../../components/Image.tsx";
@@ -8,6 +9,7 @@ import { RootState, AppDispatch } from "../../redux/store/store.ts";
 import { fetchConciergeById } from "../../redux/features/concierge/conciergeSlice.ts";
 
 const ConciergeDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -21,9 +23,17 @@ const ConciergeDetail = () => {
     }
   }, [dispatch, id]);
 
-  if (loading) return <p>Cargando datos del trabajador...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!concierge) return <p>Trabajador no encontrado.</p>;
+  if (loading)
+    return <p style={{ color: "black" }}>{t("concierge_detail.loading")}</p>;
+  if (error)
+    return (
+      <p style={{ color: "black" }}>
+        {t("concierge_detail.error")}
+        {error}
+      </p>
+    );
+  if (!concierge)
+    return <p style={{ color: "black" }}>{t("concierge_detail.not_found")}</p>;
 
   // Función para formatear la fecha
   const formatDate = (date: Date) => {
@@ -59,7 +69,12 @@ const ConciergeDetail = () => {
         />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h1
-            style={{ fontSize: "28px", fontWeight: "600", margin: "0 0 8px 0" }}
+            style={{
+              fontSize: "28px",
+              fontWeight: "600",
+              margin: "0 0 8px 0",
+              color: "#135846",
+            }}
           >
             {concierge.first_name} {concierge.last_name}
           </h1>
@@ -69,15 +84,20 @@ const ConciergeDetail = () => {
           <p style={{ color: "#666", margin: "0" }}>{concierge.schedule}</p>
         </div>
       </div>
-            <CallButton phone={concierge.phone_number} />
-            <SendMessageButton email={concierge.email} />
+      <CallButton phone={concierge.phone_number} />
+      <SendMessageButton email={concierge.email} />
 
       {/* Información de contacto */}
       <div style={{ marginBottom: "32px" }}>
         <h2
-          style={{ fontSize: "20px", fontWeight: "600", marginBottom: "16px" }}
+          style={{
+            fontSize: "20px",
+            fontWeight: "600",
+            marginBottom: "16px",
+            color: "#888",
+          }}
         >
-          Información de Contacto
+          {t("concierge_detail.contact_info")}
         </h2>
         <div
           style={{
@@ -88,11 +108,19 @@ const ConciergeDetail = () => {
         >
           <div>
             <p style={{ color: "#888", marginBottom: "4px" }}>Email</p>
-            <p style={{ fontWeight: "500" }}>{concierge.email}</p>
+            <p>
+              <strong style={{ color: "#135846" }}>{concierge.email}</strong>
+            </p>
           </div>
           <div>
-            <p style={{ color: "#888", marginBottom: "4px" }}>Teléfono</p>
-            <p style={{ fontWeight: "500" }}>{concierge.phone_number}</p>
+            <p style={{ color: "#888", marginBottom: "4px" }}>
+              {t("concierge_edit.phone")}
+            </p>
+            <p>
+              <strong style={{ color: "#135846" }}>
+                {concierge.phone_number}
+              </strong>
+            </p>
           </div>
         </div>
       </div>
@@ -100,9 +128,14 @@ const ConciergeDetail = () => {
       {/* Información laboral */}
       <div style={{ marginBottom: "32px" }}>
         <h2
-          style={{ fontSize: "20px", fontWeight: "600", marginBottom: "16px" }}
+          style={{
+            fontSize: "20px",
+            fontWeight: "600",
+            marginBottom: "16px",
+            color: "#888",
+          }}
         >
-          Información Laboral
+          {t("concierge_detail.work_info")}
         </h2>
         <div
           style={{
@@ -112,31 +145,45 @@ const ConciergeDetail = () => {
           }}
         >
           <div>
-            <p style={{ color: "#888", marginBottom: "4px" }}>Cargo</p>
-            <p style={{ fontWeight: "500" }}>{concierge.job}</p>
+            <p style={{ color: "#888", marginBottom: "4px" }}>
+              {t("concierge_detail.position")}
+            </p>
+            <p>
+              <strong style={{ color: "#135846" }}>{concierge.job}</strong>
+            </p>
           </div>
           <div>
             <p style={{ color: "#888", marginBottom: "4px" }}>
-              Fecha de Inicio
+              {t("concierge_detail.start_date")}
             </p>
-            <p style={{ fontWeight: "500" }}>
-              {formatDate(concierge.start_date)}
+            <p>
+              <strong style={{ color: "#135846" }}>
+                {formatDate(concierge.start_date)}
+              </strong>
             </p>
           </div>
           <div>
-            <p style={{ color: "#888", marginBottom: "4px" }}>Horario</p>
-            <p style={{ fontWeight: "500" }}>{concierge.schedule}</p>
+            <p style={{ color: "#888", marginBottom: "4px" }}>
+              {t("concierge_detail.schedule")}
+            </p>
+            <p>
+              <strong style={{ color: "#135846" }}>{concierge.schedule}</strong>
+            </p>
           </div>
           <div>
-            <p style={{ color: "#888", marginBottom: "4px" }}>Estado</p>
-            <p style={{ fontWeight: "500" }}>
+            <p style={{ color: "#888", marginBottom: "4px" }}>
+              {t("concierge_detail.status")}
+            </p>
+            <p>
               <span
                 style={{
                   color: concierge.status ? "#22c55e" : "#ef4444",
                   fontWeight: "600",
                 }}
               >
-                {concierge.status ? "Activo" : "Inactivo"}
+                {concierge.status
+                  ? t("concierge_detail.active")
+                  : t("concierge_detail.inactive")}
               </span>
             </p>
           </div>
@@ -146,11 +193,16 @@ const ConciergeDetail = () => {
       {/* Descripción de funciones */}
       <div style={{ marginBottom: "32px" }}>
         <h2
-          style={{ fontSize: "20px", fontWeight: "600", marginBottom: "16px" }}
+          style={{
+            fontSize: "20px",
+            fontWeight: "600",
+            marginBottom: "16px",
+            color: "#888",
+          }}
         >
-          Descripción de Funciones
+          {t("concierge_detail.function_description")}
         </h2>
-        <p style={{ lineHeight: "1.6", color: "#333" }}>
+        <p style={{ lineHeight: "1.6", color: "#135846", fontWeight: "600" }}>
           {concierge.function_description}
         </p>
       </div>
@@ -163,8 +215,7 @@ const ConciergeDetail = () => {
           paddingTop: "24px",
           borderTop: "1px solid #E5E5E5",
         }}
-      >
-      </div>
+      ></div>
     </div>
   );
 };

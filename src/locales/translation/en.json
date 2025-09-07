@@ -146,6 +146,20 @@
   "room_form_save_room": "Save Room",
   "room_created_successfully": "Room created successfully",
   "room_updated_successfully": "Room updated successfully",
+  "concierge_detail": {
+    "loading": "Loading employee data...",
+    "error": "Error: ",
+    "not_found": "Employee not found.",
+    "contact_info": "Contact Information",
+    "work_info": "Work Information",
+    "position": "Position",
+    "start_date": "Start Date",
+    "schedule": "Schedule",
+    "status": "Status",
+    "function_description": "Function Description",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
   "concierge_edit": {
     "loading": "Loading concierge data...",
     "error": "Error: ",
@@ -171,5 +185,22 @@
     "update_button": "Update Concierge",
     "success_message": "Concierge updated successfully",
     "error_message": "Please fill in all required fields"
+  },
+  "room_detail": {
+    "loading": "Loading user data...",
+    "error": "Error: {{error}}",
+    "not_found": "Room not found.",
+    "room_image_alt": "Room",
+    "room_number": "Room #{{number}}",
+    "bed_floor": "{{bedType}} bed • Floor {{floor}}",
+    "description": "Description",
+    "price": "Price",
+    "price_value": "${{price}}/night",
+    "discount": "Discount",
+    "cancellation": "Cancellation",
+    "status": "Status:",
+    "booked": "Booked",
+    "available": "Available",
+    "facilities": "Facilities"
   }
 }

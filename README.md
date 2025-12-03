@@ -10,7 +10,7 @@ Panel tipo dashboard para la gestión de un hotel. Incluye rutas CRUD para reser
 
 ## Tecnologías y herramientas
 - **Lenguajes**: TypeScript (~96 %), JavaScript (~3 %)
-- **Stack**: React + Vite (deducido por configuración)
+- **Stack**: React + Vite
 - **Pruebas**: Cypress, Jest
 - **Configuraciones**: Babel, ESLint
 - **Infraestructura**: `.github/workflows` para CI/CD

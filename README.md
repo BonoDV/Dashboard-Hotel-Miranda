@@ -3,7 +3,7 @@
 **Licencia**: MIT
 
 ## Estado
-Terminado (“Finished”)
+Terminado
 
 ## Descripción
 Panel tipo dashboard para la gestión de un hotel. Incluye rutas CRUD para reservas (*bookings*), habitaciones (*rooms*), usuarios (*users*) y contactos/reseñas (*contact*).
